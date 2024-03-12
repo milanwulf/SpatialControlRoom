@@ -1377,6 +1377,7 @@ MonoBehaviour:
   m_controller: 1
   m_showState: 1
   showWhenHandsArePoweredByNaturalControllerPoses: 0
+  RayHelper: {fileID: 0}
 --- !u!114 &262608532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8181,7 +8182,7 @@ MonoBehaviour:
   virtualGreenScreenApplyDepthCulling: 0
   virtualGreenScreenDepthTolerance: 0.2
   mrcActivationMode: 0
-  launchMultimodalHandsControllersOnStartup: 0
+  launchSimultaneousHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 1
   requestBodyTrackingPermissionOnStartup: 0
   requestFaceTrackingPermissionOnStartup: 0
@@ -8198,6 +8199,9 @@ MonoBehaviour:
   LateControllerUpdate: 1
   LateLatching: 0
   controllerDrivenHandPosesType: 0
+  SimultaneousHandsAndControllersEnabled: 0
+  _readOnlyWideMotionModeHandPosesEnabled: 0
+  wideMotionModeHandPosesEnabled: 0
 --- !u!114 &1366007508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8837,9 +8841,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bd807b940c86542ac589657d8c1806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsServerIP: 192.168.0.46
-  obsServerPort: 4455
-  connectAtStart: 1
+  serverAdress: 192.168.0.46
+  serverPort: 4455
+  serverPassword: Bp5jPUnUl9vE6fUt
 --- !u!4 &1442115892
 Transform:
   m_ObjectHideFlags: 0
@@ -10789,6 +10793,7 @@ MonoBehaviour:
   m_controller: 2
   m_showState: 1
   showWhenHandsArePoweredByNaturalControllerPoses: 0
+  RayHelper: {fileID: 0}
 --- !u!114 &1756716853
 MonoBehaviour:
   m_ObjectHideFlags: 0
