@@ -186,10 +186,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: UiPanelMini
       objectReference: {fileID: 0}
+    - target: {fileID: 3225688177298925393, guid: 60deaf61594803144b9dae145cd70add,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6743876680704002940, guid: 60deaf61594803144b9dae145cd70add,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6743876680704002940, guid: 60deaf61594803144b9dae145cd70add,
         type: 3}
@@ -239,13 +244,18 @@ PrefabInstance:
     - target: {fileID: 6815201599075758034, guid: 60deaf61594803144b9dae145cd70add,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6924850840308460793, guid: 60deaf61594803144b9dae145cd70add,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -76.335
       objectReference: {fileID: 0}
+    - target: {fileID: 7950720790285589638, guid: 60deaf61594803144b9dae145cd70add,
+        type: 3}
+      propertyPath: _pointableElement
+      value: 
+      objectReference: {fileID: 1463278267}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1523,6 +1533,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450596188}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1463278267 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4267978886954933524, guid: 60deaf61594803144b9dae145cd70add,
+    type: 3}
+  m_PrefabInstance: {fileID: 125145141}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffe41fe81087fa41a2062cc69b99615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1464860301
 GameObject:
   m_ObjectHideFlags: 0
@@ -2596,7 +2618,7 @@ PrefabInstance:
     - target: {fileID: 1179216850161894478, guid: fa3010614f5fb7a4daf2ea1c1bcd339c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2442950749522263115, guid: fa3010614f5fb7a4daf2ea1c1bcd339c,
         type: 3}
@@ -2606,12 +2628,12 @@ PrefabInstance:
     - target: {fileID: 2442950749522263115, guid: fa3010614f5fb7a4daf2ea1c1bcd339c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2519946720152420653, guid: fa3010614f5fb7a4daf2ea1c1bcd339c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
