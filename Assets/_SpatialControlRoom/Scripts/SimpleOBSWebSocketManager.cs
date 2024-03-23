@@ -46,4 +46,31 @@ public class SimpleOBSWebSocketManager : MonoBehaviour
         if (obsWebSocket.IsConnected)
             obsWebSocket.Disconnect();
     }
+
+    //just for testing
+    public void StartRecord()
+    {
+        SendRequest("StartRecord");
+    }
+
+    private void SendRequest(string requestType)
+    {
+        try
+        {
+            switch (requestType)
+            {
+                case "StartRecord":
+                    obsWebSocket.StartRecord();
+                    break;
+                // Hier können weitere Fälle für andere Anfragen hinzugefügt werden
+                default:
+                    Debug.LogError($"Unbekannter Request-Typ: {requestType}");
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Fehler beim Senden der Request '{requestType}': {e.Message}");
+        }
+    }
 }
