@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 5041468609344681539}
   - component: {fileID: 4296821973662117611}
   m_Layer: 0
-  m_Name: UiToggleRound
+  m_Name: UiRadioButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1005,20 +1005,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1883190873752450909, guid: 86e9b00cbcbd3724091c53465338de18,
+    - target: {fileID: 2220102793030754990, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 2315445923568138023, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: FillSize.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 2522561261848802930, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: m_ShowMaskGraphic
-      value: 0
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2691451795585547212, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
@@ -1028,12 +1018,12 @@ PrefabInstance:
     - target: {fileID: 2691451795585547212, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.657
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2691451795585547212, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.543
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2691451795585547212, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
@@ -1074,161 +1064,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UiPanelFeed
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339273733895238341, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1960
-      objectReference: {fileID: 0}
-    - target: {fileID: 4663515236415343219, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: _width
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 6113522502654427603, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: TargetRectSize.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 6113522502654427603, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: TransformRectSize.x
-      value: 192
-      objectReference: {fileID: 0}
-    - target: {fileID: 6113522502654427603, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: LayoutBounds.m_Extent.x
-      value: 960
-      objectReference: {fileID: 0}
-    - target: {fileID: 6113522502654427603, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: AdapterBounds.m_Extent.x
-      value: 960
-      objectReference: {fileID: 0}
-    - target: {fileID: 6113522502654427603, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: RotatedAndScaledBounds.m_Extent.x
-      value: 960
-      objectReference: {fileID: 0}
-    - target: {fileID: 6479502531576740150, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: m_UVRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6479502531576740150, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: m_UVRect.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6479502531576740150, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: m_UVRect.width
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6479502531576740150, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: m_UVRect.height
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106931636494044402, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: FillSize.x
-      value: 1960
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106931636494044402, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: TargetRectSize.x
-      value: 232
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106931636494044402, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: TransformRectSize.x
-      value: 232
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106931636494044402, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: LayoutBounds.m_Extent.x
-      value: 980
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106931636494044402, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: AdapterBounds.m_Extent.x
-      value: 980
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106931636494044402, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: RotatedAndScaledBounds.m_Extent.x
-      value: 980
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159891268965146158, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: TargetRectSize.x
-      value: 232
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159891268965146158, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: TransformRectSize.x
-      value: 232
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159891268965146158, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: LayoutBounds.m_Extent.x
-      value: 980
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159891268965146158, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: LayoutBounds.m_Extent.y
-      value: 560
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159891268965146158, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: AdapterBounds.m_Extent.x
-      value: 980
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159891268965146158, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: AdapterBounds.m_Extent.y
-      value: 560
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159891268965146158, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: RotatedAndScaledBounds.m_Extent.x
-      value: 980
-      objectReference: {fileID: 0}
-    - target: {fileID: 7387198642482444189, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1960
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990914803193777353, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: FillSize.x
-      value: 1830.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990914803193777353, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: TargetRectSize.x
-      value: 1830.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990914803193777353, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: TransformRectSize.x
-      value: 1830.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990914803193777353, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: LayoutBounds.m_Extent.x
-      value: 915.205
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990914803193777353, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: AdapterBounds.m_Extent.x
-      value: 915.205
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990914803193777353, guid: 86e9b00cbcbd3724091c53465338de18,
-        type: 3}
-      propertyPath: RotatedAndScaledBounds.m_Extent.x
-      value: 915.205
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3825,6 +3660,66 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: FillSize.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: FillSize.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: TargetRectSize.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: TargetRectSize.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: TransformRectSize.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: TransformRectSize.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: LayoutBounds.m_Extent.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: LayoutBounds.m_Extent.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: AdapterBounds.m_Extent.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: AdapterBounds.m_Extent.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: RotatedAndScaledBounds.m_Extent.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550121210006794744, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: RotatedAndScaledBounds.m_Extent.y
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2691451795585547212, guid: 3e9d396793b023b48a4ad0f75827ea73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3889,6 +3784,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UiActionBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: FillSize.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: FillSize.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: TargetRectSize.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: TargetRectSize.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: TransformRectSize.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: TransformRectSize.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: LayoutBounds.m_Extent.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: LayoutBounds.m_Extent.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: AdapterBounds.m_Extent.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: AdapterBounds.m_Extent.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: RotatedAndScaledBounds.m_Extent.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713487575778695351, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: RotatedAndScaledBounds.m_Extent.y
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6262742932740264712, guid: 3e9d396793b023b48a4ad0f75827ea73,
         type: 3}
@@ -4840,7 +4795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &665601571769492126
 MonoBehaviour:
   m_ObjectHideFlags: 0
