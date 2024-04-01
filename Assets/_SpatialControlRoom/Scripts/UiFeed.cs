@@ -6,12 +6,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using Flexalon;
 using Meta.WitAi;
+using UnityEngine.XR.Interaction.Toolkit.UI;
+using Christina.UI;
 
 public class UiFeed : MonoBehaviour
 {
     private bool uiIsLocked = true;
 
     private FlexalonObject mainFlexalonObject;
+    [SerializeField] private FlexalonObject feedFlexalonObject;
+
+    private LazyFollow lazyFollower;
 
     //LockButton
     [SerializeField] Button lockBtn;
@@ -23,8 +28,8 @@ public class UiFeed : MonoBehaviour
     [SerializeField] Button renamingBtn;
     private FlexalonObject renamingBtnFlexalon;
 
-    [SerializeField] Button followBtn;
-    [SerializeField] Button rotateBtn;
+    [SerializeField] UiToggleSwitch followSwitch;
+    [SerializeField] UiToggleSwitch rotateSwitch;
 
     [SerializeField] Button landscapeBtn;
     [SerializeField] Button squareBtn;
@@ -44,22 +49,53 @@ public class UiFeed : MonoBehaviour
     float disabledBackgroundAlpha = 0f;
     float backgroundAnimationDuration = 0.5f;
 
+    private PositionFollowManager positionFollowManager;
+
     private void Awake()
     {
+        lazyFollower = GetComponent<LazyFollow>();
         mainFlexalonObject = GetComponent<FlexalonObject>();
         renamingBtnFlexalon = renamingBtn.GetComponent<FlexalonObject>();
         activeBackgroundAlpha = unlockStateBackground.color.a;
         InitialLockState();
+        positionFollowManager = FindObjectOfType<PositionFollowManager>();
     }
 
     private void OnEnable()
     {
         lockBtn.onClick.AddListener(ToggleLockState);
+
+        //Transform
+        followSwitch.OnToggleOn.AddListener(() => HandlePositionFollowing(true));
+        followSwitch.OnToggleOff.AddListener(() => HandlePositionFollowing(false));
+        rotateSwitch.OnToggleOn.AddListener(ActivateRotationFollowing);
+        rotateSwitch.OnToggleOff.AddListener(DeactivateRotationFollowing);
+        positionFollowManager.RegisterPosFollower(this);
+
+        //Aspect Ratio
+        landscapeBtn.onClick.AddListener(() => SetAspectRatio("landscape"));
+        squareBtn.onClick.AddListener(() => SetAspectRatio("square"));
+        portraitBtn.onClick.AddListener(() => SetAspectRatio("portrait"));
+
+
     }
 
     private void OnDisable()
     {
         lockBtn.onClick.RemoveListener(ToggleLockState);
+
+        //Transform
+        followSwitch.OnToggleOn.RemoveListener(() => HandlePositionFollowing(true));
+        followSwitch.OnToggleOff.RemoveListener(() => HandlePositionFollowing(false));
+        rotateSwitch.OnToggleOn.RemoveListener(ActivateRotationFollowing);
+        rotateSwitch.OnToggleOff.RemoveListener(DeactivateRotationFollowing);
+        positionFollowManager.DeregisterPosFollower(this);
+
+        //Aspect Ratio
+        landscapeBtn.onClick.RemoveListener(() => SetAspectRatio("landscape"));
+        squareBtn.onClick.RemoveListener(() => SetAspectRatio("square"));
+        portraitBtn.onClick.RemoveListener(() => SetAspectRatio("portrait"));
+
     }
 
     // Start is called before the first frame update
@@ -112,5 +148,68 @@ public class UiFeed : MonoBehaviour
         }
 
         unlockStateBackground.color = new Color(currentColor.r, currentColor.g, currentColor.b, endAlpha);
+    }
+
+    //Transform Handling
+    public void ActivatePositionFollowing()
+    {
+        lazyFollower.positionFollowMode = LazyFollow.PositionFollowMode.Follow;
+        if (followSwitch != null) followSwitch.SetToggleStateDirectly(true);
+    }
+
+    public void DeactivatePositionFollowing()
+    {
+        lazyFollower.positionFollowMode = LazyFollow.PositionFollowMode.None;
+        if (positionFollowManager.IsActiveFollower(this))
+        {
+            positionFollowManager.DeactivatePositionFollowing(this);
+        }
+        followSwitch.SetToggleStateDirectly(false);
+    }
+
+    private void HandlePositionFollowing(bool isOn)
+    {
+        if (isOn)
+        {
+            positionFollowManager.RequestFollowActivation(this);
+        }
+        else
+        {
+            if (positionFollowManager.IsActiveFollower(this))
+            {
+                DeactivatePositionFollowing();
+            }
+        }
+    }
+
+    private void ActivateRotationFollowing()
+    {
+        lazyFollower.rotationFollowMode = LazyFollow.RotationFollowMode.LookAtWithWorldUp;
+    }
+
+    private void DeactivateRotationFollowing()
+    {
+        lazyFollower.rotationFollowMode = LazyFollow.RotationFollowMode.None;
+    }
+
+    //Aspect Ratio Handling
+    private void SetAspectRatio(string aspectRatio)
+    {
+        switch (aspectRatio)
+        {
+            case "landscape":
+                feedFlexalonObject.Size = new Vector2(1920, 1080);
+
+                break;
+            case "square":
+                feedFlexalonObject.Size = new Vector2(1920, 1920);
+                break;
+            case "portrait":
+                feedFlexalonObject.Size = new Vector2(1080, 1920);
+                break;
+        }
+
+        //feedFlexalonObject.ForceUpdate();
+        mainFlexalonObject.ForceUpdate();
     }
 }

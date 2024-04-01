@@ -2,12 +2,11 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Christina.UI
 {
-    public class UiToggleSwitch : MonoBehaviour //,IPointerClickHandler
+    public class UiToggleSwitch : MonoBehaviour
     {
         [Header("Slider setup")]
         [SerializeField, Range(0, 1f)]
@@ -20,82 +19,60 @@ namespace Christina.UI
         [Header("Animation")]
         [SerializeField, Range(0, 1f)] private float animationDuration = 0.5f;
         [SerializeField]
-        private AnimationCurve slideEase =
-            AnimationCurve.EaseInOut(0, 0, 1, 1);
+        private AnimationCurve slideEase = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
         private Coroutine _animateSliderCoroutine;
 
         [Header("Events")]
         [SerializeField] private UnityEvent onToggleOn;
         [SerializeField] private UnityEvent onToggleOff;
-
-        //private ToggleSwitchGroupManager _toggleSwitchGroupManager;
+        public UnityEvent OnToggleOn => onToggleOn;
+        public UnityEvent OnToggleOff => onToggleOff;
 
         protected Action transitionEffect;
 
         protected virtual void OnValidate()
         {
             SetupToggleComponents();
-
-            _slider.value = sliderValue;
+            // Directly set the slider value here to update the slider in the editor.
+            if (_slider != null) _slider.value = sliderValue;
         }
 
         private void SetupToggleComponents()
         {
-            if (_slider != null)
-                return;
-
+            if (_slider != null) return;
             SetupSliderComponent();
         }
 
         private void SetupSliderComponent()
         {
             _slider = GetComponent<Slider>();
-
             if (_slider == null)
             {
                 Debug.Log("No slider found!", this);
                 return;
             }
-
             _slider.interactable = false;
             var sliderColors = _slider.colors;
             sliderColors.disabledColor = Color.white;
             _slider.colors = sliderColors;
             _slider.transition = Selectable.Transition.None;
         }
-        /*
-        public void SetupForManager(ToggleSwitchGroupManager manager)
-        {
-            _toggleSwitchGroupManager = manager;
-        }
-        */
 
         protected virtual void Awake()
         {
             SetupSliderComponent();
         }
 
-        /*
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            Toggle();
-        }
-        */
-        
         public void Toggle()
         {
-            /*if (_toggleSwitchGroupManager != null)
-                _toggleSwitchGroupManager.ToggleGroup(this);
-            else*/
-                SetStateAndStartAnimation(!CurrentValue);
+            SetStateAndStartAnimation(!CurrentValue);
         }
-        
+
         public void ToggleByGroupManager(bool valueToSetTo)
         {
             SetStateAndStartAnimation(valueToSetTo);
         }
-
 
         private void SetStateAndStartAnimation(bool state)
         {
@@ -116,6 +93,17 @@ namespace Christina.UI
             _animateSliderCoroutine = StartCoroutine(AnimateSlider());
         }
 
+        public void SetToggleStateDirectly(bool state)
+        {
+            CurrentValue = state;
+
+            if (_animateSliderCoroutine != null)
+            {
+                StopCoroutine(_animateSliderCoroutine);
+            }
+
+            _animateSliderCoroutine = StartCoroutine(AnimateSliderDirectly(state ? 1 : 0));
+        }
 
         private IEnumerator AnimateSlider()
         {
@@ -128,17 +116,32 @@ namespace Christina.UI
                 while (time < animationDuration)
                 {
                     time += Time.deltaTime;
-
                     float lerpFactor = slideEase.Evaluate(time / animationDuration);
                     _slider.value = sliderValue = Mathf.Lerp(startValue, endValue, lerpFactor);
-
                     transitionEffect?.Invoke();
-
                     yield return null;
                 }
             }
-
-            _slider.value = endValue;
+            _slider.value = sliderValue = endValue;
         }
+
+        private IEnumerator AnimateSliderDirectly(float targetValue)
+        {
+            float startValue = _slider.value;
+            float time = 0;
+
+            while (time < animationDuration)
+            {
+                time += Time.deltaTime;
+                float lerpFactor = slideEase.Evaluate(time / animationDuration);
+                _slider.value = Mathf.Lerp(startValue, targetValue, lerpFactor);
+                yield return null;
+            }
+
+            _slider.value = targetValue;
+
+            sliderValue = targetValue;
+        }
+
     }
 }
