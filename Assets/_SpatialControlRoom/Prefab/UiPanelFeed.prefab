@@ -1908,11 +1908,11 @@ MonoBehaviour:
   m_MovementSpeed: 4
   m_MovementSpeedVariancePercentage: 0.1
   m_SnapOnEnable: 1
-  m_PositionFollowMode: 1
+  m_PositionFollowMode: 0
   m_MinDistanceAllowed: 0.01
   m_MaxDistanceAllowed: 0.5
   m_TimeUntilThresholdReachesMaxDistance: 6
-  m_RotationFollowMode: 2
+  m_RotationFollowMode: 0
   m_MinAngleAllowed: 0.1
   m_MaxAngleAllowed: 2
   m_TimeUntilThresholdReachesMaxAngle: 3

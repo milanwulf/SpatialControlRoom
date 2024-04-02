@@ -54,6 +54,8 @@ public class UiFeed : MonoBehaviour
     private void Awake()
     {
         lazyFollower = GetComponent<LazyFollow>();
+        lazyFollower.positionFollowMode = LazyFollow.PositionFollowMode.None;
+        lazyFollower.rotationFollowMode = LazyFollow.RotationFollowMode.None;
         mainFlexalonObject = GetComponent<FlexalonObject>();
         renamingBtnFlexalon = renamingBtn.GetComponent<FlexalonObject>();
         activeBackgroundAlpha = unlockStateBackground.color.a;
@@ -184,7 +186,7 @@ public class UiFeed : MonoBehaviour
 
     private void ActivateRotationFollowing()
     {
-        lazyFollower.rotationFollowMode = LazyFollow.RotationFollowMode.LookAtWithWorldUp;
+        lazyFollower.rotationFollowMode = LazyFollow.RotationFollowMode.LookAt;
     }
 
     private void DeactivateRotationFollowing()
