@@ -1,0 +1,8 @@
+{
+    "displayName": "Flexalon Templates",
+    "description": "Examples and reusable templates to get started quickly.",
+    "name": "com.virtualmaker.flexalon.templates",
+    "unity": "2019.4",
+    "version": "3.1.0",
+    "category": "utilities"
+}
