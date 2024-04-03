@@ -9,7 +9,7 @@ public class UiFeedInstantiator : MonoBehaviour
     [SerializeField] GameObject prefabToInstantiate;
 
     private FlexalonInteractable flexalonInteractable;
-
+    
     private void Awake()
     {
         flexalonInteractable = GetComponent<FlexalonInteractable>();
