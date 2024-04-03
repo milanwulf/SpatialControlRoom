@@ -37,9 +37,9 @@ public class UiActionBar : MonoBehaviour
         recordingBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(0); });
         streamingBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(1); });
         //layoutBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(X); }); //TODO: implement UiPanel
-        //inputs.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(X); }); //TODO: implement UiPanel
-        passthroughBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(2); }); //index might change!
-        settingsBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(3); }); //shows connection settings for testing, change index later!
+        inputsBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(2); });
+        passthroughBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(3); }); //index might change!
+        settingsBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(4); }); //shows connection settings for testing, change index later!
     }
 
     // Start is called before the first frame update

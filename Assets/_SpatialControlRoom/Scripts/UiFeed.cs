@@ -53,13 +53,6 @@ public class UiFeed : MonoBehaviour
 
     private void Awake()
     {
-        lazyFollower = GetComponent<LazyFollow>();
-        lazyFollower.positionFollowMode = LazyFollow.PositionFollowMode.None;
-        lazyFollower.rotationFollowMode = LazyFollow.RotationFollowMode.None;
-        mainFlexalonObject = GetComponent<FlexalonObject>();
-        renamingBtnFlexalon = renamingBtn.GetComponent<FlexalonObject>();
-        activeBackgroundAlpha = unlockStateBackground.color.a;
-        InitialLockState();
         positionFollowManager = FindObjectOfType<PositionFollowManager>();
     }
 
@@ -103,7 +96,13 @@ public class UiFeed : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        lazyFollower = GetComponent<LazyFollow>();
+        lazyFollower.positionFollowMode = LazyFollow.PositionFollowMode.None;
+        lazyFollower.rotationFollowMode = LazyFollow.RotationFollowMode.None;
+        mainFlexalonObject = GetComponent<FlexalonObject>();
+        renamingBtnFlexalon = renamingBtn.GetComponent<FlexalonObject>();
+        activeBackgroundAlpha = unlockStateBackground.color.a;
+        InitialLockState();
     }
 
     private void InitialLockState()
