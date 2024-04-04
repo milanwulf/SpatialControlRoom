@@ -67,13 +67,67 @@ public class UiInputItem : MonoBehaviour
 
     [SerializeField] private DisplayText displayText;
 
+    //Instantiate
+    [SerializeField] BoxCollider protectedArea = null;
+    private FlexalonInteractable flexalonInteractable;
+    [SerializeField] UiFeedInstanceManger uiFeedInstanceManger = null;
+
+    private void Awake()
+    {
+        flexalonInteractable = GetComponent<FlexalonInteractable>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        if (protectedArea == null)
+        {
+            protectedArea = GameObject.Find("ProtectedArea").GetComponent<BoxCollider>();
+        }
+
+        if(uiFeedInstanceManger == null)
+        {
+            uiFeedInstanceManger = GameObject.Find("UiFeedInstanceManger").GetComponent<UiFeedInstanceManger>();
+        }
+
         SetInputType();
         SetRenderTexture();
         SetRenderTextureOffset();
         SetInputText();
+    }
+
+    private void OnEnable()
+    {
+        if (flexalonInteractable != null)
+        {
+            flexalonInteractable.DragEnd.AddListener(HandleDragEnd);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (flexalonInteractable != null)
+        {
+            flexalonInteractable.DragEnd.RemoveListener(HandleDragEnd);
+        }
+    }
+
+    private void HandleDragEnd(FlexalonInteractable interactable)
+    {
+        Vector3 currentPos = transform.position;
+        if (!IsPosInsideProtectedArea(currentPos))
+        {
+            uiFeedInstanceManger.InstantiateNewFeed(currentPos);
+        }
+    }
+
+    private bool IsPosInsideProtectedArea(Vector3 position)
+    {
+        if (protectedArea != null)
+        {
+            return protectedArea.bounds.Contains(position);
+        }
+        return false;
     }
 
     private void SetInputType()
