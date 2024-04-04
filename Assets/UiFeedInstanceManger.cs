@@ -5,6 +5,7 @@ using UnityEngine;
 public class UiFeedInstanceManger : MonoBehaviour
 {
     [SerializeField] GameObject uiFeedPrefab;
+    [SerializeField] Vector3 dublicatePosOffset = new Vector3(0f, 0f, -0.5f);
     [SerializeField] bool debugMode = false;
 
     private List<UiFeed> uiFeedInstances = new List<UiFeed>();
@@ -24,9 +25,9 @@ public class UiFeedInstanceManger : MonoBehaviour
         }
     }
 
-    public void InstantiateNewFeed(Vector3 position, RenderTexture inputRenderTexture, Rect renderTextureOffset)
+    public void InstantiateNewFeed(Vector3 position, Quaternion rotation, RenderTexture inputRenderTexture, Rect renderTextureOffset)
     {
-        GameObject newFeedInstance = Instantiate(uiFeedPrefab, position, Quaternion.identity);
+        GameObject newFeedInstance = Instantiate(uiFeedPrefab, position, rotation);
         UiFeed uiFeedInstance = newFeedInstance.GetComponent<UiFeed>();
         if(uiFeedInstance != null)
         {
@@ -47,5 +48,13 @@ public class UiFeedInstanceManger : MonoBehaviour
         {
             uiFeedInstances.Add(uiFeedInstance);
         }
+    }
+
+    public void DublicateUiFeedInstance(UiFeed uiFeedToDuplicate)
+    {
+        Vector3 dublicatePosition = uiFeedToDuplicate.transform.position + dublicatePosOffset;
+        Quaternion dublicateRotation = uiFeedToDuplicate.transform.rotation;
+        var instanceData = uiFeedToDuplicate.GetInstanceData();
+        InstantiateNewFeed(dublicatePosition, dublicateRotation, instanceData.RenderTexture, instanceData.Offset);
     }
 }

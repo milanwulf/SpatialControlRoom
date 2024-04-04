@@ -120,7 +120,7 @@ public class UiInputItem : MonoBehaviour
         Vector3 currentPos = transform.position;
         if (!IsPosInsideProtectedArea(currentPos))
         {
-            uiFeedInstanceManger.InstantiateNewFeed(currentPos, instanceRenderTexture, instanceRenderTextureOffset);
+            uiFeedInstanceManger.InstantiateNewFeed(currentPos, Quaternion.identity, instanceRenderTexture, instanceRenderTextureOffset);
         }
     }
 

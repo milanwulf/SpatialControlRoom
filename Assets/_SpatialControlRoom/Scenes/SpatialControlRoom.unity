@@ -1252,6 +1252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiFeedPrefab: {fileID: 3225688177298925393, guid: 86e9b00cbcbd3724091c53465338de18,
     type: 3}
+  dublicatePosOffset: {x: 0, y: 0, z: -0.2}
+  debugMode: 0
 --- !u!1 &618373088
 GameObject:
   m_ObjectHideFlags: 0

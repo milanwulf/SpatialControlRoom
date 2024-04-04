@@ -82,6 +82,8 @@ public class UiFeed : MonoBehaviour
         //Delete Button
         deleteBtnIcon.onClick.AddListener(RemoveThisInstance);
 
+        //Duplicate Button
+        duplicateBtn.onClick.AddListener(DublicateThisInstance);
 
     }
 
@@ -103,6 +105,9 @@ public class UiFeed : MonoBehaviour
 
         //Delete Button
         deleteBtnIcon.onClick.RemoveListener(RemoveThisInstance);
+
+        //Duplicate Button
+        duplicateBtn.onClick.RemoveListener(DublicateThisInstance);
 
     }
 
@@ -239,5 +244,25 @@ public class UiFeed : MonoBehaviour
     private void RemoveThisInstance()
     {
         uiFeedInstanceManger.RemoveFeedInstance(this);
+    }
+
+    private void DublicateThisInstance()
+    {
+        uiFeedInstanceManger.DublicateUiFeedInstance(this);
+    }
+
+    public class InstanceData
+    {
+        public RenderTexture RenderTexture { get; set; }
+        public Rect Offset { get; set; }
+    }
+
+    public InstanceData GetInstanceData()
+    {
+        return new InstanceData
+        {
+            RenderTexture = ndiFeedInput.texture as RenderTexture,
+            Offset = ndiFeedInput.uvRect
+        };
     }
 }
