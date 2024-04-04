@@ -25,13 +25,14 @@ public class UiFeedInstanceManger : MonoBehaviour
         }
     }
 
-    public void InstantiateNewFeed(Vector3 position, Quaternion rotation, RenderTexture inputRenderTexture, Rect renderTextureOffset)
+    public void InstantiateNewFeed(Vector3 position, Quaternion rotation, RenderTexture inputRenderTexture, Rect renderTextureOffset, UiFeed.FeedType feedType, string sceneName = null)
     {
         GameObject newFeedInstance = Instantiate(uiFeedPrefab, position, rotation);
         UiFeed uiFeedInstance = newFeedInstance.GetComponent<UiFeed>();
         if(uiFeedInstance != null)
         {
             uiFeedInstance.SetRenderTexture(inputRenderTexture, renderTextureOffset);
+            uiFeedInstance.SetSceneIdAndType(sceneName, feedType);
             uiFeedInstances.Add(uiFeedInstance);
         }
     }
@@ -55,6 +56,24 @@ public class UiFeedInstanceManger : MonoBehaviour
         Vector3 dublicatePosition = uiFeedToDuplicate.transform.position + dublicatePosOffset;
         Quaternion dublicateRotation = uiFeedToDuplicate.transform.rotation;
         var instanceData = uiFeedToDuplicate.GetInstanceData();
-        InstantiateNewFeed(dublicatePosition, dublicateRotation, instanceData.RenderTexture, instanceData.Offset);
+        InstantiateNewFeed(dublicatePosition, dublicateRotation, instanceData.RenderTexture, instanceData.Offset, instanceData.FeedType, instanceData.SceneID);
+    }
+
+    //OBS Logic
+    private void UpdateUiFeedScene()
+    {
+        if (uiFeedInstances.Count > 0)
+        {
+            foreach (var uiFeedInstance in uiFeedInstances)
+            {
+                if(uiFeedInstance.feedType == UiFeed.FeedType.Scene)
+                {
+                    //TODO: add if elese logic
+                    uiFeedInstance.SetSceneState(UiFeed.SceneState.isCurrentPreview);
+                    uiFeedInstance.SetSceneState(UiFeed.SceneState.isCurrentProgram);
+                    uiFeedInstance.SetSceneState(UiFeed.SceneState.isNotActive);
+                }
+            }
+        }
     }
 }

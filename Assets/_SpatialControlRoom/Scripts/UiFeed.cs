@@ -8,9 +8,21 @@ using Flexalon;
 using Meta.WitAi;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 using Christina.UI;
+using TMPro;
 
 public class UiFeed : MonoBehaviour
 {
+    public enum FeedType
+    {
+        None,
+        Preview,
+        Program,
+        Scene
+    }
+
+    public FeedType feedType;
+    public string sceneId = null;
+
     private bool uiIsLocked = true;
 
     private FlexalonObject mainFlexalonObject;
@@ -18,13 +30,12 @@ public class UiFeed : MonoBehaviour
 
     private LazyFollow lazyFollower;
 
-    //LockButton
+    [Header("Buttons")]
     [SerializeField] Button lockBtn;
     [SerializeField] MaterialIcon lockBtnIcon;
     private string unlockIconUnicode = "e898";
     private string lockIconUnicode = "e897";
-
-    //Buttons
+    
     [SerializeField] Button renamingBtn;
     private FlexalonObject renamingBtnFlexalon;
 
@@ -38,29 +49,42 @@ public class UiFeed : MonoBehaviour
     [SerializeField] Button duplicateBtn;
     [SerializeField] Button deleteBtnIcon;
 
-    //Sections
+    [Header("Sections")]
     [SerializeField] GameObject topBar;
     [SerializeField] GameObject transformOptions;
     [SerializeField] GameObject renamingBtnObj;
     [SerializeField] GameObject handles;
 
+    [Header("Backgrounds")]
     [SerializeField] Image unlockStateBackground;
     float activeBackgroundAlpha;
     float disabledBackgroundAlpha = 0f;
     float backgroundAnimationDuration = 0.5f;
+    [SerializeField] private Image videoPanelBackground;
 
+    [Header("Managers")]
     private PositionFollowManager positionFollowManager;
     private UiFeedInstanceManger uiFeedInstanceManger;
 
-    //RenderTexture Input
     [Header("Render Texture Input")]
     [SerializeField] private RawImage ndiFeedInput;
-    
+
+    [Header("Scene Name Text")]
+    [SerializeField] private TextMeshProUGUI panelName;
+    [SerializeField] private Image pannelNameBackground;
+
+    [Header("Colors")]
+    private Color defaultColor;
+    [SerializeField] private Color previewColor = new Color(0.19f, 084f, 0.29f, 200f);
+    [SerializeField] private Color programColor = new Color(1f, 0.27f, 0.22f, 200f);
+
+
 
     private void Awake()
     {
         positionFollowManager = FindObjectOfType<PositionFollowManager>();
         uiFeedInstanceManger = FindObjectOfType<UiFeedInstanceManger>();
+        defaultColor = videoPanelBackground.color;
     }
 
     private void OnEnable()
@@ -247,13 +271,73 @@ public class UiFeed : MonoBehaviour
         mainFlexalonObject.ForceUpdate();
     }
 
+    //UiFeedInstanceManger logic
     public void SetRenderTexture(RenderTexture renderTexture, Rect renderTextureOffset)
     {
         ndiFeedInput.texture = renderTexture;
         ndiFeedInput.uvRect = renderTextureOffset;
     }
 
-    //UiFeedInstanceManger logic
+    public void SetSceneIdAndType(string sceneIdString, FeedType setFeedType)
+    {
+        feedType = setFeedType;
+        switch(feedType)
+        {
+            case FeedType.None:
+                panelName.text = "Unnamed Source";
+                pannelNameBackground.color = defaultColor;
+                videoPanelBackground.color = defaultColor;
+                break;
+            case FeedType.Preview:
+                panelName.text = "Preview";
+                pannelNameBackground.color = previewColor;
+                videoPanelBackground.color = previewColor;
+                break;
+            case FeedType.Program:
+                panelName.text = "Program";
+                pannelNameBackground.color = programColor;
+                videoPanelBackground.color = programColor;
+                break;
+            case FeedType.Scene:
+                if (sceneIdString != null) //only set if not null
+                {
+                    sceneId = sceneIdString;
+                    panelName.text = sceneId;
+                }
+                pannelNameBackground.color = defaultColor;
+                videoPanelBackground.color = defaultColor;
+                break;
+        }
+    }
+
+    public enum SceneState
+    {
+        isNotActive,
+        isCurrentPreview,
+        isCurrentProgram
+    }
+
+    public SceneState sceneState;
+
+    public void SetSceneState(SceneState sceneState)
+    {
+        if(FeedType.Scene == feedType)
+        {
+            switch(sceneState)
+            {
+                case SceneState.isNotActive:
+                    videoPanelBackground.color = defaultColor;
+                    break;
+                case SceneState.isCurrentPreview:
+                    videoPanelBackground.color = previewColor;
+                    break;
+                case SceneState.isCurrentProgram:
+                    videoPanelBackground.color = programColor;
+                    break;
+            }
+        }
+    }
+    
     private void RemoveThisInstance()
     {
         uiFeedInstanceManger.RemoveFeedInstance(this);
@@ -268,6 +352,8 @@ public class UiFeed : MonoBehaviour
     {
         public RenderTexture RenderTexture { get; set; }
         public Rect Offset { get; set; }
+        public FeedType FeedType { get; set; }
+        public string SceneID { get; set; }
     }
 
     public InstanceData GetInstanceData()
@@ -275,7 +361,9 @@ public class UiFeed : MonoBehaviour
         return new InstanceData
         {
             RenderTexture = ndiFeedInput.texture as RenderTexture,
-            Offset = ndiFeedInput.uvRect
+            Offset = ndiFeedInput.uvRect,
+            FeedType = feedType,
+            SceneID = sceneId
         };
     }
 }

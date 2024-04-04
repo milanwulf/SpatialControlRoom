@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Flexalon;
 using Flexalon.Templates;
 using TMPro;
+using Unity.VisualScripting;
 
 public class UiInputItem : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class UiInputItem : MonoBehaviour
 
     public enum InputType
     {
-        Default,
+        None,
+        Scene,
         Preview,
         Program
     }
@@ -23,7 +25,8 @@ public class UiInputItem : MonoBehaviour
     [SerializeField] private InputType inputType;
 
     [SerializeField] private RawImage rawImage;
-
+    
+    private UiFeed.FeedType uiFeedType;
     public enum SelectedRenderTexture
     {
         NDI_Feed1,
@@ -66,6 +69,7 @@ public class UiInputItem : MonoBehaviour
     }
 
     [SerializeField] private DisplayText displayText;
+    private string inputTextString;
 
     //Instantiate
     [SerializeField] BoxCollider protectedArea = null;
@@ -120,7 +124,7 @@ public class UiInputItem : MonoBehaviour
         Vector3 currentPos = transform.position;
         if (!IsPosInsideProtectedArea(currentPos))
         {
-            uiFeedInstanceManger.InstantiateNewFeed(currentPos, Quaternion.identity, instanceRenderTexture, instanceRenderTextureOffset);
+            uiFeedInstanceManger.InstantiateNewFeed(currentPos, Quaternion.identity, instanceRenderTexture, instanceRenderTextureOffset, uiFeedType, inputTextString);
         }
     }
 
@@ -139,14 +143,21 @@ public class UiInputItem : MonoBehaviour
         {
             switch (inputType)
             {
-                case InputType.Default:
+                case InputType.None:
                     templateDynamicMaterial.SetColor(defaultColor);
+                    uiFeedType = UiFeed.FeedType.None;
+                    break;
+                case InputType.Scene:
+                    templateDynamicMaterial.SetColor(defaultColor);
+                    uiFeedType = UiFeed.FeedType.Scene;
                     break;
                 case InputType.Preview:
                     templateDynamicMaterial.SetColor(previewColor);
+                    uiFeedType = UiFeed.FeedType.Preview;
                     break;
                 case InputType.Program:
                     templateDynamicMaterial.SetColor(programColor);
+                    uiFeedType = UiFeed.FeedType.Program;
                     break;
             }
         }
@@ -219,42 +230,43 @@ public class UiInputItem : MonoBehaviour
             {
                 case DisplayText.None:
                     inputText.text = "";
+                    inputTextString = null;
                     break;
                 case DisplayText.Preview:
-                    inputText.text = "Preview";
+                    inputText.text = inputTextString = nameof(DisplayText.Preview);
                     break;
                 case DisplayText.Program:
-                    inputText.text = "Program";
+                    inputText.text = inputTextString = nameof(DisplayText.Program);
                     break;
                 case DisplayText.Scene1:
-                    inputText.text = "Scene 1";
+                    inputText.text = inputTextString = nameof(DisplayText.Scene1);
                     break;
                 case DisplayText.Scene2:
-                    inputText.text = "Scene 2";
+                    inputText.text = inputTextString = nameof(DisplayText.Scene2);
                     break;
                 case DisplayText.Scene3:
-                    inputText.text = "Scene 3";
+                    inputText.text = inputTextString = nameof(DisplayText.Scene3);
                     break;
                 case DisplayText.Scene4:
-                    inputText.text = "Scene 4";
+                    inputText.text = inputTextString = nameof(DisplayText.Scene4);
                     break;
                 case DisplayText.Scene5:
-                    inputText.text = "Scene 5";
+                    inputText.text = inputTextString = nameof(DisplayText.Scene5);
                     break;
                 case DisplayText.Scene6:
-                    inputText.text = "Scene 6";
+                    inputText.text = inputTextString = nameof(DisplayText.Scene6);
                     break;
                 case DisplayText.Scene7:
-                    inputText.text = "Scene 7";
+                    inputText.text = inputTextString = nameof(DisplayText.Scene7);
                     break;
                 case DisplayText.Scene8:
-                    inputText.text = "Scene 8";
+                    inputText.text = inputTextString = nameof(DisplayText.Scene8);
                     break;
                 case DisplayText.Scene9:
-                    inputText.text = "Scene 9";
+                    inputText.text = inputTextString = nameof(DisplayText.Scene9);
                     break;
                 case DisplayText.Scene10:
-                    inputText.text = "Scene 10";
+                    inputText.text = inputTextString = nameof(DisplayText.Scene10);
                     break;
             }
         }

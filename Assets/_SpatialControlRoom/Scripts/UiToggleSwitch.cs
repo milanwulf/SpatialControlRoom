@@ -137,6 +137,7 @@ namespace Christina.UI
             _slider.value = sliderValue = endValue;
         }
 
+        /*
         private IEnumerator AnimateSliderDirectly(float targetValue)
         {
 
@@ -155,6 +156,6 @@ namespace Christina.UI
 
                 sliderValue = targetValue;
         }
-
+        */
     }
 }
