@@ -5,7 +5,7 @@ using UnityEngine;
 public class UiFeedInstanceManger : MonoBehaviour
 {
     [SerializeField] GameObject uiFeedPrefab;
-    [SerializeField] Vector3 dublicatePosOffset = new Vector3(0f, 0f, -0.5f);
+    [SerializeField] Vector3 dublicatePosOffset = new Vector3(0f, 0f, -0.2f);
     [SerializeField] bool debugMode = false;
 
     private List<UiFeed> uiFeedInstances = new List<UiFeed>();

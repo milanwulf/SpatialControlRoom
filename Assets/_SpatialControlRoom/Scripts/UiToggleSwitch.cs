@@ -10,7 +10,9 @@ namespace Christina.UI
     {
         [Header("Slider setup")]
         [SerializeField, Range(0, 1f)]
+        
         protected float sliderValue;
+
         public bool CurrentValue { get; private set; }
 
         private bool _previousValue;
@@ -88,12 +90,14 @@ namespace Christina.UI
             }
 
             if (_animateSliderCoroutine != null)
+            {
                 StopCoroutine(_animateSliderCoroutine);
-
+            }
+                
             _animateSliderCoroutine = StartCoroutine(AnimateSlider());
         }
 
-        public void SetToggleStateDirectly(bool state)
+        public void SetToggleState(bool state, bool withAnimation = true)
         {
             CurrentValue = state;
 
@@ -102,7 +106,15 @@ namespace Christina.UI
                 StopCoroutine(_animateSliderCoroutine);
             }
 
-            _animateSliderCoroutine = StartCoroutine(AnimateSliderDirectly(state ? 1 : 0));
+            if (withAnimation && gameObject.activeInHierarchy)
+            {
+                _animateSliderCoroutine = StartCoroutine(AnimateSlider());
+            }
+            else
+            {
+                _slider.value = state ? 1 : 0;
+                sliderValue = _slider.value;
+            }
         }
 
         private IEnumerator AnimateSlider()
@@ -127,20 +139,21 @@ namespace Christina.UI
 
         private IEnumerator AnimateSliderDirectly(float targetValue)
         {
-            float startValue = _slider.value;
-            float time = 0;
 
-            while (time < animationDuration)
-            {
-                time += Time.deltaTime;
-                float lerpFactor = slideEase.Evaluate(time / animationDuration);
-                _slider.value = Mathf.Lerp(startValue, targetValue, lerpFactor);
-                yield return null;
-            }
+                float startValue = _slider.value;
+                float time = 0;
 
-            _slider.value = targetValue;
+                while (time < animationDuration)
+                {
+                    time += Time.deltaTime;
+                    float lerpFactor = slideEase.Evaluate(time / animationDuration);
+                    _slider.value = Mathf.Lerp(startValue, targetValue, lerpFactor);
+                    yield return null;
+                }
 
-            sliderValue = targetValue;
+                _slider.value = targetValue;
+
+                sliderValue = targetValue;
         }
 
     }

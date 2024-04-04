@@ -116,13 +116,18 @@ public class UiFeed : MonoBehaviour
     {
         lazyFollower = GetComponent<LazyFollow>();
         lazyFollower.positionFollowMode = LazyFollow.PositionFollowMode.None;
-        lazyFollower.rotationFollowMode = LazyFollow.RotationFollowMode.None;
+        //activate Rotation following by default
+        lazyFollower.rotationFollowMode = LazyFollow.RotationFollowMode.LookAt;
+        rotateSwitch.SetToggleState(true, false);
+
         mainFlexalonObject = GetComponent<FlexalonObject>();
         renamingBtnFlexalon = renamingBtn.GetComponent<FlexalonObject>();
         activeBackgroundAlpha = unlockStateBackground.color.a;
         InitialLockState();
 
         uiFeedInstanceManger.RegisterUiFeedInstance(this); //Register this instance in the manager if already in scene
+
+   
     }
 
     private void InitialLockState()
@@ -175,7 +180,7 @@ public class UiFeed : MonoBehaviour
     public void ActivatePositionFollowing()
     {
         lazyFollower.positionFollowMode = LazyFollow.PositionFollowMode.Follow;
-        if (followSwitch != null) followSwitch.SetToggleStateDirectly(true);
+        if (followSwitch != null) followSwitch.SetToggleState(true);
     }
 
     public void DeactivatePositionFollowing()
@@ -185,7 +190,7 @@ public class UiFeed : MonoBehaviour
         {
             positionFollowManager.DeactivatePositionFollowing(this);
         }
-        followSwitch.SetToggleStateDirectly(false);
+        followSwitch.SetToggleState(false);
     }
 
     private void HandlePositionFollowing(bool isOn)
@@ -206,11 +211,19 @@ public class UiFeed : MonoBehaviour
     private void ActivateRotationFollowing()
     {
         lazyFollower.rotationFollowMode = LazyFollow.RotationFollowMode.LookAt;
+        if (rotateSwitch.isActiveAndEnabled)
+        {
+            rotateSwitch.SetToggleState(true);
+        }
     }
 
     private void DeactivateRotationFollowing()
     {
         lazyFollower.rotationFollowMode = LazyFollow.RotationFollowMode.None;
+        if (rotateSwitch.isActiveAndEnabled)
+        {
+            rotateSwitch.SetToggleState(false);
+        }
     }
 
     //Aspect Ratio Handling
