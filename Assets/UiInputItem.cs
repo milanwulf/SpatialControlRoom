@@ -71,6 +71,9 @@ public class UiInputItem : MonoBehaviour
     [SerializeField] BoxCollider protectedArea = null;
     private FlexalonInteractable flexalonInteractable;
     [SerializeField] UiFeedInstanceManger uiFeedInstanceManger = null;
+    private Rect renderTextureOffset;
+    private RenderTexture instanceRenderTexture;
+    private Rect instanceRenderTextureOffset;
 
     private void Awake()
     {
@@ -117,7 +120,7 @@ public class UiInputItem : MonoBehaviour
         Vector3 currentPos = transform.position;
         if (!IsPosInsideProtectedArea(currentPos))
         {
-            uiFeedInstanceManger.InstantiateNewFeed(currentPos);
+            uiFeedInstanceManger.InstantiateNewFeed(currentPos, instanceRenderTexture, instanceRenderTextureOffset);
         }
     }
 
@@ -158,12 +161,15 @@ public class UiInputItem : MonoBehaviour
             {
                 case SelectedRenderTexture.NDI_Feed1:
                     rawImage.texture = ndiFeed1RenderTexture;
+                    instanceRenderTexture = ndiFeed1RenderTexture;
                     break;
                 case SelectedRenderTexture.NDI_Feed2:
                     rawImage.texture = ndiFeed2RenderTexture;
+                    instanceRenderTexture = ndiFeed2RenderTexture;
                     break;
                 case SelectedRenderTexture.NDI_Feed3:
                     rawImage.texture = ndiFeed3RenderTexture;
+                    instanceRenderTexture = ndiFeed3RenderTexture;
                     break;
             }
         }
@@ -177,19 +183,29 @@ public class UiInputItem : MonoBehaviour
             switch (textureOffset)
             {
                 case RenderTextureOffset.TopLeft:
-                    rawImage.uvRect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                    renderTextureOffset = new Rect(0, 0.5f, 0.5f, 0.5f);
+                    rawImage.uvRect = renderTextureOffset;
+                    instanceRenderTextureOffset = renderTextureOffset;
                     break;
                 case RenderTextureOffset.TopRight:
-                        rawImage.uvRect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                    renderTextureOffset = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                    rawImage.uvRect = renderTextureOffset;
+                    instanceRenderTextureOffset = renderTextureOffset;
                     break;
                 case RenderTextureOffset.BottomLeft:
-                        rawImage.uvRect = new Rect(0, 0, 0.5f, 0.5f);
+                    renderTextureOffset = new Rect(0, 0, 0.5f, 0.5f);
+                    rawImage.uvRect = renderTextureOffset;
+                    instanceRenderTextureOffset = renderTextureOffset;
                     break;
                 case RenderTextureOffset.BottomRight:
-                        rawImage.uvRect = new Rect(0.5f, 0, 0.5f, 0.5f);
+                    renderTextureOffset = new Rect(0.5f, 0, 0.5f, 0.5f);
+                    rawImage.uvRect = renderTextureOffset;
+                    instanceRenderTextureOffset = renderTextureOffset;
                     break;
                 case RenderTextureOffset.None:
-                        rawImage.uvRect = new Rect(0, 0, 1f, 1f);
+                    renderTextureOffset = new Rect(0, 0, 1f, 1f);
+                    rawImage.uvRect = renderTextureOffset;
+                    instanceRenderTextureOffset = renderTextureOffset;
                     break;
             }
         }

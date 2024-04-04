@@ -50,10 +50,17 @@ public class UiFeed : MonoBehaviour
     float backgroundAnimationDuration = 0.5f;
 
     private PositionFollowManager positionFollowManager;
+    private UiFeedInstanceManger uiFeedInstanceManger;
+
+    //RenderTexture Input
+    [Header("Render Texture Input")]
+    [SerializeField] private RawImage ndiFeedInput;
+    
 
     private void Awake()
     {
         positionFollowManager = FindObjectOfType<PositionFollowManager>();
+        uiFeedInstanceManger = FindObjectOfType<UiFeedInstanceManger>();
     }
 
     private void OnEnable()
@@ -71,6 +78,9 @@ public class UiFeed : MonoBehaviour
         landscapeBtn.onClick.AddListener(() => SetAspectRatio("landscape"));
         squareBtn.onClick.AddListener(() => SetAspectRatio("square"));
         portraitBtn.onClick.AddListener(() => SetAspectRatio("portrait"));
+
+        //Delete Button
+        deleteBtnIcon.onClick.AddListener(RemoveThisInstance);
 
 
     }
@@ -91,6 +101,9 @@ public class UiFeed : MonoBehaviour
         squareBtn.onClick.RemoveListener(() => SetAspectRatio("square"));
         portraitBtn.onClick.RemoveListener(() => SetAspectRatio("portrait"));
 
+        //Delete Button
+        deleteBtnIcon.onClick.RemoveListener(RemoveThisInstance);
+
     }
 
     // Start is called before the first frame update
@@ -103,6 +116,8 @@ public class UiFeed : MonoBehaviour
         renamingBtnFlexalon = renamingBtn.GetComponent<FlexalonObject>();
         activeBackgroundAlpha = unlockStateBackground.color.a;
         InitialLockState();
+
+        uiFeedInstanceManger.RegisterUiFeedInstance(this); //Register this instance in the manager if already in scene
     }
 
     private void InitialLockState()
@@ -212,5 +227,17 @@ public class UiFeed : MonoBehaviour
 
         //feedFlexalonObject.ForceUpdate();
         mainFlexalonObject.ForceUpdate();
+    }
+
+    public void SetRenderTexture(RenderTexture renderTexture, Rect renderTextureOffset)
+    {
+        ndiFeedInput.texture = renderTexture;
+        ndiFeedInput.uvRect = renderTextureOffset;
+    }
+
+    //UiFeedInstanceManger logic
+    private void RemoveThisInstance()
+    {
+        uiFeedInstanceManger.RemoveFeedInstance(this);
     }
 }

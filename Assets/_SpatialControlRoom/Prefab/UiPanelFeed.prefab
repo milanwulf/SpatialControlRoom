@@ -1944,11 +1944,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 1, y: 1, z: 1}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: 0, y: 0, z: 0.5}
+  TargetPosition: {x: 0, y: 0.97, z: 1.589}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 0, y: 0, z: 0}
-  TransformPosition: {x: 0, y: 0, z: 0.5}
+  TransformPosition: {x: 0, y: 0.97, z: 1.589}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 0, y: 0}
@@ -2075,6 +2075,7 @@ MonoBehaviour:
   renamingBtnObj: {fileID: 5506159900108638168}
   handles: {fileID: 3611173452850131601}
   unlockStateBackground: {fileID: 2765260568396181100}
+  ndiFeedInput: {fileID: 6479502531576740150}
 --- !u!1 &3363022422519124309
 GameObject:
   m_ObjectHideFlags: 0
@@ -8683,7 +8684,7 @@ PrefabInstance:
     - target: {fileID: 2995382854164043202, guid: f7c92443ca2b53b4aac05c24ddb87561,
         type: 3}
       propertyPath: TargetPosition.y
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2995382854164043202, guid: f7c92443ca2b53b4aac05c24ddb87561,
         type: 3}
@@ -8889,7 +8890,7 @@ PrefabInstance:
     - target: {fileID: 2995382854164043202, guid: f7c92443ca2b53b4aac05c24ddb87561,
         type: 3}
       propertyPath: TargetPosition.y
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2995382854164043202, guid: f7c92443ca2b53b4aac05c24ddb87561,
         type: 3}
