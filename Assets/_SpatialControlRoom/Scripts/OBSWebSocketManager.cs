@@ -94,14 +94,12 @@ public class OBSWebSocketManager : MonoBehaviour
 
     private void CurrentProgramSceneChanged(object sender, ProgramSceneChangedEventArgs e)
     {
-        Debug.Log("aaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAA");
         //Debug.Log("Current Program Scene: " + e.SceneName);
         actionsToExectuteOnMainThread.Enqueue(() => UpdateUiBasedOnSceneChange("CurrentProgramSceneChanged", e.SceneName));
     }
 
     private void CurrentPreviewSceneChanged(object sender, CurrentPreviewSceneChangedEventArgs e)
     {
-        Debug.Log("GAAAAAAAAAAAAAAAAAAAAAAAAAA");
         //Debug.Log("Current Preview Scene: " + e.SceneName);
         actionsToExectuteOnMainThread.Enqueue(() => UpdateUiBasedOnSceneChange("CurrentPreviewSceneChanged", e.SceneName));
     }

@@ -78,7 +78,13 @@ public class UiFeedInstanceManger : MonoBehaviour
                     }
                     else
                     {
-                        uiFeedInstance.SetSceneState(UiFeed.SceneState.isNotActive);
+                     
+                        if (callingMethod == "CurrentPreviewSceneChanged" && uiFeedInstance.sceneState != UiFeed.SceneState.isCurrentProgram)
+                        {
+                            Debug.Log("Scene name: " + uiFeedInstance.localSceneId + "Scene state" + uiFeedInstance.sceneState);
+                            uiFeedInstance.SetSceneState(UiFeed.SceneState.isNotActive);
+                        }
+                        
                     }
                 }
             }
