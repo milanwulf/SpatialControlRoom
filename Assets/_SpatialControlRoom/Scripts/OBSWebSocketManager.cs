@@ -1,5 +1,5 @@
 using OBSWebsocketDotNet;
-using OBSWebsocketDotNet.Communication; // Wichtig für ObsDisconnectionInfo
+using OBSWebsocketDotNet.Communication; // important for ObsDisconnectionInfo
 using OBSWebsocketDotNet.Types;
 using OBSWebsocketDotNet.Types.Events;
 using System;
@@ -9,9 +9,9 @@ using UnityEngine;
 public class OBSWebSocketManager : MonoBehaviour
 {
     private OBSWebsocket obsWebSocket = new OBSWebsocket();
-    [SerializeField] private string serverAdress = "localhost"; // Die URL und der Port können im UI gesetzt werden
+    [SerializeField] private string serverAdress = "localhost";
     [SerializeField] private int serverPort = 4444;
-    [SerializeField] private string serverPassword = ""; // Das Passwort sollte sicher im UI eingegeben werden
+    [SerializeField] private string serverPassword = "";
     [SerializeField] private UiFeedInstanceManger uiFeedInstanceManger;
 
     private Queue<Action> actionsToExectuteOnMainThread = new Queue<Action>();
@@ -23,7 +23,7 @@ public class OBSWebSocketManager : MonoBehaviour
 
     void Start()
     {
-        ConnectToServer();
+        ConnectToServer(serverAdress, serverPort, serverPassword);
     }
 
     private void Update()
@@ -42,7 +42,7 @@ public class OBSWebSocketManager : MonoBehaviour
         }
     }
 
-    public void ConnectToServer()
+    public void ConnectToServer(string serverAdress, int serverPort, string serverPassword)
     {
         obsWebSocket.Connected += OnConnected;
         obsWebSocket.Disconnected += OnDisconnected;
@@ -132,29 +132,12 @@ public class OBSWebSocketManager : MonoBehaviour
             if (index != -1)
             {
                 uiFeedInstanceManger.UpdateUiFeedScene(index, callingMethod);
-                /* if (callingMethod == "CurrentProgramSceneChanged")
-                {
-                    Debug.Log("Current Program Scene Index: " + index + " Program Scene Name:" + activeScene);
-
-                }
-
-                else if (callingMethod == "CurrentPreviewSceneChanged")
-                {
-                    Debug.Log("Current Preview Scene Index: " + index + " Preview Scene Name:" + activeScene);
-                }*/
             }
 
             else
             {
                 Debug.LogError("Current Scene not found in Scene List");
             }
-
-            /*
-            foreach (var scene in scenes)
-            {
-                Debug.Log("Scene: " + scene.Name);
-            }
-            */
         }
         catch (Exception e)
         {
