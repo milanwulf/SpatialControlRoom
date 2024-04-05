@@ -70,6 +70,7 @@ public class UiInputItem : MonoBehaviour
 
     [SerializeField] private DisplayText displayText;
     private string inputTextString;
+    private int inputSceneId;
 
     //Instantiate
     [SerializeField] BoxCollider protectedArea = null;
@@ -124,7 +125,7 @@ public class UiInputItem : MonoBehaviour
         Vector3 currentPos = transform.position;
         if (!IsPosInsideProtectedArea(currentPos))
         {
-            uiFeedInstanceManger.InstantiateNewFeed(currentPos, Quaternion.identity, instanceRenderTexture, instanceRenderTextureOffset, uiFeedType, inputTextString);
+            uiFeedInstanceManger.InstantiateNewFeed(currentPos, Quaternion.identity, instanceRenderTexture, instanceRenderTextureOffset, uiFeedType, inputTextString, inputSceneId);
         }
     }
 
@@ -231,42 +232,55 @@ public class UiInputItem : MonoBehaviour
                 case DisplayText.None:
                     inputText.text = "";
                     inputTextString = null;
+                    inputSceneId = 0;
                     break;
                 case DisplayText.Preview:
                     inputText.text = inputTextString = nameof(DisplayText.Preview);
+                    inputSceneId = 0;
                     break;
                 case DisplayText.Program:
                     inputText.text = inputTextString = nameof(DisplayText.Program);
+                    inputSceneId = 0;
                     break;
                 case DisplayText.Scene1:
                     inputText.text = inputTextString = nameof(DisplayText.Scene1);
+                    inputSceneId = 1;
                     break;
                 case DisplayText.Scene2:
                     inputText.text = inputTextString = nameof(DisplayText.Scene2);
+                    inputSceneId = 2;
                     break;
                 case DisplayText.Scene3:
                     inputText.text = inputTextString = nameof(DisplayText.Scene3);
+                    inputSceneId = 3;
                     break;
                 case DisplayText.Scene4:
                     inputText.text = inputTextString = nameof(DisplayText.Scene4);
+                    inputSceneId = 4;
                     break;
                 case DisplayText.Scene5:
                     inputText.text = inputTextString = nameof(DisplayText.Scene5);
+                    inputSceneId = 5;
                     break;
                 case DisplayText.Scene6:
                     inputText.text = inputTextString = nameof(DisplayText.Scene6);
+                    inputSceneId = 6;
                     break;
                 case DisplayText.Scene7:
                     inputText.text = inputTextString = nameof(DisplayText.Scene7);
+                    inputSceneId = 7;
                     break;
                 case DisplayText.Scene8:
                     inputText.text = inputTextString = nameof(DisplayText.Scene8);
+                    inputSceneId = 8;
                     break;
                 case DisplayText.Scene9:
                     inputText.text = inputTextString = nameof(DisplayText.Scene9);
+                    inputSceneId = 9;
                     break;
                 case DisplayText.Scene10:
                     inputText.text = inputTextString = nameof(DisplayText.Scene10);
+                    inputSceneId = 10;
                     break;
             }
         }

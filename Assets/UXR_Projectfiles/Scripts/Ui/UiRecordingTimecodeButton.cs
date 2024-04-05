@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UiRecordingTimecodeButton : MonoBehaviour
 {
+    /*
     [SerializeField] private OBSRecordingManager obsRecordingManager;
     [SerializeField] private Color inactiveColor;
     [SerializeField] private TextMeshProUGUI timecodeText;
@@ -63,4 +64,5 @@ public class UiRecordingTimecodeButton : MonoBehaviour
 
         button.colors = colors;
     }
+    */
 }

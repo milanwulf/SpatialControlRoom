@@ -4,6 +4,7 @@ using TMPro;
 
 public class OBSStreamingManager : MonoBehaviour
 {
+    /*
     [SerializeField] private OBSWebSocketManager obsWebSocketManager;
 
     private float timeSinceLastCheck = 0f;
@@ -122,4 +123,5 @@ public class OBSStreamingManager : MonoBehaviour
             obsWebSocketManager.Disconnected -= OnDisconnected;
         }
     }
+    */
 }

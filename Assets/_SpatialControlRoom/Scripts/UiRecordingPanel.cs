@@ -5,6 +5,7 @@ using Google.MaterialDesign.Icons;
 
 public class UiRecordingPanel : MonoBehaviour
 {
+    /*
     private UiPanelSwitcher uiPanelSwitcher;
     [SerializeField] private OBSRecordingManager obsRecordingManager;
 
@@ -72,4 +73,5 @@ public class UiRecordingPanel : MonoBehaviour
             }
         }
     }
+    */
 }

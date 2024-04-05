@@ -1252,7 +1252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiFeedPrefab: {fileID: 3225688177298925393, guid: 86e9b00cbcbd3724091c53465338de18,
     type: 3}
-  dublicatePosOffset: {x: 0, y: 0, z: -0.2}
+  duplicatePosOffset: {x: 0, y: 0, z: -0.2}
   debugMode: 0
 --- !u!1 &618373088
 GameObject:
@@ -1286,6 +1286,7 @@ MonoBehaviour:
   serverAdress: 192.168.0.46
   serverPort: 4455
   serverPassword: 123123
+  uiFeedInstanceManger: {fileID: 602622181}
 --- !u!4 &618373090
 Transform:
   m_ObjectHideFlags: 0
@@ -1571,6 +1572,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 660040416284939456, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: feedType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 660040416284939456, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: localSceneId
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 660040416284939456, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: localSceneName
+      value: Scene 6
+      objectReference: {fileID: 0}
     - target: {fileID: 909222381958945393, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
       propertyPath: TransformPosition.y
@@ -1894,54 +1910,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 813093781}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &813093783 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2853448325049731688, guid: 60deaf61594803144b9dae145cd70add,
-    type: 3}
-  m_PrefabInstance: {fileID: 813093781}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &813093784 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6743876681145599456, guid: 60deaf61594803144b9dae145cd70add,
-    type: 3}
-  m_PrefabInstance: {fileID: 813093781}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &813093785 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7078137610072084442, guid: 60deaf61594803144b9dae145cd70add,
-    type: 3}
-  m_PrefabInstance: {fileID: 813093781}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b616e0308c79a454ebc4f2af9f4e7668, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &813093786 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6743876680704002940, guid: 60deaf61594803144b9dae145cd70add,
-    type: 3}
-  m_PrefabInstance: {fileID: 813093781}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &813093787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2691451795585547212, guid: 60deaf61594803144b9dae145cd70add,
@@ -1960,13 +1928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de77b32ffd2a3e48970f35eb94541b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsStreamingManager: {fileID: 0}
-  toggleStreamingBtn: {fileID: 813093786}
-  toggleStreamingBtnIcon: {fileID: 813093785}
-  toggleStreamingBtnText: {fileID: 813093784}
-  stopStreamingText: Stop Streaming
-  startStreamingText: Start Streaming
-  closeBtn: {fileID: 813093783}
 --- !u!114 &913045126 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 971235039406215042, guid: fa3010614f5fb7a4daf2ea1c1bcd339c,
@@ -3777,54 +3738,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1525113753}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1525113755 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2853448325049731688, guid: 60deaf61594803144b9dae145cd70add,
-    type: 3}
-  m_PrefabInstance: {fileID: 1525113753}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1525113756 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6743876681145599456, guid: 60deaf61594803144b9dae145cd70add,
-    type: 3}
-  m_PrefabInstance: {fileID: 1525113753}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1525113757 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7078137610072084442, guid: 60deaf61594803144b9dae145cd70add,
-    type: 3}
-  m_PrefabInstance: {fileID: 1525113753}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b616e0308c79a454ebc4f2af9f4e7668, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1525113758 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6743876680704002940, guid: 60deaf61594803144b9dae145cd70add,
-    type: 3}
-  m_PrefabInstance: {fileID: 1525113753}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1525113759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2691451795585547212, guid: 60deaf61594803144b9dae145cd70add,
@@ -3843,13 +3756,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478d6d0494a090f41871fa355e774173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsRecordingManager: {fileID: 0}
-  toggleRecordingBtn: {fileID: 1525113758}
-  toggleRecordingBtnIcon: {fileID: 1525113757}
-  toggleRecordingBtnText: {fileID: 1525113756}
-  stopRecordingText: Stop Recording
-  startRecordingText: Start Recording
-  closeBtn: {fileID: 1525113755}
 --- !u!21 &1543258612
 Material:
   serializedVersion: 8
@@ -4304,36 +4210,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1576848511}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1576848513 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2969770358814643452, guid: 3e9d396793b023b48a4ad0f75827ea73,
-    type: 3}
-  m_PrefabInstance: {fileID: 1576848511}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1576848514 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2969770358376225406, guid: 3e9d396793b023b48a4ad0f75827ea73,
     type: 3}
   m_PrefabInstance: {fileID: 1576848511}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1576848515 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1264125653295813720, guid: 3e9d396793b023b48a4ad0f75827ea73,
-    type: 3}
-  m_PrefabInstance: {fileID: 1576848511}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1576848516 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1264125653947095770, guid: 3e9d396793b023b48a4ad0f75827ea73,
@@ -4352,9 +4234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c073a59fdbb3f489dee39517a7cd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsStreamingManager: {fileID: 0}
-  inactiveColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.78431374}
-  timecodeText: {fileID: 1576848513}
 --- !u!114 &1576848518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4367,9 +4246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d943bef77043b4f9fa37802ddaa6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsRecordingManager: {fileID: 0}
-  inactiveColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.78431374}
-  timecodeText: {fileID: 1576848515}
 --- !u!21 &1579424554
 Material:
   serializedVersion: 8

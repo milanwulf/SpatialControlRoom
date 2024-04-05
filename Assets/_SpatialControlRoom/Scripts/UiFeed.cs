@@ -21,7 +21,8 @@ public class UiFeed : MonoBehaviour
     }
 
     public FeedType feedType;
-    public string sceneId = null;
+    public string localSceneName = null;
+    public int localSceneId = 0;
 
     private bool uiIsLocked = true;
 
@@ -75,8 +76,8 @@ public class UiFeed : MonoBehaviour
 
     [Header("Colors")]
     private Color defaultColor;
-    [SerializeField] private Color previewColor = new Color(0.19f, 084f, 0.29f, 200f);
-    [SerializeField] private Color programColor = new Color(1f, 0.27f, 0.22f, 200f);
+    [SerializeField] private Color previewColor = new Color(0.19f, 084f, 0.29f);
+    [SerializeField] private Color programColor = new Color(1f, 0.27f, 0.22f);
 
 
 
@@ -107,7 +108,7 @@ public class UiFeed : MonoBehaviour
         deleteBtnIcon.onClick.AddListener(RemoveThisInstance);
 
         //Duplicate Button
-        duplicateBtn.onClick.AddListener(DublicateThisInstance);
+        duplicateBtn.onClick.AddListener(DuplicateThisInstance);
 
     }
 
@@ -131,7 +132,7 @@ public class UiFeed : MonoBehaviour
         deleteBtnIcon.onClick.RemoveListener(RemoveThisInstance);
 
         //Duplicate Button
-        duplicateBtn.onClick.RemoveListener(DublicateThisInstance);
+        duplicateBtn.onClick.RemoveListener(DuplicateThisInstance);
 
     }
 
@@ -278,7 +279,7 @@ public class UiFeed : MonoBehaviour
         ndiFeedInput.uvRect = renderTextureOffset;
     }
 
-    public void SetSceneIdAndType(string sceneIdString, FeedType setFeedType)
+    public void SetSceneIdAndType(int sceneId, string sceneName, FeedType setFeedType)
     {
         feedType = setFeedType;
         switch(feedType)
@@ -299,10 +300,14 @@ public class UiFeed : MonoBehaviour
                 videoPanelBackground.color = programColor;
                 break;
             case FeedType.Scene:
-                if (sceneIdString != null) //only set if not null
+                if (sceneId != 0) //only set if not null
                 {
-                    sceneId = sceneIdString;
-                    panelName.text = sceneId;
+                    localSceneId = sceneId;
+                    if(sceneName != null)
+                    {
+                        localSceneName = sceneName;
+                        panelName.text = localSceneName;
+                    }
                 }
                 pannelNameBackground.color = defaultColor;
                 videoPanelBackground.color = defaultColor;
@@ -327,12 +332,15 @@ public class UiFeed : MonoBehaviour
             {
                 case SceneState.isNotActive:
                     videoPanelBackground.color = defaultColor;
+                    Debug.Log(GetInstanceData().SceneName + "should be not active");
                     break;
                 case SceneState.isCurrentPreview:
                     videoPanelBackground.color = previewColor;
+                    Debug.Log(GetInstanceData().SceneName + "should be current preview");
                     break;
                 case SceneState.isCurrentProgram:
                     videoPanelBackground.color = programColor;
+                    Debug.Log(GetInstanceData().SceneName + "should be current program");
                     break;
             }
         }
@@ -343,9 +351,9 @@ public class UiFeed : MonoBehaviour
         uiFeedInstanceManger.RemoveFeedInstance(this);
     }
 
-    private void DublicateThisInstance()
+    private void DuplicateThisInstance()
     {
-        uiFeedInstanceManger.DublicateUiFeedInstance(this);
+        uiFeedInstanceManger.DuplicateUiFeedInstance(this);
     }
 
     public class InstanceData
@@ -353,7 +361,8 @@ public class UiFeed : MonoBehaviour
         public RenderTexture RenderTexture { get; set; }
         public Rect Offset { get; set; }
         public FeedType FeedType { get; set; }
-        public string SceneID { get; set; }
+        public string SceneName { get; set; }
+        public int SceneId { get; set; }
     }
 
     public InstanceData GetInstanceData()
@@ -363,7 +372,8 @@ public class UiFeed : MonoBehaviour
             RenderTexture = ndiFeedInput.texture as RenderTexture,
             Offset = ndiFeedInput.uvRect,
             FeedType = feedType,
-            SceneID = sceneId
+            SceneName = localSceneName,
+            SceneId = localSceneId
         };
     }
 }

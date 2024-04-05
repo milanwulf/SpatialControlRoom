@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UiStreamingTimecodeButton : MonoBehaviour
 {
+    /*
     [SerializeField] private OBSStreamingManager obsStreamingManager;
     [SerializeField] private Color inactiveColor;
     [SerializeField] private TextMeshProUGUI timecodeText;
@@ -63,4 +64,5 @@ public class UiStreamingTimecodeButton : MonoBehaviour
 
         button.colors = colors;
     }
+    */
 }

@@ -5,6 +5,7 @@ using Google.MaterialDesign.Icons;
 
 public class UiStreamingPanel : MonoBehaviour
 {
+    /*
     private UiPanelSwitcher uiPanelSwitcher;
     [SerializeField] private OBSStreamingManager obsStreamingManager;
 
@@ -72,4 +73,5 @@ public class UiStreamingPanel : MonoBehaviour
             }
         }
     }
+    */
 }
