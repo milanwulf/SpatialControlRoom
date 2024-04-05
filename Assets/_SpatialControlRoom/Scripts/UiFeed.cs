@@ -9,6 +9,7 @@ using Meta.WitAi;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 using Christina.UI;
 using TMPro;
+using System.Security.Cryptography.X509Certificates;
 
 public class UiFeed : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class UiFeed : MonoBehaviour
     public FeedType feedType;
     public string localSceneName = null;
     public int localSceneId = 0;
+    public SceneState localSceneState;
 
     private bool uiIsLocked = true;
 
@@ -76,8 +78,8 @@ public class UiFeed : MonoBehaviour
 
     [Header("Colors")]
     private Color defaultColor;
-    [SerializeField] private Color previewColor = new Color(0.19f, 084f, 0.29f);
-    [SerializeField] private Color programColor = new Color(1f, 0.27f, 0.22f);
+    [SerializeField] private Color previewColor = new Color32(50, 215, 75, 200);
+    [SerializeField] private Color programColor = new Color32(255, 69, 58, 200);
 
 
 
@@ -322,7 +324,7 @@ public class UiFeed : MonoBehaviour
         isCurrentProgram
     }
 
-    public SceneState sceneState;
+    //public SceneState sceneState;
 
     public void SetSceneState(SceneState sceneState)
     {
@@ -332,15 +334,19 @@ public class UiFeed : MonoBehaviour
             {
                 case SceneState.isNotActive:
                     videoPanelBackground.color = defaultColor;
-                    Debug.Log(GetInstanceData().SceneName + "should be not active");
+                    localSceneState = SceneState.isNotActive;
+                    //Debug.Log(GetInstanceData().SceneName + "should be not active");
                     break;
                 case SceneState.isCurrentPreview:
                     videoPanelBackground.color = previewColor;
-                    Debug.Log(GetInstanceData().SceneName + "should be current preview");
+                    localSceneState = SceneState.isCurrentPreview;
+
+                    //Debug.Log(GetInstanceData().SceneName + "isCurrentPreview");
                     break;
                 case SceneState.isCurrentProgram:
-                    videoPanelBackground.color = programColor;
-                    Debug.Log(GetInstanceData().SceneName + "should be current program");
+                    videoPanelBackground.color = programColor; ;
+                    localSceneState = SceneState.isCurrentProgram;
+                    //Debug.Log(GetInstanceData().SceneName + "should be current program");
                     break;
             }
         }
@@ -363,6 +369,7 @@ public class UiFeed : MonoBehaviour
         public FeedType FeedType { get; set; }
         public string SceneName { get; set; }
         public int SceneId { get; set; }
+        public SceneState SceneState { get; set;}
     }
 
     public InstanceData GetInstanceData()
@@ -373,7 +380,8 @@ public class UiFeed : MonoBehaviour
             Offset = ndiFeedInput.uvRect,
             FeedType = feedType,
             SceneName = localSceneName,
-            SceneId = localSceneId
+            SceneId = localSceneId,
+            SceneState = localSceneState
         };
     }
 }

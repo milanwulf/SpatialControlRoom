@@ -20,7 +20,7 @@ public class UiFeedInstanceManger : MonoBehaviour
         }
     }
 
-    public void InstantiateNewFeed(Vector3 position, Quaternion rotation, RenderTexture inputRenderTexture, Rect renderTextureOffset, UiFeed.FeedType feedType, string sceneName = null, int sceneId = 0)
+    public void InstantiateNewFeed(Vector3 position, Quaternion rotation, RenderTexture inputRenderTexture, Rect renderTextureOffset, UiFeed.FeedType feedType, string sceneName = null, int sceneId = 0, UiFeed.SceneState localSceneState = UiFeed.SceneState.isNotActive)
     {
         GameObject newFeedInstance = Instantiate(uiFeedPrefab, position, rotation);
         UiFeed uiFeedInstance = newFeedInstance.GetComponent<UiFeed>();
@@ -28,6 +28,7 @@ public class UiFeedInstanceManger : MonoBehaviour
         {
             uiFeedInstance.SetRenderTexture(inputRenderTexture, renderTextureOffset);
             uiFeedInstance.SetSceneIdAndType(sceneId, sceneName, feedType);
+            uiFeedInstance.SetSceneState(localSceneState);
             uiFeedInstancesList.Add(uiFeedInstance);
         }
     }
@@ -51,7 +52,7 @@ public class UiFeedInstanceManger : MonoBehaviour
         Vector3 duplicatePosition = uiFeedToDuplicate.transform.position + duplicatePosOffset;
         Quaternion duplicateRotation = uiFeedToDuplicate.transform.rotation;
         var instanceData = uiFeedToDuplicate.GetInstanceData();
-        InstantiateNewFeed(duplicatePosition, duplicateRotation, instanceData.RenderTexture, instanceData.Offset, instanceData.FeedType, instanceData.SceneName, instanceData.SceneId);
+        InstantiateNewFeed(duplicatePosition, duplicateRotation, instanceData.RenderTexture, instanceData.Offset, instanceData.FeedType, instanceData.SceneName, instanceData.SceneId, instanceData.SceneState);
     }
 
     //OBS Logic
@@ -68,20 +69,20 @@ public class UiFeedInstanceManger : MonoBehaviour
                         if(callingMethod == "CurrentPreviewSceneChanged")
                         {
                             uiFeedInstance.SetSceneState(UiFeed.SceneState.isCurrentPreview);
-                            Debug.Log("Set all Panels to Preview with Index: " + index);
+                            //Debug.Log("Set all Panels to Preview with Index: " + index);
                         }
                         else if(callingMethod == "CurrentProgramSceneChanged")
                         {
                             uiFeedInstance.SetSceneState(UiFeed.SceneState.isCurrentProgram);
-                            Debug.Log("Set all Panels to Program with Index: " + index);
+                            //Debug.Log("Set all Panels to Program with Index: " + index);
                         }
                     }
                     else
                     {
                      
-                        if (callingMethod == "CurrentPreviewSceneChanged" && uiFeedInstance.sceneState != UiFeed.SceneState.isCurrentProgram)
+                        if (callingMethod == "CurrentPreviewSceneChanged" && uiFeedInstance.localSceneState != UiFeed.SceneState.isCurrentProgram)
                         {
-                            Debug.Log("Scene name: " + uiFeedInstance.localSceneId + "Scene state" + uiFeedInstance.sceneState);
+                            //Debug.Log("Scene name: " + uiFeedInstance.localSceneId + "Scene state" + uiFeedInstance.sceneState);
                             uiFeedInstance.SetSceneState(UiFeed.SceneState.isNotActive);
                         }
                         

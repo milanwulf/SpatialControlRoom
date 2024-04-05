@@ -2060,7 +2060,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedType: 0
-  sceneId: 
+  localSceneName: 
+  localSceneId: 0
+  localSceneState: 0
   feedFlexalonObject: {fileID: 4663515236415343219}
   lockBtn: {fileID: 7018592122310332578}
   lockBtnIcon: {fileID: 6830417894084662276}
@@ -2081,8 +2083,8 @@ MonoBehaviour:
   ndiFeedInput: {fileID: 6479502531576740150}
   panelName: {fileID: 743992660960555466}
   pannelNameBackground: {fileID: 5868189014352018794}
-  previewColor: {r: 0.19, g: 84, b: 0.29, a: 1}
-  programColor: {r: 1, g: 0.27, b: 0.22, a: 1}
+  previewColor: {r: 0.19607843, g: 0.84313726, b: 0.29411766, a: 0.78431374}
+  programColor: {r: 1, g: 0.27, b: 0.22745098, a: 0.78431374}
 --- !u!1 &3363022422519124309
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,11 @@ public class OBSWebSocketManager : MonoBehaviour
     [SerializeField] private UiFeedInstanceManger uiFeedInstanceManger;
 
     private Queue<Action> actionsToExectuteOnMainThread = new Queue<Action>();
-    
+
+    private void Awake()
+    {
+        actionsToExectuteOnMainThread = new Queue<Action>();
+    }
 
     void Start()
     {
@@ -26,7 +30,15 @@ public class OBSWebSocketManager : MonoBehaviour
     {
         while (actionsToExectuteOnMainThread.Count > 0)
         {
-            actionsToExectuteOnMainThread.Dequeue().Invoke();
+            Action action = actionsToExectuteOnMainThread.Dequeue();
+            if (action != null)
+            {
+                action.Invoke();
+            }
+            else
+            {
+                Debug.LogWarning("Versuchte, eine null-Action auszuführen.");
+            }
         }
     }
 
@@ -94,13 +106,13 @@ public class OBSWebSocketManager : MonoBehaviour
 
     private void CurrentProgramSceneChanged(object sender, ProgramSceneChangedEventArgs e)
     {
-        //Debug.Log("Current Program Scene: " + e.SceneName);
+        Debug.Log("Current Program Scene: " + e.SceneName);
         actionsToExectuteOnMainThread.Enqueue(() => UpdateUiBasedOnSceneChange("CurrentProgramSceneChanged", e.SceneName));
     }
 
     private void CurrentPreviewSceneChanged(object sender, CurrentPreviewSceneChangedEventArgs e)
     {
-        //Debug.Log("Current Preview Scene: " + e.SceneName);
+        Debug.Log("Current Preview Scene: " + e.SceneName);
         actionsToExectuteOnMainThread.Enqueue(() => UpdateUiBasedOnSceneChange("CurrentPreviewSceneChanged", e.SceneName));
     }
 
