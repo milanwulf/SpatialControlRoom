@@ -144,4 +144,31 @@ public class OBSWebSocketManager : MonoBehaviour
             Debug.LogError("Error getting scene list: " + e.Message);
         }
     }
+
+    public void SetPreviewSceneByIndex(int index)
+    {
+        if (!obsWebSocket.IsConnected)
+        {
+            Debug.LogError("Cant set Preview Scene, not connected to OBS!");
+            return;
+        }
+        try
+        {
+            List<SceneBasicInfo> scenes = obsWebSocket.ListScenes();
+            if (index >= 1 && index <= scenes.Count)
+            {
+                string sceneName = scenes[index].Name;
+                obsWebSocket.SetCurrentPreviewScene(sceneName);
+            }
+
+            else
+            {
+                Debug.LogError("Invalid scene Index");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error setting preview scene: " + e.Message);
+        }
+    }
 }

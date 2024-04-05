@@ -52,6 +52,8 @@ public class UiFeed : MonoBehaviour
     [SerializeField] Button duplicateBtn;
     [SerializeField] Button deleteBtnIcon;
 
+    [SerializeField] Button videoFeedBtn;
+
     [Header("Sections")]
     [SerializeField] GameObject topBar;
     [SerializeField] GameObject transformOptions;
@@ -68,6 +70,7 @@ public class UiFeed : MonoBehaviour
     [Header("Managers")]
     private PositionFollowManager positionFollowManager;
     private UiFeedInstanceManger uiFeedInstanceManger;
+    private OBSWebSocketManager obsWebSocketManager;
 
     [Header("Render Texture Input")]
     [SerializeField] private RawImage ndiFeedInput;
@@ -87,6 +90,7 @@ public class UiFeed : MonoBehaviour
     {
         positionFollowManager = FindObjectOfType<PositionFollowManager>();
         uiFeedInstanceManger = FindObjectOfType<UiFeedInstanceManger>();
+        obsWebSocketManager = FindObjectOfType<OBSWebSocketManager>();
         defaultColor = videoPanelBackground.color;
     }
 
@@ -112,6 +116,9 @@ public class UiFeed : MonoBehaviour
         //Duplicate Button
         duplicateBtn.onClick.AddListener(DuplicateThisInstance);
 
+        //Video Feed Button
+        videoFeedBtn.onClick.AddListener(SetAsCurrentPreviewScene);
+
     }
 
     private void OnDisable()
@@ -135,6 +142,9 @@ public class UiFeed : MonoBehaviour
 
         //Duplicate Button
         duplicateBtn.onClick.RemoveListener(DuplicateThisInstance);
+
+        //Video Feed Button
+        videoFeedBtn.onClick.RemoveListener(SetAsCurrentPreviewScene);
 
     }
 
@@ -360,6 +370,14 @@ public class UiFeed : MonoBehaviour
     private void DuplicateThisInstance()
     {
         uiFeedInstanceManger.DuplicateUiFeedInstance(this);
+    }
+
+    private void SetAsCurrentPreviewScene()
+    {
+        if(feedType == FeedType.Scene)
+        {
+            obsWebSocketManager.SetPreviewSceneByIndex(localSceneId);
+        }
     }
 
     public class InstanceData
