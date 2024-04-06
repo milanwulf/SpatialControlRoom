@@ -1167,6 +1167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4372418222074756518}
   - component: {fileID: 8675981995078463058}
+  - component: {fileID: 8518991073269423874}
   m_Layer: 0
   m_Name: UiInputSelection
   m_TagString: Untagged
@@ -1217,6 +1218,19 @@ MonoBehaviour:
   m_MinAngleAllowed: 0.1
   m_MaxAngleAllowed: 2
   m_TimeUntilThresholdReachesMaxAngle: 3
+--- !u!114 &8518991073269423874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506673742445820279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 040e975d6dec0db4ca9c48e55a3a34df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closeBtn: {fileID: 5922558838033352609}
 --- !u!1 &7904185681260201506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,12 +2586,12 @@ PrefabInstance:
     - target: {fileID: 2437907874172210169, guid: e4e349b285720f944a9e7d8b2cd87ff9,
         type: 3}
       propertyPath: m_text
-      value: Groupt Element
+      value: Group Element
       objectReference: {fileID: 0}
     - target: {fileID: 3178315913415143503, guid: e4e349b285720f944a9e7d8b2cd87ff9,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 191.49
+      value: 182.04
       objectReference: {fileID: 0}
     - target: {fileID: 3178315913415143503, guid: e4e349b285720f944a9e7d8b2cd87ff9,
         type: 3}
@@ -2697,7 +2711,7 @@ PrefabInstance:
     - target: {fileID: 4254401465887925180, guid: e4e349b285720f944a9e7d8b2cd87ff9,
         type: 3}
       propertyPath: TargetRectSize.x
-      value: 191.49
+      value: 182.04
       objectReference: {fileID: 0}
     - target: {fileID: 4254401465887925180, guid: e4e349b285720f944a9e7d8b2cd87ff9,
         type: 3}
@@ -2707,22 +2721,22 @@ PrefabInstance:
     - target: {fileID: 4254401465887925180, guid: e4e349b285720f944a9e7d8b2cd87ff9,
         type: 3}
       propertyPath: TransformRectSize.x
-      value: 191.49
+      value: 182.04
       objectReference: {fileID: 0}
     - target: {fileID: 4254401465887925180, guid: e4e349b285720f944a9e7d8b2cd87ff9,
         type: 3}
       propertyPath: LayoutBounds.m_Extent.x
-      value: 95.745
+      value: 91.02
       objectReference: {fileID: 0}
     - target: {fileID: 4254401465887925180, guid: e4e349b285720f944a9e7d8b2cd87ff9,
         type: 3}
       propertyPath: AdapterBounds.m_Extent.x
-      value: 95.745
+      value: 91.02
       objectReference: {fileID: 0}
     - target: {fileID: 4254401465887925180, guid: e4e349b285720f944a9e7d8b2cd87ff9,
         type: 3}
       propertyPath: RotatedAndScaledBounds.m_Extent.x
-      value: 95.745
+      value: 91.02
       objectReference: {fileID: 0}
     - target: {fileID: 4725822328530625566, guid: e4e349b285720f944a9e7d8b2cd87ff9,
         type: 3}
@@ -3432,6 +3446,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04e6475931e59c44f887f264cd7672ab, type: 3}
+--- !u!114 &5922558838033352609 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8379937240991162835, guid: 04e6475931e59c44f887f264cd7672ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 2772708186850616946}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8294319298239656029 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6152466929181365807, guid: 04e6475931e59c44f887f264cd7672ab,
