@@ -78,6 +78,7 @@ public class OBSWebSocketManager : MonoBehaviour
             obsWebSocket.Disconnect();
     }
 
+    /*
     //just for testing
     public void StartRecord()
     {
@@ -102,7 +103,7 @@ public class OBSWebSocketManager : MonoBehaviour
         {
             Debug.LogError($"Fehler beim Senden der Request '{requestType}': {e.Message}");
         }
-    }
+    }*/
 
     private void CurrentProgramSceneChanged(object sender, ProgramSceneChangedEventArgs e)
     {
@@ -169,6 +170,30 @@ public class OBSWebSocketManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError("Error setting preview scene: " + e.Message);
+        }
+    }
+
+    public void TriggerStudioModeTransition()
+    {
+        if (!obsWebSocket.IsConnected)
+        {
+            Debug.LogError("Cant trigger Studio Mode Transition, not connected to OBS!");
+            return;
+        }
+
+        if(!obsWebSocket.GetStudioModeEnabled())
+        {
+            Debug.LogError("Studio Mode is not enabled");
+            return;
+        }
+
+        try
+        {
+            obsWebSocket.TriggerStudioModeTransition();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error triggering Studio Mode Transition: " + e.Message);
         }
     }
 }
