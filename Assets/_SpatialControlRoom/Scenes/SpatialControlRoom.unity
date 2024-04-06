@@ -1277,6 +1277,7 @@ MonoBehaviour:
   obsWebSocketManager: {fileID: 618373089}
   leftScissorPose: {fileID: 942991646}
   rightScissorPose: {fileID: 1904613823}
+  poseCooldown: 0.5
 --- !u!114 &553271429 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5627598973000415319, guid: f54012181eacade4ea242c65f804720f,
@@ -1728,6 +1729,16 @@ PrefabInstance:
       propertyPath: localSceneName
       value: Test 6
       objectReference: {fileID: 0}
+    - target: {fileID: 909222381958945393, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: TargetPosition.y
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 909222381958945393, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: TargetPosition.z
+      value: 1.589
+      objectReference: {fileID: 0}
     - target: {fileID: 2691451795585547212, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1783,14 +1794,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: UiPanelFeed
       objectReference: {fileID: 0}
+    - target: {fileID: 3225688177298925393, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4733995881388076910, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6746684942472400462, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558413082940500949, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: TargetPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428313798708972277, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: TargetPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2369,6 +2395,26 @@ PrefabInstance:
       propertyPath: localSceneName
       value: Test 3
       objectReference: {fileID: 0}
+    - target: {fileID: 909222381958945393, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: TargetPosition.x
+      value: 0.654
+      objectReference: {fileID: 0}
+    - target: {fileID: 909222381958945393, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: TargetPosition.y
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 909222381958945393, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: TargetPosition.z
+      value: 1.589
+      objectReference: {fileID: 0}
+    - target: {fileID: 909222381958945393, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: TransformPosition.x
+      value: 0.654
+      objectReference: {fileID: 0}
     - target: {fileID: 2691451795585547212, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2424,14 +2470,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: UiPanelFeed (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3225688177298925393, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4733995881388076910, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6746684942472400462, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558413082940500949, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: TargetPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428313798708972277, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: TargetPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2892,15 +2953,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: UiPanelFeed (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3225688177298925393, guid: 86e9b00cbcbd3724091c53465338de18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4733995881388076910, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6746684942472400462, guid: 86e9b00cbcbd3724091c53465338de18,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

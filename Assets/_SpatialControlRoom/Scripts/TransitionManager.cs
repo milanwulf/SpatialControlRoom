@@ -10,7 +10,7 @@ public class TransitionManager : MonoBehaviour
     [Header("Hand Poses")]
     [SerializeField] private SelectorUnityEventWrapper leftScissorPose;
     [SerializeField] private SelectorUnityEventWrapper rightScissorPose;
-    [SerializeField] private float poseCooldown = 0.2f;
+    [SerializeField] private float poseCooldown = 0.5f;
     private float lastPoseTime;
 
     private void OnEnable()
