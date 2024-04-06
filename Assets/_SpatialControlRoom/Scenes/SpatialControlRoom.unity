@@ -5603,21 +5603,41 @@ PrefabInstance:
       propertyPath: _hmd
       value: 
       objectReference: {fileID: 553271429}
+    - target: {fileID: 2338690244831890771, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426212}
     - target: {fileID: 2338690244831890774, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 152085241}
+    - target: {fileID: 2338690245030884443, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426212}
     - target: {fileID: 2338690245030884446, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 152085241}
+    - target: {fileID: 2338690245850017952, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426212}
     - target: {fileID: 2338690245850017957, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 152085241}
+    - target: {fileID: 2338690245856707728, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426212}
     - target: {fileID: 2338690245856707733, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _fingerFeatureStateProvider
@@ -5628,36 +5648,76 @@ PrefabInstance:
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 152085240}
+    - target: {fileID: 3147338938105624438, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426211}
     - target: {fileID: 3824516172545006520, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 152085240}
+    - target: {fileID: 3824516172545006525, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426211}
+    - target: {fileID: 3824516173567862913, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426211}
     - target: {fileID: 3824516173567862916, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 152085240}
+    - target: {fileID: 3824516173701996035, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426212}
     - target: {fileID: 3824516173701996038, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 152085241}
+    - target: {fileID: 4560130360866693593, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426211}
     - target: {fileID: 4560130360866693596, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 152085240}
+    - target: {fileID: 4560130361633277026, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426211}
     - target: {fileID: 4560130361633277031, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 152085240}
+    - target: {fileID: 4560130362396090873, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426212}
     - target: {fileID: 4560130362396090876, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 152085241}
+    - target: {fileID: 5916122491454781450, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _hmd
+      value: 
+      objectReference: {fileID: 553271429}
     - target: {fileID: 5916122492219153809, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _hmd
@@ -5673,6 +5733,11 @@ PrefabInstance:
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 152085240}
+    - target: {fileID: 8925081046665159687, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _transformFeatureStateProvider
+      value: 
+      objectReference: {fileID: 651426211}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
