@@ -155,7 +155,7 @@ public class OBSWebSocketManager : MonoBehaviour
         try
         {
             List<SceneBasicInfo> scenes = obsWebSocket.ListScenes();
-            if (index >= 1 && index <= scenes.Count)
+            if (index >= 1 && index <= scenes.Count) //index 0 is ignored because it is the NDI Input Scene
             {
                 string sceneName = scenes[index].Name;
                 obsWebSocket.SetCurrentPreviewScene(sceneName);
