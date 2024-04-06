@@ -10,17 +10,19 @@ public class TransitionManager : MonoBehaviour
     [Header("Hand Poses")]
     [SerializeField] private SelectorUnityEventWrapper leftScissorPose;
     [SerializeField] private SelectorUnityEventWrapper rightScissorPose;
+    [SerializeField] private float poseCooldown = 0.2f;
+    private float lastPoseTime;
 
     private void OnEnable()
     {
-        leftScissorPose.WhenSelected.AddListener(TriggerObsTransition);
-        rightScissorPose.WhenSelected.AddListener(TriggerObsTransition);
+        leftScissorPose.WhenUnselected.AddListener(TriggerObsTransitionWithCooldown);
+        rightScissorPose.WhenUnselected.AddListener(TriggerObsTransitionWithCooldown);
     }
 
     private void OnDisable()
     {
-        leftScissorPose.WhenSelected.RemoveListener(TriggerObsTransition);
-        rightScissorPose.WhenSelected.RemoveListener(TriggerObsTransition);
+        leftScissorPose.WhenUnselected.RemoveListener(TriggerObsTransitionWithCooldown);
+        rightScissorPose.WhenUnselected.RemoveListener(TriggerObsTransitionWithCooldown);
     }
 
     private void Update()
@@ -28,6 +30,15 @@ public class TransitionManager : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.One) || OVRInput.GetDown(OVRInput.Button.Three))
         {
             TriggerObsTransition();
+        }
+    }
+
+    private void TriggerObsTransitionWithCooldown() 
+    { 
+        if (Time.time - lastPoseTime > poseCooldown)
+        {
+            TriggerObsTransition();
+            lastPoseTime = Time.time;
         }
     }
 
