@@ -10,35 +10,32 @@ public class TransitionManager : MonoBehaviour
     [Header("Hand Poses")]
     [SerializeField] private SelectorUnityEventWrapper leftScissorPose;
     [SerializeField] private SelectorUnityEventWrapper rightScissorPose;
-    [SerializeField] private float poseCooldown = 0.5f;
-    private float lastPoseTime;
 
     private void OnEnable()
     {
-        leftScissorPose.WhenUnselected.AddListener(TriggerObsTransitionWithCooldown);
-        rightScissorPose.WhenUnselected.AddListener(TriggerObsTransitionWithCooldown);
+        leftScissorPose.WhenUnselected.AddListener(TriggerObsTransition);
+        rightScissorPose.WhenUnselected.AddListener(TriggerObsTransition);
     }
 
     private void OnDisable()
     {
-        leftScissorPose.WhenUnselected.RemoveListener(TriggerObsTransitionWithCooldown);
-        rightScissorPose.WhenUnselected.RemoveListener(TriggerObsTransitionWithCooldown);
+        leftScissorPose.WhenUnselected.RemoveListener(TriggerObsTransition);
+        rightScissorPose.WhenUnselected.RemoveListener(TriggerObsTransition);
     }
 
     private void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.One) || OVRInput.GetDown(OVRInput.Button.Three))
-        {
-            TriggerObsTransition();
-        }
-    }
+        //check active controllers
+        OVRInput.Controller activeController = OVRInput.GetActiveController();
 
-    private void TriggerObsTransitionWithCooldown() 
-    { 
-        if (Time.time - lastPoseTime > poseCooldown)
+        //only react to controller button presses and not hands
+        if (activeController == OVRInput.Controller.Touch)
         {
-            TriggerObsTransition();
-            lastPoseTime = Time.time;
+            if(OVRInput.GetDown(OVRInput.RawButton.X) || OVRInput.GetDown(OVRInput.RawButton.A))
+            {
+                Debug.Log("OVRInput GetDown is triggerd");
+                TriggerObsTransition();
+            }
         }
     }
 
