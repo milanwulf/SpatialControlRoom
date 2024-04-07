@@ -374,7 +374,7 @@ public class UiFeed : MonoBehaviour
 
     private void SetAsCurrentPreviewScene()
     {
-        if(feedType == FeedType.Scene)
+        if(feedType == FeedType.Scene && localSceneState != SceneState.isCurrentProgram && localSceneState != SceneState.isCurrentPreview) //only set if not already set as Program or Preview
         {
             obsWebSocketManager.SetPreviewSceneByIndex(localSceneId);
         }
