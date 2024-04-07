@@ -13,6 +13,7 @@ public class OBSWebSocketManager : MonoBehaviour
     [SerializeField] private int serverPort = 4444;
     [SerializeField] private string serverPassword = "";
     [SerializeField] private UiFeedInstanceManger uiFeedInstanceManger;
+    [SerializeField] private UiRecordingPanel uiRecordingPanel;
 
     private Queue<Action> actionsToExectuteOnMainThread = new Queue<Action>();
 
@@ -62,7 +63,8 @@ public class OBSWebSocketManager : MonoBehaviour
         Debug.Log("WebSocket connection successful");
         obsWebSocket.CurrentProgramSceneChanged += CurrentProgramSceneChanged;
         obsWebSocket.CurrentPreviewSceneChanged += CurrentPreviewSceneChanged;
-        // Weitere Initialisierungen nach der Verbindung können hier erfolgen
+        obsWebSocket.RecordStateChanged += OBSRecordStateChanged;
+        
     }
 
     private void OnDisconnected(object sender, ObsDisconnectionInfo e)
@@ -70,6 +72,7 @@ public class OBSWebSocketManager : MonoBehaviour
         Debug.Log($"Disconnected from OBS WebSocket Server. Reason: {e.WebsocketDisconnectionInfo?.CloseStatusDescription}");
         obsWebSocket.CurrentProgramSceneChanged -= CurrentProgramSceneChanged;
         obsWebSocket.CurrentPreviewSceneChanged -= CurrentPreviewSceneChanged;
+        obsWebSocket.RecordStateChanged -= OBSRecordStateChanged;
     }
 
     void OnDestroy()
@@ -196,4 +199,73 @@ public class OBSWebSocketManager : MonoBehaviour
             Debug.LogError("Error triggering Studio Mode Transition: " + e.Message);
         }
     }
+
+    /// Recording Logic
+    public bool IsRecording { get; private set; }
+
+    private void OBSRecordStateChanged(object sender, RecordStateChangedEventArgs e)
+    {
+        var recordingStatus = obsWebSocket.GetRecordStatus();
+        IsRecording = recordingStatus.IsRecording;
+        if(!IsRecording)
+        {
+            Debug.Log("afjhajkfhkjdfh");
+            uiRecordingPanel.ResetRecordingTimecode();
+        }
+    }
+
+    public void ToggleRecording()
+    {
+        if (!obsWebSocket.IsConnected)
+        {
+            Debug.LogError("Cannot toggle recording, not connected to OBS!");
+            return;
+        }
+
+        try
+        {
+            var recoringStatus = obsWebSocket.GetRecordStatus();
+            if (recoringStatus.IsRecording)
+            {
+                obsWebSocket.StopRecord();
+                IsRecording = false;
+            }
+            else
+            {
+                obsWebSocket.StartRecord();
+                IsRecording = true;
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error toggling recording: " + e.Message);
+        }
+    }
+
+    /*
+    public string GetRecordingTimeCode()
+    {
+        var timecode = "00:00:00";
+        if (!obsWebSocket.IsConnected)
+        {
+            Debug.LogError("Cannot get recording time code, not connected to OBS!");
+            timecode = "00:00:00";
+            return timecode;
+        }
+
+        try
+        {
+            var recordingStatus = obsWebSocket.GetRecordStatus();
+            timecode = recordingStatus.RecordTimecode;
+            return timecode.Split('.')[0];
+        }
+
+        catch (Exception e)
+        {
+            Debug.LogError("Error getting recording time code: " + e.Message);
+            timecode = "00:00:00";
+            return timecode;
+        }
+    }
+    */
 }
