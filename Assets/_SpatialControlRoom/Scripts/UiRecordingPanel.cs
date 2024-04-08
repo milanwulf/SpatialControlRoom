@@ -26,17 +26,6 @@ public class UiRecordingPanel : MonoBehaviour
     [Header("Close Panel Button")]
     [SerializeField] private Button closeBtn;
 
-    //TimecodeButton
-    [Header("ActionBar Timecode Button")]
-    [SerializeField] private GameObject recTimecodeBtnObject;
-    [SerializeField] private Color recTimecodeBtnInactiveColor;
-    private Color recTimecodeBtnRecordingColor;
-    private Button recTimecodeBtnComponent;
-    private TextMeshProUGUI recTimecodeBtnText;
-    private MaterialIcon recTimecodeBtnIcon;
-
-    //Variables
-    private float recordingTimeInSeconds;
 
     private void OnEnable()
     {
@@ -52,19 +41,11 @@ public class UiRecordingPanel : MonoBehaviour
 
     private void Start()
     {
+        obsWebSocketManager.RecordingState += HandleRecordingStateChange;
 
         if (uiPanelSwitcher == null)
         {
             uiPanelSwitcher = FindObjectOfType<UiPanelSwitcher>();
-        }
-
-        if(recTimecodeBtnObject != null)
-        {
-            recTimecodeBtnComponent = recTimecodeBtnObject.GetComponent<Button>();
-            recTimecodeBtnText = recTimecodeBtnObject.GetComponentInChildren<TextMeshProUGUI>();
-            recTimecodeBtnRecordingColor = recTimecodeBtnComponent.colors.normalColor;
-            recTimecodeBtnIcon = recTimecodeBtnObject.GetComponentInChildren<MaterialIcon>();
-            recTimecodeBtnIcon.iconUnicode = startIconUnicode;
         }
 
         if(recToggleBtn != null)
@@ -76,31 +57,23 @@ public class UiRecordingPanel : MonoBehaviour
 
     private void Update()
     {
-        if(obsWebSocketManager != null && obsWebSocketManager.IsRecording)
+        Debug.Log("Current button text: " + recToggleBtnText.text);
+    }
+
+    private void HandleRecordingStateChange(bool isRecording)
+    {
+        if (isRecording)
         {
-            recordingTimeInSeconds += Time.deltaTime;
-            recTimecodeBtnIcon.iconUnicode = stopIconUnicode;
-            UpdateRecordingTimecode();
+            Debug.Log("Nun sollte Stop Recording angezeigt werden");
+            recToggleBtnText.text = stopRecordingText;
+            recToggleBtnIcon.iconUnicode = stopIconUnicode;
         }
-    }
-
-    private void UpdateRecordingTimecode()
-    {
-        TimeSpan timeSpan = TimeSpan.FromSeconds(recordingTimeInSeconds);
-        string timecode = string.Format("{0:D2}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
-        recTimecodeBtnText.text = timecode;
-        recTimecodeBtnIcon.iconUnicode = stopIconUnicode;
-        recToggleBtnText.text = stopRecordingText;
-        recToggleBtnIcon.iconUnicode = stopIconUnicode;
-    }
-
-    public void ResetRecordingTimecode()
-    {
-        recordingTimeInSeconds = 0;
-        recTimecodeBtnIcon.iconUnicode = startIconUnicode;
-        recToggleBtnText.text = startRecordingText;
-        recToggleBtnIcon.iconUnicode = startIconUnicode;
-        UpdateRecordingTimecode();
+        else
+        {
+            Debug.Log("Nun sollte Start Recording angezeigt werden");
+            recToggleBtnText.text = startRecordingText;
+            recToggleBtnIcon.iconUnicode = startIconUnicode;
+        }
     }
 
     private void ToggleRecording()

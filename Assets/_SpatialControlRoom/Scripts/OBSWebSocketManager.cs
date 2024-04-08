@@ -13,7 +13,6 @@ public class OBSWebSocketManager : MonoBehaviour
     [SerializeField] private int serverPort = 4444;
     [SerializeField] private string serverPassword = "";
     [SerializeField] private UiFeedInstanceManger uiFeedInstanceManger;
-    [SerializeField] private UiRecordingPanel uiRecordingPanel;
 
     private Queue<Action> actionsToExectuteOnMainThread = new Queue<Action>();
 
@@ -64,7 +63,7 @@ public class OBSWebSocketManager : MonoBehaviour
         obsWebSocket.CurrentProgramSceneChanged += CurrentProgramSceneChanged;
         obsWebSocket.CurrentPreviewSceneChanged += CurrentPreviewSceneChanged;
         obsWebSocket.RecordStateChanged += OBSRecordStateChanged;
-        
+        SetInitRecordingState();
     }
 
     private void OnDisconnected(object sender, ObsDisconnectionInfo e)
@@ -80,33 +79,6 @@ public class OBSWebSocketManager : MonoBehaviour
         if (obsWebSocket.IsConnected)
             obsWebSocket.Disconnect();
     }
-
-    /*
-    //just for testing
-    public void StartRecord()
-    {
-        SendRequest("StartRecord");
-    }
-
-    private void SendRequest(string requestType)
-    {
-        try
-        {
-            switch (requestType)
-            {
-                case "StartRecord":
-                    obsWebSocket.StartRecord();
-                    break;
-                default:
-                    Debug.LogError($"Unbekannter Request-Typ: {requestType}");
-                    break;
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Fehler beim Senden der Request '{requestType}': {e.Message}");
-        }
-    }*/
 
     private void CurrentProgramSceneChanged(object sender, ProgramSceneChangedEventArgs e)
     {
@@ -202,15 +174,32 @@ public class OBSWebSocketManager : MonoBehaviour
 
     /// Recording Logic
     public bool IsRecording { get; private set; }
+    public event Action<bool> RecordingState;
 
-    private void OBSRecordStateChanged(object sender, RecordStateChangedEventArgs e)
+    private void SetInitRecordingState()
     {
         var recordingStatus = obsWebSocket.GetRecordStatus();
         IsRecording = recordingStatus.IsRecording;
-        if(!IsRecording)
+        Debug.Log("Initial Recording State: " + IsRecording);
+        RecordingState?.Invoke(IsRecording);
+    }
+
+    private void OBSRecordStateChanged(object sender, RecordStateChangedEventArgs e)
+    {
+        string unfilteredState = e.OutputState.StateStr; //needed to distinguish between OBS_WEBSOCKET_OUTPUT_STARTING / OBS_WEBSOCKET_OUTPUT_STARTED and OBS_WEBSOCKET_STOPPING / OBS_WEBSOCKET_OUTPUT_STOPPED / OBS_WEBSOCKET_OUTPUT_PAUSED
+
+        if(unfilteredState == "OBS_WEBSOCKET_OUTPUT_STARTED")
         {
-            Debug.Log("afjhajkfhkjdfh");
-            uiRecordingPanel.ResetRecordingTimecode();
+            IsRecording = true;
+            RecordingState?.Invoke(IsRecording);
+            Debug.Log("Recording State Changed: " + IsRecording);
+        }
+
+        else if (unfilteredState == "OBS_WEBSOCKET_OUTPUT_STOPPED")
+        {
+            IsRecording = false;
+            RecordingState?.Invoke(IsRecording);
+            Debug.Log("Recording State Changed: " + IsRecording);
         }
     }
 
@@ -228,12 +217,10 @@ public class OBSWebSocketManager : MonoBehaviour
             if (recoringStatus.IsRecording)
             {
                 obsWebSocket.StopRecord();
-                IsRecording = false;
             }
             else
             {
                 obsWebSocket.StartRecord();
-                IsRecording = true;
             }
         }
         catch (Exception e)
