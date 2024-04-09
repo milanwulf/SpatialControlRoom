@@ -28,6 +28,7 @@ public class OBSWebSocketManager : MonoBehaviour
 
     private void Update()
     {
+        
         while (actionsToExectuteOnMainThread.Count > 0)
         {
             Action action = actionsToExectuteOnMainThread.Dequeue();
@@ -40,6 +41,7 @@ public class OBSWebSocketManager : MonoBehaviour
                 Debug.LogWarning("Versuchte, eine null-Action auszuführen.");
             }
         }
+        
     }
 
     public void ConnectToServer(string serverAdress, int serverPort, string serverPassword)
@@ -63,7 +65,10 @@ public class OBSWebSocketManager : MonoBehaviour
         obsWebSocket.CurrentProgramSceneChanged += CurrentProgramSceneChanged;
         obsWebSocket.CurrentPreviewSceneChanged += CurrentPreviewSceneChanged;
         obsWebSocket.RecordStateChanged += OBSRecordStateChanged;
+        obsWebSocket.StreamStateChanged += OBSStreamStateChanged;
+
         SetInitRecordingState();
+        SetInitStreamingState();
     }
 
     private void OnDisconnected(object sender, ObsDisconnectionInfo e)
@@ -72,6 +77,7 @@ public class OBSWebSocketManager : MonoBehaviour
         obsWebSocket.CurrentProgramSceneChanged -= CurrentProgramSceneChanged;
         obsWebSocket.CurrentPreviewSceneChanged -= CurrentPreviewSceneChanged;
         obsWebSocket.RecordStateChanged -= OBSRecordStateChanged;
+        obsWebSocket.StreamStateChanged -= OBSStreamStateChanged;
     }
 
     void OnDestroy()
@@ -191,14 +197,14 @@ public class OBSWebSocketManager : MonoBehaviour
         if(unfilteredState == "OBS_WEBSOCKET_OUTPUT_STARTED")
         {
             IsRecording = true;
-            RecordingState?.Invoke(IsRecording);
+            actionsToExectuteOnMainThread.Enqueue(() => RecordingState?.Invoke(IsRecording));
             Debug.Log("Recording State Changed: " + IsRecording);
         }
 
         else if (unfilteredState == "OBS_WEBSOCKET_OUTPUT_STOPPED")
         {
             IsRecording = false;
-            RecordingState?.Invoke(IsRecording);
+            actionsToExectuteOnMainThread.Enqueue(() => RecordingState?.Invoke(IsRecording));
             Debug.Log("Recording State Changed: " + IsRecording);
         }
     }
@@ -226,6 +232,62 @@ public class OBSWebSocketManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError("Error toggling recording: " + e.Message);
+        }
+    }
+
+    /// Streaming Logic
+    public bool IsStreaming { get; private set; }
+    public event Action<bool> StreamingState;
+
+    private void SetInitStreamingState()
+    {
+        var streamingStatus = obsWebSocket.GetStreamStatus();
+        IsStreaming = streamingStatus.IsActive;
+        Debug.Log("Initial Streaming State: " + IsStreaming);
+        StreamingState?.Invoke(IsStreaming);
+    }
+
+    private void OBSStreamStateChanged(object sender, StreamStateChangedEventArgs e)
+    {
+        string unfilteredState = e.OutputState.StateStr; //needed to distinguish between OBS_WEBSOCKET_OUTPUT_STARTING / OBS_WEBSOCKET_OUTPUT_STARTED and OBS_WEBSOCKET_STOPPING / OBS_WEBSOCKET_OUTPUT_STOPPED / OBS_WEBSOCKET_OUTPUT_PAUSED
+        if (unfilteredState == "OBS_WEBSOCKET_OUTPUT_STARTED")
+        {
+            IsStreaming = true;
+            actionsToExectuteOnMainThread.Enqueue(() => StreamingState?.Invoke(IsStreaming));
+            Debug.Log("Recording State Changed: " + IsStreaming);
+        }
+
+        else if (unfilteredState == "OBS_WEBSOCKET_OUTPUT_STOPPED")
+        {
+            IsStreaming = false;
+            actionsToExectuteOnMainThread.Enqueue(() => StreamingState?.Invoke(IsStreaming));
+            Debug.Log("Recording State Changed: " + IsStreaming);
+        }
+    }
+
+    public void ToggleStreaming()
+    {
+        if (!obsWebSocket.IsConnected)
+        {
+            Debug.LogError("Cannot toggle streaming, not connected to OBS!");
+            return;
+        }
+
+        try
+        {
+            var streamingStatus = obsWebSocket.GetStreamStatus();
+            if (streamingStatus.IsActive)
+            {
+                obsWebSocket.StopStream();
+            }
+            else
+            {
+                obsWebSocket.StartStream();
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error toggling streaming: " + e.Message);
         }
     }
 

@@ -5,73 +5,91 @@ using Google.MaterialDesign.Icons;
 
 public class UiStreamingPanel : MonoBehaviour
 {
-    /*
     private UiPanelSwitcher uiPanelSwitcher;
-    [SerializeField] private OBSStreamingManager obsStreamingManager;
+    [SerializeField] private OBSWebSocketManager obsWebSocketManager;
 
-    //ToggleStreamingButton
-    [SerializeField] private Button toggleStreamingBtn;
+    //ToggleRecordingButton
+    [Header("Toggle Stream Button")]
+    [SerializeField] private Button streamToggleBtn;
+    [SerializeField] private Color inactiveToggleBtnColor;
+    private Color activeToggleBtnColor;
 
-    [SerializeField] private MaterialIcon toggleStreamingBtnIcon;
+    [SerializeField] private MaterialIcon streamToggleBtnIcon;
     private string startIconUnicode = "e061";
     private string stopIconUnicode = "ef71";
-    
-    [SerializeField] private TextMeshProUGUI toggleStreamingBtnText;
-    [SerializeField] private string stopStreamingText = "Stop Streaming";
-    [SerializeField] private string startStreamingText = "Start Streaming";
+
+    [SerializeField] private TextMeshProUGUI streamToggleBtnText;
+    [SerializeField] private string stopStreamText = "Stop Streaming";
+    [SerializeField] private string startStreamText = "Start Streaming";
 
     //CloseButton
+    [Header("Close Panel Button")]
     [SerializeField] private Button closeBtn;
+
 
     private void OnEnable()
     {
         closeBtn.onClick.AddListener(() => uiPanelSwitcher.HideAllUiPanels());
-        toggleStreamingBtn.onClick.AddListener(ToggleStreaming);
+        streamToggleBtn.onClick.AddListener(ToggleStream);
     }
 
     private void OnDisable()
     {
         closeBtn.onClick.RemoveListener(() => uiPanelSwitcher.HideAllUiPanels());
-        toggleStreamingBtn.onClick.RemoveListener(ToggleStreaming);
+        streamToggleBtn.onClick.RemoveListener(ToggleStream);
     }
 
     private void Start()
     {
+        obsWebSocketManager.StreamingState += HandleStreamStateChange;
+        activeToggleBtnColor = streamToggleBtn.colors.normalColor;
 
         if (uiPanelSwitcher == null)
         {
             uiPanelSwitcher = FindObjectOfType<UiPanelSwitcher>();
         }
 
-        ChangeButtonAppearance();
-
-    }
-
-    private void ToggleStreaming()
-    {
-        if (obsStreamingManager != null)
+        if (streamToggleBtn != null)
         {
-            obsStreamingManager.ToggleStreaming();
-            ChangeButtonAppearance();
+            streamToggleBtnIcon.iconUnicode = startIconUnicode;
+            streamToggleBtnText.text = startStreamText;
+            ColorBlock colors = streamToggleBtn.colors;
+            colors.normalColor = inactiveToggleBtnColor;
+            streamToggleBtn.colors = colors;
         }
     }
 
-    private void ChangeButtonAppearance()
+    private void Update()
     {
-        if (obsStreamingManager != null)
-        {            
-            if (obsStreamingManager.IsStreaming)
-            {
-                toggleStreamingBtnText.text = stopStreamingText;
-                toggleStreamingBtnIcon.iconUnicode = stopIconUnicode;
-            }
+        Debug.Log("Current button text: " + streamToggleBtnText.text);
+    }
 
-            if (!obsStreamingManager.IsStreaming)
-            {
-                toggleStreamingBtnText.text = startStreamingText;
-                toggleStreamingBtnIcon.iconUnicode = startIconUnicode;
-            }
+    private void HandleStreamStateChange(bool isStreaming)
+    {
+        if (isStreaming)
+        {
+            streamToggleBtnText.text = stopStreamText;
+            streamToggleBtnIcon.iconUnicode = stopIconUnicode;
+            ColorBlock colors = streamToggleBtn.colors;
+            colors.normalColor = activeToggleBtnColor;
+            streamToggleBtn.colors = colors;
+        }
+
+        else
+        {
+            streamToggleBtnText.text = startStreamText;
+            streamToggleBtnIcon.iconUnicode = startIconUnicode;
+            ColorBlock colors = streamToggleBtn.colors;
+            colors.normalColor = inactiveToggleBtnColor;
+            streamToggleBtn.colors = colors;
         }
     }
-    */
+
+    private void ToggleStream()
+    {
+        if (obsWebSocketManager != null)
+        {
+            obsWebSocketManager.ToggleStreaming();
+        }
+    }
 }

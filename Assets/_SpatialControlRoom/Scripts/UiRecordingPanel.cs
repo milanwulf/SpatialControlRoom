@@ -13,6 +13,8 @@ public class UiRecordingPanel : MonoBehaviour
     //ToggleRecordingButton
     [Header("Toggle Recording Button")]
     [SerializeField] private Button recToggleBtn;
+    [SerializeField] private Color inactiveToggleBtnColor;
+    private Color activeToggleBtnColor;
 
     [SerializeField] private MaterialIcon recToggleBtnIcon;
     private string startIconUnicode = "e061";
@@ -42,6 +44,7 @@ public class UiRecordingPanel : MonoBehaviour
     private void Start()
     {
         obsWebSocketManager.RecordingState += HandleRecordingStateChange;
+        activeToggleBtnColor = recToggleBtn.colors.normalColor;
 
         if (uiPanelSwitcher == null)
         {
@@ -52,6 +55,9 @@ public class UiRecordingPanel : MonoBehaviour
         {
             recToggleBtnIcon.iconUnicode = startIconUnicode;
             recToggleBtnText.text = startRecordingText;
+            ColorBlock colors = recToggleBtn.colors;
+            colors.normalColor = inactiveToggleBtnColor;
+            recToggleBtn.colors = colors;
         }
     }
 
@@ -64,15 +70,20 @@ public class UiRecordingPanel : MonoBehaviour
     {
         if (isRecording)
         {
-            Debug.Log("Nun sollte Stop Recording angezeigt werden");
             recToggleBtnText.text = stopRecordingText;
             recToggleBtnIcon.iconUnicode = stopIconUnicode;
+            ColorBlock colors = recToggleBtn.colors;
+            colors.normalColor = activeToggleBtnColor;
+            recToggleBtn.colors = colors;
         }
+
         else
         {
-            Debug.Log("Nun sollte Start Recording angezeigt werden");
             recToggleBtnText.text = startRecordingText;
             recToggleBtnIcon.iconUnicode = startIconUnicode;
+            ColorBlock colors = recToggleBtn.colors;
+            colors.normalColor = inactiveToggleBtnColor;
+            recToggleBtn.colors = colors;
         }
     }
 
