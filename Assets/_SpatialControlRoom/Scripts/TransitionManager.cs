@@ -16,13 +16,13 @@ public class TransitionManager : MonoBehaviour
 
     private void OnEnable()
     {
-        leftScissorPose.WhenUnselected.AddListener(() => TriggerObsTransition(leftHandAnchorTransform));
+        leftScissorPose.WhenSelected.AddListener(() => TriggerObsTransition(leftHandAnchorTransform));
         rightScissorPose.WhenSelected.AddListener(() => TriggerObsTransition(rightHandAnchorTransform));
     }
 
     private void OnDisable()
     {
-        leftScissorPose.WhenUnselected.RemoveListener(() => TriggerObsTransition(leftHandAnchorTransform));
+        leftScissorPose.WhenSelected.RemoveListener(() => TriggerObsTransition(leftHandAnchorTransform));
         rightScissorPose.WhenSelected.RemoveListener(() => TriggerObsTransition(rightHandAnchorTransform));
     }
 
