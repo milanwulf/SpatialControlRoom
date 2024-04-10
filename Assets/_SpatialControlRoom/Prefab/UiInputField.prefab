@@ -125,7 +125,7 @@ MonoBehaviour:
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 340, y: 103.58, z: 0}
-  TransformPosition: {x: 0, y: -141.815, z: 0}
+  TransformPosition: {x: 0, y: 95.34501, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 340, y: 103.58}
@@ -633,8 +633,8 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideMobileInput: 1
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 14
