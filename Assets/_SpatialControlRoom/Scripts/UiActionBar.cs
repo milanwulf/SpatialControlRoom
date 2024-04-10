@@ -82,12 +82,6 @@ public class UiActionBar : MonoBehaviour
         inputsBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(2); });
         passthroughBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(3); }); //index might change!
         settingsBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(4); }); //shows connection settings for testing, change index later!
-
-        //Recording Button
-        obsWebSocketManager.RecordingState += UpdateRecordingButtonState;
-
-        //Streaming Button
-        obsWebSocketManager.StreamingState += UpdateStreamingButtonState;
     }
 
     private void OnDisable()
@@ -108,6 +102,7 @@ public class UiActionBar : MonoBehaviour
             defaultRecBtnText = recBtnText.text;
             recordingRecBtnColor = recordingBtn.colors.normalColor;
             UpdateRecordingButtonState(false);
+            obsWebSocketManager.RecordingState += UpdateRecordingButtonState;
         }
 
         //Streaming Button
@@ -116,6 +111,7 @@ public class UiActionBar : MonoBehaviour
             defaultStreamBtnText = streamBtnText.text;
             streamingStreamBtnColor = streamingBtn.colors.normalColor;
             UpdateStreamingButtonState(false);
+            obsWebSocketManager.StreamingState += UpdateStreamingButtonState;
         }
     }
 

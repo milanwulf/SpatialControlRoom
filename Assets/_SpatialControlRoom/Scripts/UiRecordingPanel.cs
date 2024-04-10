@@ -43,7 +43,6 @@ public class UiRecordingPanel : MonoBehaviour
 
     private void Start()
     {
-        obsWebSocketManager.RecordingState += HandleRecordingStateChange;
         activeToggleBtnColor = recToggleBtn.colors.normalColor;
 
         if (uiPanelSwitcher == null)
@@ -58,6 +57,7 @@ public class UiRecordingPanel : MonoBehaviour
             ColorBlock colors = recToggleBtn.colors;
             colors.normalColor = inactiveToggleBtnColor;
             recToggleBtn.colors = colors;
+            obsWebSocketManager.RecordingState += HandleRecordingStateChange;
         }
     }
 

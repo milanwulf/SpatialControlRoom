@@ -15,8 +15,8 @@ public class UiStreamingPanel : MonoBehaviour
     private Color activeToggleBtnColor;
 
     [SerializeField] private MaterialIcon streamToggleBtnIcon;
-    private string startIconUnicode = "e061";
-    private string stopIconUnicode = "ef71";
+    private string startIconUnicode = "e0e2";
+    private string stopIconUnicode = "e0e3";
 
     [SerializeField] private TextMeshProUGUI streamToggleBtnText;
     [SerializeField] private string stopStreamText = "Stop Streaming";
@@ -41,7 +41,6 @@ public class UiStreamingPanel : MonoBehaviour
 
     private void Start()
     {
-        obsWebSocketManager.StreamingState += HandleStreamStateChange;
         activeToggleBtnColor = streamToggleBtn.colors.normalColor;
 
         if (uiPanelSwitcher == null)
@@ -56,6 +55,7 @@ public class UiStreamingPanel : MonoBehaviour
             ColorBlock colors = streamToggleBtn.colors;
             colors.normalColor = inactiveToggleBtnColor;
             streamToggleBtn.colors = colors;
+            obsWebSocketManager.StreamingState += HandleStreamStateChange;
         }
     }
 
