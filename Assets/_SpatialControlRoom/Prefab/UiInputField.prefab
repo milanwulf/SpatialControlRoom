@@ -91,7 +91,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -5, y: -20.735}
-  m_SizeDelta: {x: 1887, y: 103.58}
+  m_SizeDelta: {x: 1518.0001, y: 103.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7580027491952955396
 MonoBehaviour:
@@ -111,24 +111,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 943.5, y: 51.79, z: 0}
+    m_Extent: {x: 170, y: 51.79, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 943.5, y: 51.79, z: 0}
+    m_Extent: {x: 170, y: 51.79, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 943.5, y: 51.79, z: 0}
+    m_Extent: {x: 170, y: 51.79, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 1887, y: 1089, z: 0}
+  FillSize: {x: 340, y: 387.21, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
   TargetPosition: {x: -5, y: -20.735, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 1887, y: 103.58, z: 0}
-  TransformPosition: {x: -5, y: -20.735, z: 0}
+  TargetRectSize: {x: 340, y: 103.58, z: 0}
+  TransformPosition: {x: 0, y: -141.815, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 1887, y: 103.58}
+  TransformRectSize: {x: 340, y: 103.58}
 --- !u!114 &3442395300344368274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,7 +540,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -2.42}
-  m_SizeDelta: {x: 1887, y: 50}
+  m_SizeDelta: {x: 340, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5355033823613043384
 CanvasRenderer:
@@ -668,7 +668,7 @@ MonoBehaviour:
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
   m_Text: 
   m_CaretBlinkRate: 0.85
-  m_CaretWidth: 1
+  m_CaretWidth: 3
   m_ReadOnly: 0
   m_RichText: 1
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -696,24 +696,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 943.5, y: 25, z: 0}
+    m_Extent: {x: 170, y: 25, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 943.5, y: 25, z: 0}
+    m_Extent: {x: 170, y: 25, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 943.5, y: 25, z: 0}
+    m_Extent: {x: 170, y: 25, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 1887, y: 0, z: 0}
+  FillSize: {x: 340, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
   TargetPosition: {x: 0, y: -2.42, z: -10}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 1887, y: 50, z: 0}
+  TargetRectSize: {x: 340, y: 50, z: 0}
   TransformPosition: {x: 0, y: -2.42, z: -10}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 1887, y: 50}
+  TransformRectSize: {x: 340, y: 50}
 --- !u!114 &7206037669458841685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,7 +856,7 @@ PrefabInstance:
     - target: {fileID: 4116361405604658253, guid: 78b2ea6009be5c2449b8b4ba8d495654,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -915.805
+      value: -142.305
       objectReference: {fileID: 0}
     - target: {fileID: 4116361405604658253, guid: 78b2ea6009be5c2449b8b4ba8d495654,
         type: 3}
@@ -906,7 +906,7 @@ PrefabInstance:
     - target: {fileID: 7278302568850141857, guid: 78b2ea6009be5c2449b8b4ba8d495654,
         type: 3}
       propertyPath: LayoutPosition.x
-      value: -915.805
+      value: -142.305
       objectReference: {fileID: 0}
     - target: {fileID: 7278302568850141857, guid: 78b2ea6009be5c2449b8b4ba8d495654,
         type: 3}
@@ -916,7 +916,7 @@ PrefabInstance:
     - target: {fileID: 7278302568850141857, guid: 78b2ea6009be5c2449b8b4ba8d495654,
         type: 3}
       propertyPath: TargetPosition.x
-      value: -915.805
+      value: -142.305
       objectReference: {fileID: 0}
     - target: {fileID: 7278302568850141857, guid: 78b2ea6009be5c2449b8b4ba8d495654,
         type: 3}
@@ -931,7 +931,7 @@ PrefabInstance:
     - target: {fileID: 7278302568850141857, guid: 78b2ea6009be5c2449b8b4ba8d495654,
         type: 3}
       propertyPath: TransformPosition.x
-      value: -915.805
+      value: -142.305
       objectReference: {fileID: 0}
     - target: {fileID: 7278302568850141857, guid: 78b2ea6009be5c2449b8b4ba8d495654,
         type: 3}
@@ -1060,7 +1060,7 @@ PrefabInstance:
     - target: {fileID: 4116361405604658253, guid: 0656b61b8208ce54fa44240da67cffb4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -908.88
+      value: -135.38
       objectReference: {fileID: 0}
     - target: {fileID: 4116361405604658253, guid: 0656b61b8208ce54fa44240da67cffb4,
         type: 3}
@@ -1110,7 +1110,7 @@ PrefabInstance:
     - target: {fileID: 7278302568850141857, guid: 0656b61b8208ce54fa44240da67cffb4,
         type: 3}
       propertyPath: LayoutPosition.x
-      value: -908.88
+      value: -135.38
       objectReference: {fileID: 0}
     - target: {fileID: 7278302568850141857, guid: 0656b61b8208ce54fa44240da67cffb4,
         type: 3}
@@ -1120,7 +1120,7 @@ PrefabInstance:
     - target: {fileID: 7278302568850141857, guid: 0656b61b8208ce54fa44240da67cffb4,
         type: 3}
       propertyPath: TargetPosition.x
-      value: -908.88
+      value: -135.38
       objectReference: {fileID: 0}
     - target: {fileID: 7278302568850141857, guid: 0656b61b8208ce54fa44240da67cffb4,
         type: 3}
@@ -1135,7 +1135,7 @@ PrefabInstance:
     - target: {fileID: 7278302568850141857, guid: 0656b61b8208ce54fa44240da67cffb4,
         type: 3}
       propertyPath: TransformPosition.x
-      value: -908.88
+      value: -135.38
       objectReference: {fileID: 0}
     - target: {fileID: 7278302568850141857, guid: 0656b61b8208ce54fa44240da67cffb4,
         type: 3}
