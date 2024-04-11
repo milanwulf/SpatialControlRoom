@@ -20,11 +20,42 @@ public class UiConnectionSettingsPanel : MonoBehaviour
     [Header("NDI Drowdowns")]
     [SerializeField] private List<TMP_Dropdown> ndiFeedDropdown;
 
-    [Header("Connect Button")] //TODO: add connection message
-    [SerializeField] private Button connectBtn;
+    [Header("Connect Button")]
+    [SerializeField] private GameObject connectBtnObject;
+    private Button connectBtn;
+    private GameObject connectBtnloadingSpinner;
+    private GameObject connectBtnIcon;
 
     [Header("Close Button")]
     [SerializeField] private Button closeBtn;
+
+    private void Awake()
+    {
+        InitializeConnectButton();
+        gameObject.SetActive(false); //this gameobject need to be set inactive on Startup otherwise the default NDI Source will be the NDIReceiver source set in editor
+    }
+
+    private void InitializeConnectButton()
+    {
+        connectBtn = connectBtnObject.GetComponent<Button>();
+        connectBtnIcon = connectBtnObject.transform.Find("Button Front/Icon").gameObject;
+        connectBtnloadingSpinner = connectBtnObject.transform.Find("Button Front/LoadingSpinner").gameObject;
+        ShowConnectButtonLoadingSpinner(false);
+    }
+
+    private void ShowConnectButtonLoadingSpinner(bool isLoading)
+    {
+        if(isLoading)
+        {
+            connectBtnIcon.SetActive(false);
+            connectBtnloadingSpinner.SetActive(true);
+        }
+        else
+        {
+            connectBtnIcon.SetActive(true);
+            connectBtnloadingSpinner.SetActive(false);
+        }
+    }
 
     private void OnEnable()
     {
@@ -34,10 +65,15 @@ public class UiConnectionSettingsPanel : MonoBehaviour
         wsPasswordInputField.onSelect.AddListener(PasswordFieldSelected);
 
         //Refresh available NDI feeds on panel opening
-        //ATTENTION: this gameobject need to be set inactive in editor otherwise the default NDI Source will be the NDIReceiver source set in editor
         ndiManager.GetAvailableNdiFeeds();
         UpdateNdiFeedDropdowns();
         AddNdiDropdownListeners();
+
+        //Websocket connection
+        connectBtn.onClick.AddListener(ConnectToObs);
+        LoadLastConnectionData();
+        obsWebsocketManager.WsConnected += WebsocketConnectedEvent;
+
     }
 
     private void OnDisable()
@@ -47,17 +83,18 @@ public class UiConnectionSettingsPanel : MonoBehaviour
         wsPortInputField.onSelect.RemoveListener(PortFieldSelected);
         wsPasswordInputField.onSelect.RemoveListener(PasswordFieldSelected);
         keyboardSpawner.DestroyKeyboard();
-
+        
         RemoveNdiDropdownListeners();
+
+        connectBtn.onClick.RemoveListener(ConnectToObs);
+        obsWebsocketManager.WsConnected -= WebsocketConnectedEvent;
     }
-
-
 
     private void ClosePanel()
     {
         gameObject.SetActive(false);
     }
-
+    #region Websocket Handling
     private void AddressFieldSelected(string s)
     {
         keyboardSpawner.InstantiateKeyboard(wsAddressInputField);
@@ -72,7 +109,59 @@ public class UiConnectionSettingsPanel : MonoBehaviour
     {
         keyboardSpawner.InstantiateKeyboard(wsPasswordInputField);
     }
+    private void ConnectToObs()
+    {
+       if (obsWebsocketManager != null)
+       {
+            if(int.TryParse(wsPortInputField.text, out int port))
+            {
+                obsWebsocketManager.ConnectToServer(wsAddressInputField.text, int.Parse(wsPortInputField.text), wsPasswordInputField.text);
+                //ShowConnectButtonLoadingSpinner(true);
+                SaveCurrentConnectionData();
+            }
 
+            else
+            {
+                Debug.LogWarning("Port needs to be a number!");
+            }
+       }
+    }
+
+    private void SaveCurrentConnectionData()
+    {
+        PlayerPrefs.SetString("wsAddress", wsAddressInputField.text);
+        PlayerPrefs.SetInt("wsPort", int.TryParse(wsPortInputField.text, out int port) ? port : 4455); //if parsing fails, set default port
+        PlayerPrefs.SetString("wsPassword", wsPasswordInputField.text); //TODO: encrypt password
+    }
+
+    private void LoadLastConnectionData()
+    {
+        string wsAddress = PlayerPrefs.GetString("wsAddress");
+        string wsPort = PlayerPrefs.GetInt("wsPort").ToString();
+        string wsPassword = PlayerPrefs.GetString("wsPassword");
+        if (!string.IsNullOrEmpty(wsAddress))
+        {
+            wsAddressInputField.text = wsAddress;
+            wsPortInputField.text = wsPort;
+            wsPasswordInputField.text = wsPassword;
+        }
+    }
+
+    private void WebsocketConnectedEvent(bool wsConnected)
+    {
+        if(wsConnected)
+        {
+            //ShowConnectButtonLoadingSpinner(false);
+        }
+
+        else
+        {
+                
+        }
+    }
+    #endregion
+
+    #region NDI Handling
     private void UpdateNdiFeedDropdowns()
     {
         List<string> sourceNames = ndiManager.GetNdiSourceNames();
@@ -117,4 +206,5 @@ public class UiConnectionSettingsPanel : MonoBehaviour
             ndiFeedDropdown[i].onValueChanged.RemoveAllListeners();
         }
     }
+    #endregion
 }

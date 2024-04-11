@@ -8,13 +8,25 @@ using UnityEngine;
 
 public class OBSWebSocketManager : MonoBehaviour
 {
-    private OBSWebsocket obsWebSocket = new OBSWebsocket();
-    [SerializeField] private string serverAdress = "localhost";
-    [SerializeField] private int serverPort = 4444;
-    [SerializeField] private string serverPassword = "";
+    //IMPORTANT:
+    //Stuff that needs to be executed on the main thread needs to be enqueued in actionsToExectuteOnMainThread
+    //Otherwise you will see no change in Ingame when disabling/enabling gameobjects or changing UI elements but Console Logs will work
+    //Example: actionsToExectuteOnMainThread.Enqueue(() => WsConnected?.Invoke(true));
+
     [SerializeField] private UiFeedInstanceManger uiFeedInstanceManger;
 
+    private OBSWebsocket obsWebSocket = new OBSWebsocket();
     private Queue<Action> actionsToExectuteOnMainThread = new Queue<Action>();
+
+    //Development Server Settings
+    private string defaultWsAdress = "192.168.0.46";
+    private int defaultWsPort = 4455;
+    private string defaultWsPassword = "123123";
+
+    //Public Events
+    public event Action<bool> WsConnected;
+    public event Action<string> WsMessage;
+    private string defaultNotConnectedMessage = "No WebSocket connection, please check your settings";
 
     private void Awake()
     {
@@ -23,7 +35,7 @@ public class OBSWebSocketManager : MonoBehaviour
 
     void Start()
     {
-        ConnectToServer(serverAdress, serverPort, serverPassword);
+        AutoConnectToServer();
     }
 
     private void Update()
@@ -38,14 +50,38 @@ public class OBSWebSocketManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Versuchte, eine null-Action auszuführen.");
+                Debug.LogWarning($"{nameof(actionsToExectuteOnMainThread)} tryed to do a Null Action");
             }
         }
         
     }
+    void OnDestroy()
+    {
+        if (obsWebSocket.IsConnected)
+            obsWebSocket.Disconnect();
+    }
+
+    #region Connection Handling
+    private void AutoConnectToServer() //called on Startup if PlayerPrefs contain Connection Data
+    {
+        string serverAdress = PlayerPrefs.GetString("wsAddress", defaultWsAdress);
+        int serverPort = PlayerPrefs.GetInt("wsPort", defaultWsPort);
+        string serverPassword = PlayerPrefs.GetString("wsPassword", defaultWsPassword);
+
+        if (serverAdress == "" || serverPassword == "")
+        {
+            Debug.LogWarning("No Connection Data found in PlayerPrefs");
+            return;
+        }
+
+        ConnectToServer(serverAdress, serverPort, serverPassword);
+    }
 
     public void ConnectToServer(string serverAdress, int serverPort, string serverPassword)
     {
+        obsWebSocket.Connected -= OnConnected;  // delete old event listeners before adding new ones
+        obsWebSocket.Disconnected -= OnDisconnected;
+
         obsWebSocket.Connected += OnConnected;
         obsWebSocket.Disconnected += OnDisconnected;
 
@@ -56,12 +92,15 @@ public class OBSWebSocketManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError($"WebSocket connection error: {e.Message}");
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke($"WebSocket connection error: {e.Message}"));
         }
     }
 
     private void OnConnected(object sender, EventArgs e)
     {
-        Debug.Log("WebSocket connection successful");
+        actionsToExectuteOnMainThread.Enqueue(() => WsConnected?.Invoke(true));
+        actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke("WebSocket connection successful"));
+        Debug.Log("Connected to OBS");
         obsWebSocket.CurrentProgramSceneChanged += CurrentProgramSceneChanged;
         obsWebSocket.CurrentPreviewSceneChanged += CurrentPreviewSceneChanged;
         obsWebSocket.RecordStateChanged += OBSRecordStateChanged;
@@ -73,19 +112,17 @@ public class OBSWebSocketManager : MonoBehaviour
 
     private void OnDisconnected(object sender, ObsDisconnectionInfo e)
     {
+        actionsToExectuteOnMainThread.Enqueue(() => WsConnected?.Invoke(false));
+        actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke("Disconnected from OBS"));
         Debug.Log($"Disconnected from OBS WebSocket Server. Reason: {e.WebsocketDisconnectionInfo?.CloseStatusDescription}");
         obsWebSocket.CurrentProgramSceneChanged -= CurrentProgramSceneChanged;
         obsWebSocket.CurrentPreviewSceneChanged -= CurrentPreviewSceneChanged;
         obsWebSocket.RecordStateChanged -= OBSRecordStateChanged;
         obsWebSocket.StreamStateChanged -= OBSStreamStateChanged;
     }
+    #endregion
 
-    void OnDestroy()
-    {
-        if (obsWebSocket.IsConnected)
-            obsWebSocket.Disconnect();
-    }
-
+    #region Scene Switch Handling
     private void CurrentProgramSceneChanged(object sender, ProgramSceneChangedEventArgs e)
     {
         Debug.Log("Current Program Scene: " + e.SceneName);
@@ -102,6 +139,7 @@ public class OBSWebSocketManager : MonoBehaviour
     {
         if (!obsWebSocket.IsConnected)
         {
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke(defaultNotConnectedMessage));
             Debug.LogError("Not connected to OBS");
             return;
         }
@@ -131,6 +169,7 @@ public class OBSWebSocketManager : MonoBehaviour
     {
         if (!obsWebSocket.IsConnected)
         {
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke(defaultNotConnectedMessage));
             Debug.LogError("Cant set Preview Scene, not connected to OBS!");
             return;
         }
@@ -153,17 +192,21 @@ public class OBSWebSocketManager : MonoBehaviour
             Debug.LogError("Error setting preview scene: " + e.Message);
         }
     }
+    #endregion
 
+    #region Transition Handling
     public void TriggerStudioModeTransition()
     {
         if (!obsWebSocket.IsConnected)
         {
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke(defaultNotConnectedMessage));
             Debug.LogError("Cant trigger Studio Mode Transition, not connected to OBS!");
             return;
         }
 
         if(!obsWebSocket.GetStudioModeEnabled())
         {
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke("Please enable Studio Mode in OBS"));
             Debug.LogError("Studio Mode is not enabled");
             return;
         }
@@ -174,11 +217,13 @@ public class OBSWebSocketManager : MonoBehaviour
         }
         catch (Exception e)
         {
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke("Unable to trigger transition: " + e.Message));
             Debug.LogError("Error triggering Studio Mode Transition: " + e.Message);
         }
     }
+    #endregion
 
-    /// Recording Logic
+    #region Recording Handling
     public bool IsRecording { get; private set; }
     public event Action<bool> RecordingState;
 
@@ -187,7 +232,7 @@ public class OBSWebSocketManager : MonoBehaviour
         var recordingStatus = obsWebSocket.GetRecordStatus();
         IsRecording = recordingStatus.IsRecording;
         Debug.Log("Initial Recording State: " + IsRecording);
-        RecordingState?.Invoke(IsRecording);
+        actionsToExectuteOnMainThread.Enqueue(() => RecordingState?.Invoke(IsRecording));
     }
 
     private void OBSRecordStateChanged(object sender, RecordStateChangedEventArgs e)
@@ -199,6 +244,7 @@ public class OBSWebSocketManager : MonoBehaviour
             IsRecording = true;
             actionsToExectuteOnMainThread.Enqueue(() => RecordingState?.Invoke(IsRecording));
             Debug.Log("Recording State Changed: " + IsRecording);
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke("Recording has been started"));
         }
 
         else if (unfilteredState == "OBS_WEBSOCKET_OUTPUT_STOPPED")
@@ -206,6 +252,7 @@ public class OBSWebSocketManager : MonoBehaviour
             IsRecording = false;
             actionsToExectuteOnMainThread.Enqueue(() => RecordingState?.Invoke(IsRecording));
             Debug.Log("Recording State Changed: " + IsRecording);
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke("Recording has been stopped"));
         }
     }
 
@@ -214,6 +261,7 @@ public class OBSWebSocketManager : MonoBehaviour
         if (!obsWebSocket.IsConnected)
         {
             Debug.LogError("Cannot toggle recording, not connected to OBS!");
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke(defaultNotConnectedMessage));
             return;
         }
 
@@ -234,8 +282,9 @@ public class OBSWebSocketManager : MonoBehaviour
             Debug.LogError("Error toggling recording: " + e.Message);
         }
     }
+    #endregion
 
-    /// Streaming Logic
+    #region Stream Handling
     public bool IsStreaming { get; private set; }
     public event Action<bool> StreamingState;
 
@@ -244,7 +293,7 @@ public class OBSWebSocketManager : MonoBehaviour
         var streamingStatus = obsWebSocket.GetStreamStatus();
         IsStreaming = streamingStatus.IsActive;
         Debug.Log("Initial Streaming State: " + IsStreaming);
-        StreamingState?.Invoke(IsStreaming);
+        actionsToExectuteOnMainThread.Enqueue(() => StreamingState?.Invoke(IsStreaming));
     }
 
     private void OBSStreamStateChanged(object sender, StreamStateChangedEventArgs e)
@@ -255,6 +304,7 @@ public class OBSWebSocketManager : MonoBehaviour
             IsStreaming = true;
             actionsToExectuteOnMainThread.Enqueue(() => StreamingState?.Invoke(IsStreaming));
             Debug.Log("Recording State Changed: " + IsStreaming);
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke("Stream has been started"));
         }
 
         else if (unfilteredState == "OBS_WEBSOCKET_OUTPUT_STOPPED")
@@ -262,6 +312,7 @@ public class OBSWebSocketManager : MonoBehaviour
             IsStreaming = false;
             actionsToExectuteOnMainThread.Enqueue(() => StreamingState?.Invoke(IsStreaming));
             Debug.Log("Recording State Changed: " + IsStreaming);
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke("Stream has been stopped"));
         }
     }
 
@@ -269,6 +320,7 @@ public class OBSWebSocketManager : MonoBehaviour
     {
         if (!obsWebSocket.IsConnected)
         {
+            actionsToExectuteOnMainThread.Enqueue(() => WsMessage?.Invoke(defaultNotConnectedMessage));
             Debug.LogError("Cannot toggle streaming, not connected to OBS!");
             return;
         }
@@ -290,31 +342,5 @@ public class OBSWebSocketManager : MonoBehaviour
             Debug.LogError("Error toggling streaming: " + e.Message);
         }
     }
-
-    /*
-    public string GetRecordingTimeCode()
-    {
-        var timecode = "00:00:00";
-        if (!obsWebSocket.IsConnected)
-        {
-            Debug.LogError("Cannot get recording time code, not connected to OBS!");
-            timecode = "00:00:00";
-            return timecode;
-        }
-
-        try
-        {
-            var recordingStatus = obsWebSocket.GetRecordStatus();
-            timecode = recordingStatus.RecordTimecode;
-            return timecode.Split('.')[0];
-        }
-
-        catch (Exception e)
-        {
-            Debug.LogError("Error getting recording time code: " + e.Message);
-            timecode = "00:00:00";
-            return timecode;
-        }
-    }
-    */
+    #endregion
 }
