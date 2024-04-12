@@ -164,41 +164,37 @@ public class UiConnectionSettingsPanel : MonoBehaviour
     #region NDI Handling
     private void UpdateNdiFeedDropdowns()
     {
-        List<string> sourceNames = ndiManager.GetNdiSourceNames();
+        List<string> sourceNames = new List<string> { "None" };
+        sourceNames.AddRange(ndiManager.GetNdiSourceNames());
 
-        for (int i = 0; i < ndiFeedDropdown.Count && i < 3; i++)
+        for (int i = 0; i < ndiFeedDropdown.Count; i++)
         {
+            int receiverId = i + 1;
             ndiFeedDropdown[i].ClearOptions();
             ndiFeedDropdown[i].AddOptions(sourceNames);
 
-            // Get current NDI source name for this dropdown
-            string currentSource = ndiManager.GetCurrentNdiSourceName(i + 1);
-
-            if (!string.IsNullOrEmpty(currentSource))
-            {
-                // Find index of current NDI source name in the list
-                int currentIndex = sourceNames.FindIndex(name => name == currentSource);
-                // Set dropdown value to current NDI source name index
-                if (currentIndex != -1)
-                {
-                    ndiFeedDropdown[i].value = currentIndex;
-                }
-            }
+            // Setze den Dropdown-Index basierend auf dem gespeicherten Wert
+            int savedIndex = PlayerPrefs.GetInt($"Receiver{receiverId}Selection", 0); // Default auf "None"
+            ndiFeedDropdown[i].value = savedIndex;
         }
     }
+
     private void AddNdiDropdownListeners()
     {
         for (int i = 0; i < ndiFeedDropdown.Count; i++)
         {
-            // Local copy of i required for lambda expression to avoid closure pitfall
             int receiverId = i + 1;
             ndiFeedDropdown[i].onValueChanged.AddListener((value) =>
             {
-                // Selected index is passed to NdiManager
+                PlayerPrefs.SetInt($"Receiver{receiverId}Selection", value);
+                PlayerPrefs.Save();
+
+                // Set the source in the NdiManager, including disabling if "None" was selected
                 ndiManager.SetNdiReceiverSource(receiverId, value);
             });
         }
     }
+
     private void RemoveNdiDropdownListeners()
     {
         for (int i = 0; i < ndiFeedDropdown.Count; i++)

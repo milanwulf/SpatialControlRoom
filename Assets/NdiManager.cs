@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//Custom Events
+using UnityEngine.Events;
+[System.Serializable]
+public class NdiReceiverEvent : UnityEvent<int, bool> { }
+
 public class NdiManager : MonoBehaviour
 {
     [Header("NDI Receiver")]
@@ -19,7 +24,21 @@ public class NdiManager : MonoBehaviour
     [SerializeField] private string defaultSourceName3 = "Feed3_Group";
     private bool defaultSourcesSet = false;
 
+    //Public Events
+    //public NdiReceiverEvent onNdiReceiverStateChanged; //works, but not used in other scripts yet
+
     // Start is called before the first frame update
+    private void Awake()
+    {
+        /* //works, but not used in other scripts yet
+        if (onNdiReceiverStateChanged == null)
+        {
+            onNdiReceiverStateChanged = new NdiReceiverEvent();
+        }
+        */
+        
+    }
+
     void Start()
     {
         Invoke(nameof(GetAvailableNdiFeeds), 3f);
@@ -38,6 +57,8 @@ public class NdiManager : MonoBehaviour
             SetDefaults();
             defaultSourcesSet = true;
         }
+
+        InitializeReceiversFromSavedState();
     }
     private void SetDefaults()
     {
@@ -88,39 +109,83 @@ public class NdiManager : MonoBehaviour
             Debug.LogWarning("Default NDI source name 3 not found: " + defaultSourceName3);
         }
     }
+
+    private void InitializeReceiversFromSavedState()
+    {
+        // Stellen Sie sicher, dass Sie die Receiver deaktivieren, wenn "None" ausgewählt ist (value == 0).
+        int receiver1Setting = PlayerPrefs.GetInt("Receiver1Selection", 0); // Default auf "None" wenn nicht vorhanden
+        int receiver2Setting = PlayerPrefs.GetInt("Receiver2Selection", 0);
+        int receiver3Setting = PlayerPrefs.GetInt("Receiver3Selection", 0);
+
+        SetNdiReceiverSource(1, receiver1Setting);
+        SetNdiReceiverSource(2, receiver2Setting);
+        SetNdiReceiverSource(3, receiver3Setting);
+    }
+
     public void SetNdiReceiverSource(int receiverId, int value)
     {
-        // Checking if the list is empty
-        if(ndiSourceNames == null || ndiSourceNames.Count == 0)
-        {
-            Debug.LogError($"The {nameof(ndiSourceNames)} List is empty, call {nameof(GetAvailableNdiFeeds)} first!");
-            return;
-        }
+        bool isEnabled = value != 0; // "None" is index 0, disable the receiver if this value is selected
 
-        // Check if the passed index is within the valid range of the list
-        if (value < 0 || value >= ndiSourceNames.Count)
-        {
-            Debug.LogError("Index out of range. Please select a valid NDI source.");
-            return;
-        }
-
-        // Set the NDI source name for the receiver
         switch (receiverId)
         {
             case 1:
-                ndiReceiver1.ndiName = ndiSourceNames[value];
+                ndiReceiver1.enabled = isEnabled;
+                if (isEnabled)
+                {
+                    ndiReceiver1.ndiName = ndiSourceNames[value - 1]; // Adjust index because "None" was added
+                }
+                else
+                {
+                    ndiReceiver1.ndiName = "";
+                }
                 break;
             case 2:
-                ndiReceiver2.ndiName = ndiSourceNames[value];
+                ndiReceiver2.enabled = isEnabled;
+                if (isEnabled)
+                {
+                    ndiReceiver2.ndiName = ndiSourceNames[value - 1];
+                }
+                else
+                {
+                    ndiReceiver2.ndiName = "";
+                }
                 break;
             case 3:
-                ndiReceiver3.ndiName = ndiSourceNames[value];
+                ndiReceiver3.enabled = isEnabled;
+                if (isEnabled)
+                {
+                    ndiReceiver3.ndiName = ndiSourceNames[value - 1];
+                }
+                else
+                {
+                    ndiReceiver3.ndiName = "";
+                }
                 break;
-            default:
-                Debug.LogError("Invalid receiver id. Please select a valid NDI receiver.");
+        }
+
+        // Notify listeners about the state change, if events are to be used later
+        // onNdiReceiverStateChanged.Invoke(receiverId, isEnabled);
+    }
+
+    private void DisableReceiver(int receiverId)
+    {
+        switch (receiverId)
+        {
+            case 1:
+                ndiReceiver1.enabled = false;
+                ndiReceiver1.ndiName = "";
+                break;
+            case 2:
+                ndiReceiver2.enabled = false;
+                ndiReceiver2.ndiName = "";
+                break;
+            case 3:
+                ndiReceiver3.enabled = false;
+                ndiReceiver3.ndiName = "";
                 break;
         }
     }
+
     public List<string> GetNdiSourceNames()
     {
         return ndiSourceNames;
