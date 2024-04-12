@@ -63,7 +63,7 @@ public class UiRecordingPanel : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Current button text: " + recToggleBtnText.text);
+        //Debug.Log("Current button text: " + recToggleBtnText.text);
     }
 
     private void HandleRecordingStateChange(bool isRecording)

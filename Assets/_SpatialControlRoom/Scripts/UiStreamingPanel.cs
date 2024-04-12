@@ -61,7 +61,7 @@ public class UiStreamingPanel : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Current button text: " + streamToggleBtnText.text);
+        //Debug.Log("Current button text: " + streamToggleBtnText.text);
     }
 
     private void HandleStreamStateChange(bool isStreaming)
