@@ -113,9 +113,9 @@ public class NdiManager : MonoBehaviour
     private void InitializeReceiversFromSavedState()
     {
         // Stellen Sie sicher, dass Sie die Receiver deaktivieren, wenn "None" ausgewählt ist (value == 0).
-        int receiver1Setting = PlayerPrefs.GetInt("Receiver1Selection", 0); // Default auf "None" wenn nicht vorhanden
-        int receiver2Setting = PlayerPrefs.GetInt("Receiver2Selection", 0);
-        int receiver3Setting = PlayerPrefs.GetInt("Receiver3Selection", 0);
+        int receiver1Setting = Mathf.Clamp(PlayerPrefs.GetInt("Receiver1Selection", 0), 0, ndiSourceNames.Count);
+        int receiver2Setting = Mathf.Clamp(PlayerPrefs.GetInt("Receiver2Selection", 0), 0, ndiSourceNames.Count);
+        int receiver3Setting = Mathf.Clamp(PlayerPrefs.GetInt("Receiver3Selection", 0), 0, ndiSourceNames.Count);
 
         SetNdiReceiverSource(1, receiver1Setting);
         SetNdiReceiverSource(2, receiver2Setting);
@@ -124,47 +124,32 @@ public class NdiManager : MonoBehaviour
 
     public void SetNdiReceiverSource(int receiverId, int value)
     {
-        bool isEnabled = value != 0; // "None" is index 0, disable the receiver if this value is selected
+        // Prüfe zuerst, ob "None" ausgewählt ist oder der Index ungültig ist
+        bool isEnabled = (value > 0 && value <= ndiSourceNames.Count);
 
-        switch (receiverId)
+        if (!isEnabled)
         {
-            case 1:
-                ndiReceiver1.enabled = isEnabled;
-                if (isEnabled)
-                {
-                    ndiReceiver1.ndiName = ndiSourceNames[value - 1]; // Adjust index because "None" was added
-                }
-                else
-                {
-                    ndiReceiver1.ndiName = "";
-                }
-                break;
-            case 2:
-                ndiReceiver2.enabled = isEnabled;
-                if (isEnabled)
-                {
-                    ndiReceiver2.ndiName = ndiSourceNames[value - 1];
-                }
-                else
-                {
-                    ndiReceiver2.ndiName = "";
-                }
-                break;
-            case 3:
-                ndiReceiver3.enabled = isEnabled;
-                if (isEnabled)
-                {
-                    ndiReceiver3.ndiName = ndiSourceNames[value - 1];
-                }
-                else
-                {
-                    ndiReceiver3.ndiName = "";
-                }
-                break;
+            DisableReceiver(receiverId);
         }
-
-        // Notify listeners about the state change, if events are to be used later
-        // onNdiReceiverStateChanged.Invoke(receiverId, isEnabled);
+        else
+        {
+            string selectedSource = ndiSourceNames[value - 1]; // Adjust index because "None" was added at 0
+            switch (receiverId)
+            {
+                case 1:
+                    ndiReceiver1.enabled = true;
+                    ndiReceiver1.ndiName = selectedSource;
+                    break;
+                case 2:
+                    ndiReceiver2.enabled = true;
+                    ndiReceiver2.ndiName = selectedSource;
+                    break;
+                case 3:
+                    ndiReceiver3.enabled = true;
+                    ndiReceiver3.ndiName = selectedSource;
+                    break;
+            }
+        }
     }
 
     private void DisableReceiver(int receiverId)

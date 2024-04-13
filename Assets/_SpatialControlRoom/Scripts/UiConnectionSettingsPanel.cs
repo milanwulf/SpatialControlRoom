@@ -165,7 +165,10 @@ public class UiConnectionSettingsPanel : MonoBehaviour
     private void UpdateNdiFeedDropdowns()
     {
         List<string> sourceNames = new List<string> { "None" };
-        sourceNames.AddRange(ndiManager.GetNdiSourceNames());
+        if (ndiManager.GetNdiSourceNames() != null && ndiManager.GetNdiSourceNames().Count > 0)
+        {
+            sourceNames.AddRange(ndiManager.GetNdiSourceNames());
+        }
 
         for (int i = 0; i < ndiFeedDropdown.Count; i++)
         {
@@ -173,8 +176,9 @@ public class UiConnectionSettingsPanel : MonoBehaviour
             ndiFeedDropdown[i].ClearOptions();
             ndiFeedDropdown[i].AddOptions(sourceNames);
 
-            // Setze den Dropdown-Index basierend auf dem gespeicherten Wert
-            int savedIndex = PlayerPrefs.GetInt($"Receiver{receiverId}Selection", 0); // Default auf "None"
+            // Stelle sicher, dass der gespeicherte Wert innerhalb des neuen Bereichs liegt
+            int savedIndex = PlayerPrefs.GetInt($"Receiver{receiverId}Selection", 0);
+            savedIndex = Mathf.Clamp(savedIndex, 0, sourceNames.Count - 1);
             ndiFeedDropdown[i].value = savedIndex;
         }
     }

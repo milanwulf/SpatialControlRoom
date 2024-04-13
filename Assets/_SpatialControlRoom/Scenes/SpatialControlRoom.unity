@@ -3636,8 +3636,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2483171112407822886, guid: f54012181eacade4ea242c65f804720f,
         type: 3}
+      propertyPath: _sharpenType
+      value: 65536
+      objectReference: {fileID: 0}
+    - target: {fileID: 2483171112407822886, guid: f54012181eacade4ea242c65f804720f,
+        type: 3}
       propertyPath: _localDimming
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2483171112407822886, guid: f54012181eacade4ea242c65f804720f,
         type: 3}
