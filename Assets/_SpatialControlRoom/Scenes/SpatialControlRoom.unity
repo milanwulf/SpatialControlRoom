@@ -5185,6 +5185,11 @@ PrefabInstance:
       propertyPath: obsWebSocketManager
       value: 
       objectReference: {fileID: 618373089}
+    - target: {fileID: 6815201599075758034, guid: 3e9d396793b023b48a4ad0f75827ea73,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5484,16 +5489,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
-  m_TargetOffset: {x: 0, y: -0.3, z: 0.5}
+  m_Target: {fileID: 1834949312}
+  m_TargetOffset: {x: 0, y: -0.3, z: 0.45}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
-  m_MovementSpeed: 7
+  m_MovementSpeed: 8
   m_MovementSpeedVariancePercentage: 0.06
   m_SnapOnEnable: 1
   m_PositionFollowMode: 1
   m_MinDistanceAllowed: 0.01
-  m_MaxDistanceAllowed: 0.5
+  m_MaxDistanceAllowed: 0.3
   m_TimeUntilThresholdReachesMaxDistance: 3
   m_RotationFollowMode: 1
   m_MinAngleAllowed: 0.1
@@ -6167,6 +6172,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1640219537}
     m_Modifications:
+    - target: {fileID: 2121084442627951949, guid: fca2bd8d981dd954f9f85f26d710d85d,
+        type: 3}
+      propertyPath: m_Name
+      value: Program
+      objectReference: {fileID: 0}
+    - target: {fileID: 3834637388339814581, guid: fca2bd8d981dd954f9f85f26d710d85d,
+        type: 3}
+      propertyPath: m_Name
+      value: Preview
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887363238095011916, guid: fca2bd8d981dd954f9f85f26d710d85d,
+        type: 3}
+      propertyPath: _dragColor.b
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887363238095011916, guid: fca2bd8d981dd954f9f85f26d710d85d,
+        type: 3}
+      propertyPath: _dragColor.g
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887363238095011916, guid: fca2bd8d981dd954f9f85f26d710d85d,
+        type: 3}
+      propertyPath: _dragColor.r
+      value: 0.754717
+      objectReference: {fileID: 0}
     - target: {fileID: 4372418222074756518, guid: fca2bd8d981dd954f9f85f26d710d85d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6222,6 +6252,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UiInputSelection
       objectReference: {fileID: 0}
+    - target: {fileID: 7565793178287887570, guid: fca2bd8d981dd954f9f85f26d710d85d,
+        type: 3}
+      propertyPath: lazyFollow
+      value: 
+      objectReference: {fileID: 1640219536}
     - target: {fileID: 8518991073269423874, guid: fca2bd8d981dd954f9f85f26d710d85d,
         type: 3}
       propertyPath: ndiReceiver1

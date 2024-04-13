@@ -1167,8 +1167,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4372418222074756518}
-  - component: {fileID: 8675981995078463058}
   - component: {fileID: 8518991073269423874}
+  - component: {fileID: 7565793178287887570}
   m_Layer: 0
   m_Name: UiInputSelection
   m_TagString: Untagged
@@ -1192,33 +1192,6 @@ Transform:
   - {fileID: 8693650196553111858}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -20, y: 0, z: 0}
---- !u!114 &8675981995078463058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7506673742445820279}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
-  m_TargetOffset: {x: 0, y: 0, z: 1}
-  m_FollowInLocalSpace: 0
-  m_ApplyTargetInLocalSpace: 0
-  m_MovementSpeed: 2
-  m_MovementSpeedVariancePercentage: 0.25
-  m_SnapOnEnable: 1
-  m_PositionFollowMode: 1
-  m_MinDistanceAllowed: 0.01
-  m_MaxDistanceAllowed: 0.5
-  m_TimeUntilThresholdReachesMaxDistance: 3
-  m_RotationFollowMode: 1
-  m_MinAngleAllowed: 0.1
-  m_MaxAngleAllowed: 2
-  m_TimeUntilThresholdReachesMaxAngle: 3
 --- !u!114 &8518991073269423874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1251,6 +1224,19 @@ MonoBehaviour:
   - {fileID: 8142655638592797674}
   - {fileID: 596557564114302061}
   - {fileID: 6233229978842047988}
+--- !u!114 &7565793178287887570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506673742445820279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c71fce087419e41b687a090e5cc332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lazyFollow: {fileID: 0}
 --- !u!1 &7904185681260201506
 GameObject:
   m_ObjectHideFlags: 0
