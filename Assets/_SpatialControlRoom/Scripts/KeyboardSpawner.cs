@@ -15,6 +15,14 @@ public class KeyboardSpawner : MonoBehaviour
     private GameObject currentKeyboard;
     private KeyboardManager keyboardManager;
 
+    private void Awake()
+    {
+        if(headPosition == null)
+        {
+            headPosition = GameObject.Find("/OVRCameraRigInteraction/OVRCameraRig/TrackingSpace/CenterEyeAnchor").transform;
+        }
+    }
+
     public void InstantiateKeyboard(TMP_InputField activeInputField)
     {
         if (currentKeyboard != null)
