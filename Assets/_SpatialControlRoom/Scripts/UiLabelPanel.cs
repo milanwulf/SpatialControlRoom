@@ -2,37 +2,81 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Flexalon;
+using UnityEngine.UI;
+using Google.MaterialDesign.Icons;
 
 public class UiLabelPanel : MonoBehaviour
 {
     [SerializeField] private KeyboardSpawner keyboardSpawner;
-    private TMP_InputField labelInputField;
+    [SerializeField] private GameObject inputFieldObj;
+    private TMP_InputField inputField;
+    private Image inputFieldStroke;
+    private bool uiIsLocked = false;
+    private FlexalonObject mainFlexalonObject;
+    private UiLabelManager uiLabelManager;
+
+    [Header("Buttons")]
+    [SerializeField] private Button lockBtn;
+    [SerializeField] private MaterialIcon lockBtnIcon;
+    private string unlockIconUnicode = "e898";
+    private string lockIconUnicode = "e897";
+
+    [SerializeField] private GameObject deleteBtnObj;
+    private Button deleteBtn;
+
+    [Header("Handles")]
+    [SerializeField] private GameObject bottomHandle;
+
+    private void Awake()
+    {
+        mainFlexalonObject = GetComponent<FlexalonObject>();
+        uiLabelManager = FindObjectOfType<UiLabelManager>();
+        deleteBtn = deleteBtnObj.GetComponent<Button>();
+        inputField = inputFieldObj.GetComponent<TMP_InputField>();
+        inputFieldStroke = inputFieldObj.GetComponent<Image>();
+    }
 
     private void OnEnable()
     {
-        labelInputField = GetComponentInChildren<TMP_InputField>();
-        labelInputField.onSelect.AddListener(OnLabelInputFieldSelect);
+        inputField.onSelect.AddListener(OnLabelInputFieldSelect);
+        lockBtn.onClick.AddListener(ToggleLockState);
+        deleteBtn.onClick.AddListener(DeleteLabel);
     }
 
     private void OnDisable()
     {
-        labelInputField.onSelect.RemoveListener(OnLabelInputFieldSelect);
+        inputField.onSelect.RemoveListener(OnLabelInputFieldSelect);
+        lockBtn.onClick.RemoveListener(ToggleLockState);
+        keyboardSpawner.DestroyKeyboardImmediate();
+        deleteBtn.onClick.RemoveListener(DeleteLabel);
     }
 
     private void OnLabelInputFieldSelect(string label)
     {
-        keyboardSpawner.InstantiateKeyboard(labelInputField);
+        keyboardSpawner.InstantiateKeyboard(inputField);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void ToggleLockState()
     {
-        
+        uiIsLocked = !uiIsLocked;
+        inputField.interactable = !uiIsLocked;
+        inputFieldStroke.enabled = !uiIsLocked;
+        bottomHandle.SetActive(!uiIsLocked);
+        deleteBtnObj.GetComponent<FlexalonObject>().SkipLayout = uiIsLocked;
+        deleteBtnObj.SetActive(!uiIsLocked);
+        lockBtnIcon.iconUnicode = uiIsLocked ? lockIconUnicode : unlockIconUnicode;
+        if (uiIsLocked)
+        {
+            inputField.DeactivateInputField();
+            keyboardSpawner.DestroyKeyboardImmediate();
+        }
+        mainFlexalonObject.ForceUpdate();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DeleteLabel()
     {
         
+        uiLabelManager.RemoveLabelInstance(gameObject);
     }
 }

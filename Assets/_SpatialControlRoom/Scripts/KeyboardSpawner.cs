@@ -92,8 +92,25 @@ public class KeyboardSpawner : MonoBehaviour
             Destroy(currentKeyboard);
             currentKeyboard = null;
             keyboardManager = null;
-
+           
             // Fokus entfernen, um zu verhindern, dass das Keyboard unmittelbar neu erscheint.
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+    }
+
+    public void DestroyKeyboardImmediate()
+    {
+        if (currentKeyboard != null)
+        {
+            Button closeKeyboardBtn = currentKeyboard.transform.Find(closeKeyboardButtonName)?.GetComponent<Button>();
+            if (closeKeyboardBtn != null)
+            {
+                closeKeyboardBtn.onClick.RemoveListener(() => StartCoroutine(DestroyKeyboardAfterDelay()));
+            }
+            Destroy(currentKeyboard);
+            currentKeyboard = null;
+            keyboardManager = null;
+            Debug.Log("Keyboard destroyed immediately.");
             EventSystem.current.SetSelectedGameObject(null);
         }
     }
