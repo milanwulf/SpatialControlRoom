@@ -16,6 +16,8 @@ public class UiLabelPanel : MonoBehaviour
     private FlexalonObject mainFlexalonObject;
     private UiLabelManager uiLabelManager;
 
+    private Color caretColor;
+
     [Header("Buttons")]
     [SerializeField] private Button lockBtn;
     [SerializeField] private MaterialIcon lockBtnIcon;
@@ -35,6 +37,7 @@ public class UiLabelPanel : MonoBehaviour
         deleteBtn = deleteBtnObj.GetComponent<Button>();
         inputField = inputFieldObj.GetComponent<TMP_InputField>();
         inputFieldStroke = inputFieldObj.GetComponent<Image>();
+        caretColor = inputField.caretColor;
     }
 
     private void OnEnable()
@@ -70,7 +73,14 @@ public class UiLabelPanel : MonoBehaviour
         {
             inputField.DeactivateInputField();
             keyboardSpawner.DestroyKeyboardImmediate();
+            caretColor = new Color(caretColor.r, caretColor.g, caretColor.b, 0);
         }
+
+        else
+        {
+            caretColor = new Color(caretColor.r, caretColor.g, caretColor.b, 1);
+        }
+        inputField.caretColor = caretColor;
         mainFlexalonObject.ForceUpdate();
     }
 
