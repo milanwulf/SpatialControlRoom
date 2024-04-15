@@ -341,7 +341,7 @@ MonoBehaviour:
   FillSize: {x: 680, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
   TargetPosition: {x: 0, y: -99.93503, z: -60}
-  TargetRotation: {x: 0.70710677, y: 0, z: 0, w: -0.70710677}
+  TargetRotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 0, y: 0, z: 0}
   TransformPosition: {x: 0, y: -99.93503, z: -60}
@@ -546,7 +546,7 @@ MonoBehaviour:
   FillSize: {x: 680, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
   TargetPosition: {x: 0, y: 61.534966, z: -60}
-  TargetRotation: {x: 0.70710677, y: 0, z: 0, w: -0.70710677}
+  TargetRotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 0, y: 0, z: 0}
   TransformPosition: {x: 0, y: 61.534966, z: -60}
@@ -1492,7 +1492,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1180852879712117831
 MonoBehaviour:
@@ -6275,7 +6275,7 @@ PrefabInstance:
     - target: {fileID: 9220761492980779050, guid: 1bf3e889417dd0d4484a0a3e599e163d,
         type: 3}
       propertyPath: TargetPosition.x
-      value: 15.300003
+      value: 15.3
       objectReference: {fileID: 0}
     - target: {fileID: 9220761492980779050, guid: 1bf3e889417dd0d4484a0a3e599e163d,
         type: 3}
@@ -6285,7 +6285,7 @@ PrefabInstance:
     - target: {fileID: 9220761492980779050, guid: 1bf3e889417dd0d4484a0a3e599e163d,
         type: 3}
       propertyPath: TransformPosition.x
-      value: 15.300003
+      value: 15.3
       objectReference: {fileID: 0}
     - target: {fileID: 9220761492980779050, guid: 1bf3e889417dd0d4484a0a3e599e163d,
         type: 3}

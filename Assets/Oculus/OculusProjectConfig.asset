@@ -15,7 +15,7 @@ MonoBehaviour:
   targetDeviceTypes: 020000000300000004000000
   allowOptional3DofHeadTracking: 0
   handTrackingSupport: 1
-  handTrackingFrequency: 0
+  handTrackingFrequency: 1
   handTrackingVersion: 2
   anchorSupport: 1
   sharedAnchorSupport: 1
@@ -35,7 +35,7 @@ MonoBehaviour:
   experimentalFeaturesEnabled: 0
   insightPassthroughEnabled: 0
   _insightPassthroughSupport: 1
-  _processorFavor: 0
+  _processorFavor: -1
   systemSplashScreen: {fileID: 2800000, guid: 8acde843d3a80c44ab2d1e7130e49e35, type: 3}
   systemSplashScreenType: 0
   _systemLoadingScreenBackground: 1
