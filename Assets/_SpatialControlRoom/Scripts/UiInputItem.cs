@@ -73,6 +73,7 @@ public class UiInputItem : MonoBehaviour
     private int inputSceneId;
 
     //Instantiate
+    private UiInputSelectionPanel uiInputSelectionPanel;
     [SerializeField] BoxCollider protectedArea = null;
     private FlexalonInteractable flexalonInteractable;
     [SerializeField] UiFeedInstanceManger uiFeedInstanceManger = null;
@@ -83,6 +84,7 @@ public class UiInputItem : MonoBehaviour
     private void Awake()
     {
         flexalonInteractable = GetComponent<FlexalonInteractable>();
+        uiInputSelectionPanel = GetComponentInParent<UiInputSelectionPanel>();
     }
 
     // Start is called before the first frame update
@@ -126,6 +128,7 @@ public class UiInputItem : MonoBehaviour
         if (!IsPosInsideProtectedArea(currentPos))
         {
             uiFeedInstanceManger.InstantiateNewFeed(currentPos, Quaternion.identity, instanceRenderTexture, instanceRenderTextureOffset, uiFeedType, inputTextString, inputSceneId);
+            uiInputSelectionPanel.ClosePanelAfterDelay();
         }
     }
 

@@ -41,7 +41,7 @@ public class UiLabelPanel : MonoBehaviour
     {
         inputField.onSelect.AddListener(OnLabelInputFieldSelect);
         lockBtn.onClick.AddListener(ToggleLockState);
-        deleteBtn.onClick.AddListener(DeleteLabel);
+        deleteBtn.onClick.AddListener(DeleteLabelAfterDelay);
     }
 
     private void OnDisable()
@@ -49,7 +49,7 @@ public class UiLabelPanel : MonoBehaviour
         inputField.onSelect.RemoveListener(OnLabelInputFieldSelect);
         lockBtn.onClick.RemoveListener(ToggleLockState);
         keyboardSpawner.DestroyKeyboardImmediate();
-        deleteBtn.onClick.RemoveListener(DeleteLabel);
+        deleteBtn.onClick.RemoveListener(DeleteLabelAfterDelay);
     }
 
     private void OnLabelInputFieldSelect(string label)
@@ -74,9 +74,13 @@ public class UiLabelPanel : MonoBehaviour
         mainFlexalonObject.ForceUpdate();
     }
 
+    private void DeleteLabelAfterDelay()
+    {
+        Invoke(nameof(DeleteLabel), 0.3f);
+    }
+
     private void DeleteLabel()
     {
-        
         uiLabelManager.RemoveLabelInstance(gameObject);
     }
 }
