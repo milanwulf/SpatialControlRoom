@@ -10,10 +10,12 @@ public class UiLabelItem : MonoBehaviour
     [SerializeField] private UiLabelManager uiLabelManager = null;
     [SerializeField] private BoxCollider protectedArea = null;
     private FlexalonInteractable flexalonInteractable;
+    private UiInputSelectionPanel uiInputSelectionPanel;
 
     private void Awake()
     {
         flexalonInteractable = GetComponent<FlexalonInteractable>();
+        uiInputSelectionPanel = GetComponentInParent<UiInputSelectionPanel>();
     }
     // Start is called before the first frame update
     void Start()
@@ -48,7 +50,8 @@ public class UiLabelItem : MonoBehaviour
             Vector3 currentEuler = transform.rotation.eulerAngles;
             Quaternion newRotation = Quaternion.Euler(currentEuler.x, currentEuler.y, 0);
             uiLabelManager.InstatiateNewLabel(currentPos, newRotation);
-       }
+            uiInputSelectionPanel.ClosePanelWithDelay();
+        }
     }
 
     private bool IsInProtectedArea(Vector3 position)

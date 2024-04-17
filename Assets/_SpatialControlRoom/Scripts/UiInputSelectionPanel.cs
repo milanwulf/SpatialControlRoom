@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit.UI;
 
 public class UiInputSelectionPanel : MonoBehaviour
 {
@@ -23,17 +24,37 @@ public class UiInputSelectionPanel : MonoBehaviour
     [SerializeField] GameObject[] ndiFeed2Objects;
     [SerializeField] GameObject[] ndiFeed3Objects;
 
+    [Header("LazyFollowDisabler")]
+    [SerializeField] LazyFollow lazyFollow;
+    [SerializeField] float renableDelay = 0.5f;
+
     private void OnEnable()
     {
         closeBtn.onClick.AddListener(ClosePanel);
         //ndiManager.onNdiReceiverStateChanged.AddListener(UpdateInputSelectionObjects);
         UpdateInputSelectionStates();
+
+        //lazyFollow Disabler
+        var flexalonInteractables = GetComponentsInChildren<FlexalonInteractable>();
+        foreach (var flexalonInteractable in flexalonInteractables)
+        {
+            flexalonInteractable.DragStart.AddListener(DisableLazyFollower);
+            flexalonInteractable.DragEnd.AddListener(EnableLazyFollower);
+        }
     }
 
     private void OnDisable()
     {
         closeBtn.onClick.RemoveListener(ClosePanel);
         //ndiManager.onNdiReceiverStateChanged.RemoveListener(UpdateInputSelectionObjects);
+
+        //lazyFollow Disabler
+        var flexalonInteractables = GetComponentsInChildren<FlexalonInteractable>();
+        foreach (var flexalonInteractable in flexalonInteractables)
+        {
+            flexalonInteractable.DragStart.RemoveListener(DisableLazyFollower);
+            flexalonInteractable.DragEnd.RemoveListener(EnableLazyFollower);
+        }
     }
 
     private void Start()
@@ -43,7 +64,13 @@ public class UiInputSelectionPanel : MonoBehaviour
 
     private void ClosePanel()
     {
+        lazyFollow.enabled = true;
         gameObject.SetActive(false);
+    }
+
+    public void ClosePanelWithDelay()
+    {
+        Invoke(nameof(ClosePanel), 0.2f);
     }
 
     private void UpdateInputSelectionStates() 
@@ -82,4 +109,24 @@ public class UiInputSelectionPanel : MonoBehaviour
                 break;
         }
     }
+
+    #region LazyFollowDisabler
+    private void DisableLazyFollower(FlexalonInteractable flexalonInteractable)
+    {
+        lazyFollow.enabled = false;
+        Debug.Log("DisableLazyFollower");
+    }
+
+    private void EnableLazyFollower(FlexalonInteractable flexalonInteractable)
+    {
+        StartCoroutine(EnableLazyFollowerWithDelay());
+    }
+
+    private IEnumerator EnableLazyFollowerWithDelay()
+    {
+        yield return new WaitForSeconds(renableDelay);
+        lazyFollow.enabled = true;
+        Debug.Log("EnableLazyFollower");
+    }
+    #endregion
 }

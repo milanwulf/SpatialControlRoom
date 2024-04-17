@@ -80,9 +80,12 @@ public class UiInputItem : MonoBehaviour
     private RenderTexture instanceRenderTexture;
     private Rect instanceRenderTextureOffset;
 
+    private UiInputSelectionPanel uiInputSelectionPanel;
+
     private void Awake()
     {
         flexalonInteractable = GetComponent<FlexalonInteractable>();
+        uiInputSelectionPanel = GetComponentInParent<UiInputSelectionPanel>();
     }
 
     // Start is called before the first frame update
@@ -126,6 +129,7 @@ public class UiInputItem : MonoBehaviour
         if (!IsPosInsideProtectedArea(currentPos))
         {
             uiFeedInstanceManger.InstantiateNewFeed(currentPos, Quaternion.identity, instanceRenderTexture, instanceRenderTextureOffset, uiFeedType, inputTextString, inputSceneId);
+            uiInputSelectionPanel.ClosePanelWithDelay();
         }
     }
 

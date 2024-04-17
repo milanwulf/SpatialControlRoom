@@ -6321,7 +6321,7 @@ PrefabInstance:
     - target: {fileID: 1201607445037432059, guid: fca2bd8d981dd954f9f85f26d710d85d,
         type: 3}
       propertyPath: m_SortingOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1245260529125320364, guid: fca2bd8d981dd954f9f85f26d710d85d,
         type: 3}
@@ -7158,6 +7158,11 @@ PrefabInstance:
       propertyPath: LayoutPosition.x
       value: -299.75198
       objectReference: {fileID: 0}
+    - target: {fileID: 8518991073269423874, guid: fca2bd8d981dd954f9f85f26d710d85d,
+        type: 3}
+      propertyPath: lazyFollow
+      value: 
+      objectReference: {fileID: 1640219536}
     - target: {fileID: 8518991073269423874, guid: fca2bd8d981dd954f9f85f26d710d85d,
         type: 3}
       propertyPath: ndiReceiver1
