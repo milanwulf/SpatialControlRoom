@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit.UI;
 
 public class UiInputSelectionPanel : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class UiInputSelectionPanel : MonoBehaviour
     [SerializeField] GameObject[] ndiFeed2Objects;
     [SerializeField] GameObject[] ndiFeed3Objects;
 
+    [Header("LazyFollowController disables LazyFollowing when a Item is dragged")]
+    [SerializeField] LazyFollow lazyFollow;
+    [SerializeField] float renableDelay = 0.5f;
+
     private void OnEnable()
     {
         closeBtn.onClick.AddListener(ClosePanel);
@@ -34,6 +39,7 @@ public class UiInputSelectionPanel : MonoBehaviour
     {
         closeBtn.onClick.RemoveListener(ClosePanel);
         //ndiManager.onNdiReceiverStateChanged.RemoveListener(UpdateInputSelectionObjects);
+
     }
 
     private void Start()

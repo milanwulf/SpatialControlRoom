@@ -122,6 +122,7 @@ public class UiActionBar : MonoBehaviour
             if (actionBarAnimator.GetCurrentAnimatorStateInfo(0).IsName(openIdleState))
             {
                 actionBarAnimator.SetTrigger(triggerCloseAnimation);
+                uiPanelSwitcher.HideAllUiPanels(); //TODO: Test this
                 if (openIconUnicode != null)
                 {
                     actionBarBtnIcon.iconUnicode = openIconUnicode;
