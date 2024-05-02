@@ -111,7 +111,7 @@ public class UiFeed : MonoBehaviour
         portraitBtn.onClick.AddListener(() => SetAspectRatio("portrait"));
 
         //Delete Button
-        deleteBtnIcon.onClick.AddListener(RemoveThisInstanceAfterDelay);
+        deleteBtnIcon.onClick.AddListener(RemoveThisInstance);
 
         //Duplicate Button
         duplicateBtn.onClick.AddListener(DuplicateThisInstance);
@@ -138,7 +138,7 @@ public class UiFeed : MonoBehaviour
         portraitBtn.onClick.RemoveListener(() => SetAspectRatio("portrait"));
 
         //Delete Button
-        deleteBtnIcon.onClick.RemoveListener(RemoveThisInstanceAfterDelay);
+        deleteBtnIcon.onClick.RemoveListener(RemoveThisInstance);
 
         //Duplicate Button
         duplicateBtn.onClick.RemoveListener(DuplicateThisInstance);
@@ -362,12 +362,7 @@ public class UiFeed : MonoBehaviour
         }
     }
     
-    private void RemoveThisInstanceAfterDelay()
-    {
-        Invoke(nameof(RemoveThisInstace), 0.3f);
-    }
-
-    private void RemoveThisInstace()
+    private void RemoveThisInstance()
     {
         uiFeedInstanceManger.RemoveFeedInstance(this);
     }

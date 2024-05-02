@@ -50,7 +50,7 @@ public class UiLabelItem : MonoBehaviour
             Vector3 currentEuler = transform.rotation.eulerAngles;
             Quaternion newRotation = Quaternion.Euler(currentEuler.x, currentEuler.y, 0);
             uiLabelManager.InstatiateNewLabel(currentPos, newRotation);
-            uiInputSelectionPanel.ClosePanelAfterDelay();
+            uiInputSelectionPanel.ClosePanelWithDelay();
         }
     }
 

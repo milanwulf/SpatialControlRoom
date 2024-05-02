@@ -73,13 +73,14 @@ public class UiInputItem : MonoBehaviour
     private int inputSceneId;
 
     //Instantiate
-    private UiInputSelectionPanel uiInputSelectionPanel;
     [SerializeField] BoxCollider protectedArea = null;
     private FlexalonInteractable flexalonInteractable;
     [SerializeField] UiFeedInstanceManger uiFeedInstanceManger = null;
     private Rect renderTextureOffset;
     private RenderTexture instanceRenderTexture;
     private Rect instanceRenderTextureOffset;
+
+    private UiInputSelectionPanel uiInputSelectionPanel;
 
     private void Awake()
     {
@@ -128,7 +129,7 @@ public class UiInputItem : MonoBehaviour
         if (!IsPosInsideProtectedArea(currentPos))
         {
             uiFeedInstanceManger.InstantiateNewFeed(currentPos, Quaternion.identity, instanceRenderTexture, instanceRenderTextureOffset, uiFeedType, inputTextString, inputSceneId);
-            uiInputSelectionPanel.ClosePanelAfterDelay();
+            uiInputSelectionPanel.ClosePanelWithDelay();
         }
     }
 

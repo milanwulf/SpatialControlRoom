@@ -124,6 +124,7 @@ public class UiActionBar : MonoBehaviour
                 actionBarAnimator.SetTrigger(triggerCloseAnimation);
                 if (openIconUnicode != null)
                 {
+                    uiPanelSwitcher.HideAllUiPanels();
                     actionBarBtnIcon.iconUnicode = openIconUnicode;
                 }
             }

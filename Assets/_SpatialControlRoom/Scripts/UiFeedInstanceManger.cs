@@ -6,7 +6,7 @@ using UnityEngine;
 public class UiFeedInstanceManger : MonoBehaviour
 {
     [SerializeField] GameObject uiFeedPrefab;
-    [SerializeField] Vector3 duplicatePosOffset = new Vector3(0f, 0f, -0.2f);
+    [SerializeField] float duplicatePosOffset = 0.1f;
     [SerializeField] bool debugMode = false;
 
     private List<UiFeed> uiFeedInstancesList = new List<UiFeed>();
@@ -49,11 +49,16 @@ public class UiFeedInstanceManger : MonoBehaviour
 
     public void DuplicateUiFeedInstance(UiFeed uiFeedToDuplicate)
     {
-        Vector3 duplicatePosition = uiFeedToDuplicate.transform.position + duplicatePosOffset;
+        // Calculate the negative offset in the forward direction of the original UI feed
+        Vector3 offset = -uiFeedToDuplicate.transform.forward * duplicatePosOffset; // This applies a negative offset
+        Vector3 duplicatePosition = uiFeedToDuplicate.transform.position + offset;
+
         Quaternion duplicateRotation = uiFeedToDuplicate.transform.rotation;
         var instanceData = uiFeedToDuplicate.GetInstanceData();
         InstantiateNewFeed(duplicatePosition, duplicateRotation, instanceData.RenderTexture, instanceData.Offset, instanceData.FeedType, instanceData.SceneName, instanceData.SceneId, instanceData.SceneState);
     }
+
+
 
     //OBS Logic
     public void UpdateUiFeedScene(int index, string callingMethod) //called by the OBSWebSocketManager

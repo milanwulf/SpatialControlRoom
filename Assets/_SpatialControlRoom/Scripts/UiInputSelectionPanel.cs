@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit.UI;
 
 public class UiInputSelectionPanel : MonoBehaviour
 {
@@ -23,21 +24,17 @@ public class UiInputSelectionPanel : MonoBehaviour
     [SerializeField] GameObject[] ndiFeed2Objects;
     [SerializeField] GameObject[] ndiFeed3Objects;
 
-<<<<<<< Updated upstream
-=======
     [Header("LazyFollowDisabler")]
     [SerializeField] LazyFollow lazyFollow;
     [SerializeField] float renableDelay = 0.5f;
 
->>>>>>> Stashed changes
     private void OnEnable()
     {
         closeBtn.onClick.AddListener(ClosePanel);
         //ndiManager.onNdiReceiverStateChanged.AddListener(UpdateInputSelectionObjects);
         UpdateInputSelectionStates();
 
-
-        //LazyFollowDisabler
+        //lazyFollow Disabler
         var flexalonInteractables = GetComponentsInChildren<FlexalonInteractable>();
         foreach (var flexalonInteractable in flexalonInteractables)
         {
@@ -50,18 +47,14 @@ public class UiInputSelectionPanel : MonoBehaviour
     {
         closeBtn.onClick.RemoveListener(ClosePanel);
         //ndiManager.onNdiReceiverStateChanged.RemoveListener(UpdateInputSelectionObjects);
-<<<<<<< Updated upstream
-=======
 
-        //LazyFollowDisabler
+        //lazyFollow Disabler
         var flexalonInteractables = GetComponentsInChildren<FlexalonInteractable>();
         foreach (var flexalonInteractable in flexalonInteractables)
         {
             flexalonInteractable.DragStart.RemoveListener(DisableLazyFollower);
             flexalonInteractable.DragEnd.RemoveListener(EnableLazyFollower);
         }
-
->>>>>>> Stashed changes
     }
 
     private void Start()
@@ -69,13 +62,13 @@ public class UiInputSelectionPanel : MonoBehaviour
         //Invoke(nameof(UpdateInputSelectionStates), 1f); //makes sure that the NDI Receivers are initialized by the NdiManager
     }
 
-    public void ClosePanel()
+    private void ClosePanel()
     {
         lazyFollow.enabled = true;
         gameObject.SetActive(false);
     }
 
-    public void ClosePanelAfterDelay()
+    public void ClosePanelWithDelay()
     {
         Invoke(nameof(ClosePanel), 0.2f);
     }

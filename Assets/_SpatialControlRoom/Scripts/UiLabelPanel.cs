@@ -16,6 +16,8 @@ public class UiLabelPanel : MonoBehaviour
     private FlexalonObject mainFlexalonObject;
     private UiLabelManager uiLabelManager;
 
+    private Color caretColor;
+
     [Header("Buttons")]
     [SerializeField] private Button lockBtn;
     [SerializeField] private MaterialIcon lockBtnIcon;
@@ -35,13 +37,14 @@ public class UiLabelPanel : MonoBehaviour
         deleteBtn = deleteBtnObj.GetComponent<Button>();
         inputField = inputFieldObj.GetComponent<TMP_InputField>();
         inputFieldStroke = inputFieldObj.GetComponent<Image>();
+        caretColor = inputField.caretColor;
     }
 
     private void OnEnable()
     {
         inputField.onSelect.AddListener(OnLabelInputFieldSelect);
         lockBtn.onClick.AddListener(ToggleLockState);
-        deleteBtn.onClick.AddListener(DeleteLabelAfterDelay);
+        deleteBtn.onClick.AddListener(DeleteLabel);
     }
 
     private void OnDisable()
@@ -49,7 +52,7 @@ public class UiLabelPanel : MonoBehaviour
         inputField.onSelect.RemoveListener(OnLabelInputFieldSelect);
         lockBtn.onClick.RemoveListener(ToggleLockState);
         keyboardSpawner.DestroyKeyboardImmediate();
-        deleteBtn.onClick.RemoveListener(DeleteLabelAfterDelay);
+        deleteBtn.onClick.RemoveListener(DeleteLabel);
     }
 
     private void OnLabelInputFieldSelect(string label)
@@ -70,17 +73,20 @@ public class UiLabelPanel : MonoBehaviour
         {
             inputField.DeactivateInputField();
             keyboardSpawner.DestroyKeyboardImmediate();
+            caretColor = new Color(caretColor.r, caretColor.g, caretColor.b, 0);
         }
-        mainFlexalonObject.ForceUpdate();
-    }
 
-    private void DeleteLabelAfterDelay()
-    {
-        Invoke(nameof(DeleteLabel), 0.3f);
+        else
+        {
+            caretColor = new Color(caretColor.r, caretColor.g, caretColor.b, 1);
+        }
+        inputField.caretColor = caretColor;
+        mainFlexalonObject.ForceUpdate();
     }
 
     private void DeleteLabel()
     {
+        
         uiLabelManager.RemoveLabelInstance(gameObject);
     }
 }
