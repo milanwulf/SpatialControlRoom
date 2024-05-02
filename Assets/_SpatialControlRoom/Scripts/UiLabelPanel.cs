@@ -86,7 +86,12 @@ public class UiLabelPanel : MonoBehaviour
 
     private void DeleteLabel()
     {
-        
+        gameObject.SetActive(false);
+        Invoke(nameof(RemoveInstance), 0.5f); //delay is needed otherwise Oculus Interaction will throw an null reference error
+    }
+
+    private void RemoveInstance()
+    {
         uiLabelManager.RemoveLabelInstance(gameObject);
     }
 }

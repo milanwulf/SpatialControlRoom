@@ -1948,7 +1948,7 @@ MonoBehaviour:
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 0, y: 0, z: 0}
-  TransformPosition: {x: 0, y: 0.97, z: 1.589}
+  TransformPosition: {x: 0.1334, y: 0.174, z: 1.994}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 0, y: 0}
@@ -6049,6 +6049,26 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 5323171777313061497, guid: 7aa896c2f1ed67c4594c15923cd82e61,
+        type: 3}
+      propertyPath: _canvas
+      value: 
+      objectReference: {fileID: 8336878112244536475}
+    - target: {fileID: 5323171777313061497, guid: 7aa896c2f1ed67c4594c15923cd82e61,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323171777313061497, guid: 7aa896c2f1ed67c4594c15923cd82e61,
+        type: 3}
+      propertyPath: _forwardElement
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051110387970838420, guid: 7aa896c2f1ed67c4594c15923cd82e61,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6304486595199341332, guid: 7aa896c2f1ed67c4594c15923cd82e61,
         type: 3}
       propertyPath: FillSize.x
@@ -6137,6 +6157,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &8336878112244536475 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 8110937581598008726, guid: 7aa896c2f1ed67c4594c15923cd82e61,
+    type: 3}
+  m_PrefabInstance: {fileID: 233444706180362509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &237753094750923519
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -111,7 +111,7 @@ public class UiFeed : MonoBehaviour
         portraitBtn.onClick.AddListener(() => SetAspectRatio("portrait"));
 
         //Delete Button
-        deleteBtnIcon.onClick.AddListener(RemoveThisInstance);
+        deleteBtnIcon.onClick.AddListener(DeleteUiFeed);
 
         //Duplicate Button
         duplicateBtn.onClick.AddListener(DuplicateThisInstance);
@@ -138,7 +138,7 @@ public class UiFeed : MonoBehaviour
         portraitBtn.onClick.RemoveListener(() => SetAspectRatio("portrait"));
 
         //Delete Button
-        deleteBtnIcon.onClick.RemoveListener(RemoveThisInstance);
+        deleteBtnIcon.onClick.RemoveListener(DeleteUiFeed);
 
         //Duplicate Button
         duplicateBtn.onClick.RemoveListener(DuplicateThisInstance);
@@ -362,6 +362,12 @@ public class UiFeed : MonoBehaviour
         }
     }
     
+    private void DeleteUiFeed()
+    {
+        gameObject.SetActive(false);
+        Invoke(nameof(RemoveThisInstance), 0.5f); //delay is needed otherwise Oculus Interaction will throw an null reference error
+    }
+
     private void RemoveThisInstance()
     {
         uiFeedInstanceManger.RemoveFeedInstance(this);

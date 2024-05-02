@@ -78,10 +78,10 @@ public class UiActionBar : MonoBehaviour
         //UiPanelSwitcher
         recordingBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(0); });
         streamingBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(1); });
-        //layoutBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(X); }); //TODO: implement UiPanel
-        inputsBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(2); });
-        passthroughBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(3); }); //index might change!
-        settingsBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(4); }); //shows connection settings for testing, change index later!
+        layoutBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(2); });
+        inputsBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(3); });
+        passthroughBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(4); }); //index might change!
+        settingsBtn.onClick.AddListener(() => { uiPanelSwitcher.ShowUiPanel(5); }); //shows connection settings for testing, change index later!
     }
 
     private void OnDisable()
