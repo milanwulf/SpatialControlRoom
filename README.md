@@ -3,14 +3,20 @@
 
 Spatial Control Room was developed as part of my bachelor's thesis. It is a mixed-reality operating concept for use in production control rooms (PCR), which are mainly found in television productions. The focus was on developing an alternative to conventional vision mixers and monitor walls. I came up with the idea when I was working on a production myself. I noticed that although augmented reality and similar technologies are already being used in film and television to add virtual studios or additional information in sports, immersive technologies have so far mainly been used as a medium and not as a tool for actual content creation. I was therefore interested in whether the existing processes in a production control room could be improved and optimized through the integration of Extended Reality.
 
-<img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/416a705d-0ed8-44e1-8214-5ac5d73e20b7" width="25%"></img> <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/2e095a42-3bb8-4bac-adb4-2bd743129448" width="25%"></img> <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/e0e5bf0e-24e3-40d5-9e64-da84d12f0a3c" width="25%"></img> 
+<img src="https://private-user-images.githubusercontent.com/56889501/327547945-2e095a42-3bb8-4bac-adb4-2bd743129448.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQ4NTQzNDcsIm5iZiI6MTcxNDg1NDA0NywicGF0aCI6Ii81Njg4OTUwMS8zMjc1NDc5NDUtMmUwOTVhNDItM2JiOC00YmFjLWFkYjQtMmJkNzQzMTI5NDQ4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MDQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTA0VDIwMjA0N1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTUxZWE1OThiMjg1YTJmNjUwNzA4YmVlYmRkYzk5NTcxYzk2MGY0NWU4NTZjZWRlNDU4OWU5M2UyNzM4MzViOTkmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.nc8YepI-xv04IoLfcNaIRQxorEVGmTFGHvEg4-s0to0" width="30%"></img> <img src="https://private-user-images.githubusercontent.com/56889501/327547939-416a705d-0ed8-44e1-8214-5ac5d73e20b7.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQ4NTQzNDcsIm5iZiI6MTcxNDg1NDA0NywicGF0aCI6Ii81Njg4OTUwMS8zMjc1NDc5MzktNDE2YTcwNWQtMGVkOC00NGUxLTgyMTQtNWFjNWQ3M2UyMGI3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MDQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTA0VDIwMjA0N1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTczZWNkYTBmZjQ5ZGFiZmZiMjZlYWQ4NjI2ZTYxMDg4Mzg1OGE1MDc0NTM2YmU4YWM0MDMxMTU0MWQ0NjhmNTYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ZG18gsXPifaklsR8WFvlOj1ntwVqQlaPWoc9TGDOiSY" width="30%"></img> <img src="https://private-user-images.githubusercontent.com/56889501/327973421-aa2176c9-4ac0-4cd4-bb40-05c472d054b6.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQ4NTUxODIsIm5iZiI6MTcxNDg1NDg4MiwicGF0aCI6Ii81Njg4OTUwMS8zMjc5NzM0MjEtYWEyMTc2YzktNGFjMC00Y2Q0LWJiNDAtMDVjNDcyZDA1NGI2LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MDQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTA0VDIwMzQ0MlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTQ4ZGEzYmY5NDA4OWZjNGFjZGVkNGIwOTdlYjk2ODcxN2EyZDlhZDVkNWE0OTVmM2QxNDg2NjNmNmZmZDE5ZTQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.3LSNwxOlAQy-QAzetc7CQtbUVTtRodNL5ZueA6n0haI" width="30%"></img>
+
+
 ## Features
 
 Spatial Control Room connects to a computer running OBS (Open Broadcaster Software) and enables the simultaneous streaming of 10 individual scenes to a Quest 3 headset, along with the preview and program buses. Like professional vision mixers, the program bus (marked with a red frame) displays the outgoing video signal, while the preview bus (marked with a green frame) shows the source targeted for the next cut. Instead of pressing buttons on a physical control panel, users can simply tap a video panel to mark it as preview. With a hand gesture resembling scissors, users can signal a cut, causing the video panel to switch to the program state.
 
+<img src="https://private-user-images.githubusercontent.com/56889501/327973178-d15ad517-35c5-4196-a3ce-242432ba8abf.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQ4NTQ3NDksIm5iZiI6MTcxNDg1NDQ0OSwicGF0aCI6Ii81Njg4OTUwMS8zMjc5NzMxNzgtZDE1YWQ1MTctMzVjNS00MTk2LWEzY2UtMjQyNDMyYmE4YWJmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MDQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTA0VDIwMjcyOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTlmOTU0MjNmMDM3MTgyMDk1MTg1N2JhZmI4Nzc3ZWZjZTEzNzdmNTllMjFmZTRkMjQyZTI0M2E1YjE0YWU4NGQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.QGvuLQEkWjEvKTh4nZ7uXZOVQBsKU3HhmDMJZ9NMdjY" width="30%"></img>
+
 The different panels, each displaying various scenes, can be freely positioned and scaled within the environment, offering a clear advantage over traditional physical monitor walls. To improve ergonomics, panels automatically turn towards the user or follow their head position if desired. Another benefit is that the video panels can be duplicated infinitely, allowing placement in various locations, such as directly on cameras, thereby saving on additional hardware costs. The aspect ratio can be adjusted, which is particularly useful for productions that are also broadcast on social media channels with vertical or square video formats.
 
 All basic functions of the application are controlled via a fold-out action bar. This includes a menu for placing individual scenes, virtual labels for labeling hardware, and controls to start or stop OBS's recording and streaming functions. Furthermore, various passthrough modes can be selected to change the real environment, enhancing concentration.
+
+<img src="https://private-user-images.githubusercontent.com/56889501/327547948-e0e5bf0e-24e3-40d5-9e64-da84d12f0a3c.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQ4NTQzNDcsIm5iZiI6MTcxNDg1NDA0NywicGF0aCI6Ii81Njg4OTUwMS8zMjc1NDc5NDgtZTBlNWJmMGUtMjRlMy00MGQ1LTllNjQtZGE4NGQxMmYwYTNjLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MDQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTA0VDIwMjA0N1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTk4NjY5MTNjNDM5YTJmMmU0NDJiZjg4MTcyZjM5MTNiNGU1ZWFkYTJlNTE4N2I2MzU2ZGU0MDBhNmVlODQ1NWYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.KRTbPBZvw0RHOI_r05V0VPExC3Ze41qjzIuv66MiSss" width="30%"></img> 
 
 
 ## Installation
@@ -51,7 +57,31 @@ All basic functions of the application are controlled via a fold-out action bar.
 
     Tab on "Connect". If the connection is successful, a message should appear below the action bar.
 
-  <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/298a0165-88d4-4be9-b27c-a5dce26a74c9" width="25%"></img>
+  <img src="https://private-user-images.githubusercontent.com/56889501/327547950-298a0165-88d4-4be9-b27c-a5dce26a74c9.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQ4NTQzNDcsIm5iZiI6MTcxNDg1NDA0NywicGF0aCI6Ii81Njg4OTUwMS8zMjc1NDc5NTAtMjk4YTAxNjUtODhkNC00YmU5LWIyN2MtYTVkY2UyNmE3NGM5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MDQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTA0VDIwMjA0N1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTA3NmQzMTBiMDlkOTA5NWFjOTc1MDY0ZjdjYmY0MWEzMWQxNzVlNDU4NGZhNGVjYmE5NzA1MzhiNjYwODM2MDAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.O_SYhwoJcw8D5PLWboHJFP5UqKSA6swd3SEENRkFP00" width="50%"></img>
+
+## Ideas and planned features
+- Aids for aligning panels (snapping)
+
+- Grouping of panels
+- Saving and loading of arrangements using spatial anchors
+- Clean-up function that automatically arranges panels logically
+- Automatic scaling of UI elements as distance increases
+
+    <img src="https://private-user-images.githubusercontent.com/56889501/327972656-687fd5ea-51d0-44e2-ab3e-802914e319f5.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQ4NTM5NzAsIm5iZiI6MTcxNDg1MzY3MCwicGF0aCI6Ii81Njg4OTUwMS8zMjc5NzI2NTYtNjg3ZmQ1ZWEtNTFkMC00NGUyLWFiM2UtODAyOTE0ZTMxOWY1LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MDQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTA0VDIwMTQzMFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWE1YzEwOTg0YjgwYzQwYjg4ZDRjMTE0NDM2M2RiOTYxNzNhMjQ5MzcxMDY2N2U1ODUxYjZiNzFiMWJmYzg0MjAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.s5171BGqogKw7e9EXdSkKrKWhN6PSZyoHATDgNuTcwk" width="20%"></img>
+
+- Object tracking for linking panels to physical objects like cameras
+
+    <img src="https://private-user-images.githubusercontent.com/56889501/327972653-738920bf-c576-498d-b08b-c732c57bfc32.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQ4NTM5NzAsIm5iZiI6MTcxNDg1MzY3MCwicGF0aCI6Ii81Njg4OTUwMS8zMjc5NzI2NTMtNzM4OTIwYmYtYzU3Ni00OThkLWIwOGItYzczMmM1N2JmYzMyLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MDQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTA0VDIwMTQzMFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWZjYzE4YjBkMjhiMTY5OTJhNjgxNzE3OTkwYjFmNjkwOTc0MWEwNzBlMmQ1Yzk1OWE4NTQwMDEzMWZjNzZlMWQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.y_uLBvfSe-fHF1dWSr_uvUjom-roUMExcQtgDV_fYYI" width="20%"></img>
+- Option to show the title-safe area
+- Displaying of audio levels and intercom integration
+
+    <img src="https://private-user-images.githubusercontent.com/56889501/327973180-55fe8faf-91fd-4574-b63b-5d14cd55b52f.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQ4NTQ3NDksIm5iZiI6MTcxNDg1NDQ0OSwicGF0aCI6Ii81Njg4OTUwMS8zMjc5NzMxODAtNTVmZThmYWYtOTFmZC00NTc0LWI2M2ItNWQxNGNkNTViNTJmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MDQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTA0VDIwMjcyOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTViNTFiOWZkMTg3ZWNlMWJlNjJlMjhmZGQwOGM5ZWVhNDViOGYwMGNmMDEyNjY3NDgyZDk5ZTVkNDQyYTU4OTUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.1Ja7Lc0uuZ7T7ESzF8Pgqa_iY9CdJ046pvauOGSH76A" width="20%"></img>
+- Integration of advanced tools such as vectorscope or waveform monitor
+- Intercom integration
+- Seperate workspaces for video, audio and light
+- Multi-user support
+
+    <img src="https://private-user-images.githubusercontent.com/56889501/327972646-b8363f69-aa1a-4de8-af41-b05771b34b78.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQ4NTQzNDcsIm5iZiI6MTcxNDg1NDA0NywicGF0aCI6Ii81Njg4OTUwMS8zMjc5NzI2NDYtYjgzNjNmNjktYWExYS00ZGU4LWFmNDEtYjA1NzcxYjM0Yjc4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MDQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTA0VDIwMjA0N1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTk2ZDE5MTc3YzZjZmMzNjMwNDdiMGMxZmQ5NDdiYzc2NDNlOThlY2JjNjM2Y2U4ZWRkMTc0Y2RkMzJkNjgzODcmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.81pxR0NGM8jWt4Ri1X6r8TAuNSTEr9zHXAI388jJxR0" width="20%"></img>
 
 ## Problem Solving
 
@@ -72,3 +102,11 @@ You can also set the CPU level of the Quest to level 5 by sending the following 
 
 Also check whether your computer has enough power to run OBS smoothly.
 
+## Contact
+I studied user interface design and am a trained media designer with a strong interest in XR and spatial computing. I am also interested in 3D motion design and digital music production. For questions about the project or a general exchange I am available here:
+
+[LinkedIn](https://www.linkedin.com/in/milanwulf/)
+
+[Instagram](https://www.instagram.com/milan_wulf/)
+
+[Website](https://milanwulf.com/)
