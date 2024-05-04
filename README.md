@@ -3,22 +3,22 @@
 
 Spatial Control Room was developed as part of my bachelor's thesis. It is a mixed-reality operating concept for use in production control rooms (PCR), which are mainly found in television productions. The focus was on developing an alternative to conventional vision mixers and monitor walls. I came up with the idea when I was working on a production myself. I noticed that although augmented reality and similar technologies are already being used in film and television to add virtual studios or additional information in sports, immersive technologies have so far mainly been used as a medium and not as a tool for actual content creation. I was therefore interested in whether the existing processes in a production control room could be improved and optimized through the integration of Extended Reality.
 
-<img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/2e095a42-3bb8-4bac-adb4-2bd743129448" width="30%"></img> 
-<img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/416a705d-0ed8-44e1-8214-5ac5d73e20b7" width="30%"></img> 
-<img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/aa2176c9-4ac0-4cd4-bb40-05c472d054b6" width="30%"></img>
+<img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/2e095a42-3bb8-4bac-adb4-2bd743129448" width="40%"></img> 
+<img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/416a705d-0ed8-44e1-8214-5ac5d73e20b7" width="40%"></img> 
+<img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/aa2176c9-4ac0-4cd4-bb40-05c472d054b6" width="40%"></img>
 
 
 ## Features
 
 Spatial Control Room connects to a computer running OBS (Open Broadcaster Software) and enables the simultaneous streaming of 10 individual scenes to a Quest 3 headset, along with the preview and program buses. Like professional vision mixers, the program bus (marked with a red frame) displays the outgoing video signal, while the preview bus (marked with a green frame) shows the source targeted for the next cut. Instead of pressing buttons on a physical control panel, users can simply tap a video panel to mark it as preview. With a hand gesture resembling scissors, users can signal a cut, causing the video panel to switch to the program state.
 
-<img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/d15ad517-35c5-4196-a3ce-242432ba8abf" width="30%"></img>
+<img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/d15ad517-35c5-4196-a3ce-242432ba8abf" width="50%"></img>
 
 The different panels, each displaying various scenes, can be freely positioned and scaled within the environment, offering a clear advantage over traditional physical monitor walls. To improve ergonomics, panels automatically turn towards the user or follow their head position if desired. Another benefit is that the video panels can be duplicated infinitely, allowing placement in various locations, such as directly on cameras, thereby saving on additional hardware costs. The aspect ratio can be adjusted, which is particularly useful for productions that are also broadcast on social media channels with vertical or square video formats.
 
 All basic functions of the application are controlled via a fold-out action bar. This includes a menu for placing individual scenes, virtual labels for labeling hardware, and controls to start or stop OBS's recording and streaming functions. Furthermore, various passthrough modes can be selected to change the real environment, enhancing concentration.
 
-<img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/e0e5bf0e-24e3-40d5-9e64-da84d12f0a3c" width="30%"></img> 
+<img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/e0e5bf0e-24e3-40d5-9e64-da84d12f0a3c" width="50%"></img> 
 
 
 ## Installation
@@ -71,21 +71,21 @@ All basic functions of the application are controlled via a fold-out action bar.
 - Clean-up function that automatically arranges panels logically
 - Automatic scaling of UI elements as distance increases
 
-    <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/687fd5ea-51d0-44e2-ab3e-802914e319f5" width="20%"></img>
+    <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/687fd5ea-51d0-44e2-ab3e-802914e319f5" width="50%"></img>
 
 - Object tracking for linking panels to physical objects like cameras
 
-    <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/738920bf-c576-498d-b08b-c732c57bfc32" width="20%"></img>
+    <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/738920bf-c576-498d-b08b-c732c57bfc32" width="50%"></img>
 - Option to show the title-safe area
 - Displaying of audio levels and intercom integration
 
-    <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/55fe8faf-91fd-4574-b63b-5d14cd55b52f" width="20%"></img>
+    <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/55fe8faf-91fd-4574-b63b-5d14cd55b52f" width="50%"></img>
 - Integration of advanced tools such as vectorscope or waveform monitor
 - Intercom integration
 - Seperate workspaces for video, audio and light
 - Multi-user support
 
-    <img src="(https://github.com/milanwulf/SpatialControlRoom/assets/56889501/b8363f69-aa1a-4de8-af41-b05771b34b78" width="20%"></img>
+    <img src="(https://github.com/milanwulf/SpatialControlRoom/assets/56889501/b8363f69-aa1a-4de8-af41-b05771b34b78" width="50%"></img>
 
 ## Problem Solving
 
