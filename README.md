@@ -3,6 +3,9 @@
 
 Spatial Control Room was developed as part of my bachelor's thesis. It is a mixed-reality operating concept for use in production control rooms (PCR), which are mainly found in television productions. The focus was on developing an alternative to conventional vision mixers and monitor walls. I came up with the idea when I was working on a production myself. I noticed that although augmented reality and similar technologies are already being used in film and television to add virtual studios or additional information in sports, immersive technologies have so far mainly been used as a medium and not as a tool for actual content creation. I was therefore interested in whether the existing processes in a production control room could be improved and optimized through the integration of Extended Reality.
 
+[Presentation Video](https://youtu.be/lihsT8ghBec)
+[Overview Video](https://youtu.be/tE26fSZl2Fs)
+
 <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/2e095a42-3bb8-4bac-adb4-2bd743129448" width="40%"></img> 
 <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/416a705d-0ed8-44e1-8214-5ac5d73e20b7" width="40%"></img> 
 <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/aa2176c9-4ac0-4cd4-bb40-05c472d054b6" width="40%"></img>
