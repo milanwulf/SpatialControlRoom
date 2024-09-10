@@ -55,8 +55,8 @@ All basic functions of the application are controlled via a fold-out action bar.
 ### Step 2: Spatial Control Room preperation
 #### Option 1: Standalone
 
-> [!WARNING]
-> Currently no NDI streams can be found in the standalone app, probably Meta is blocking the [necessary ports](https://docs.ndi.video/docs/white-paper/ndi-related-network-ports) since a new Quest firmware update! Suggestions for solutions are welcome!
+> [!Hint]
+> If the NDI streams don't show up. One thing you can try is temporarily connecting the headset to a different Wi-Fi network and then back to the original one.
 
 > [!Note]
 > The application has been developed for the Meta Quest 3, a Meta Quest Pro or newer headsets with Meta Horizon OS should also work, but have not been tested. All previous models may not have enough power to transmit more than one NDI stream.
