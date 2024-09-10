@@ -26,7 +26,7 @@ All basic functions of the application are controlled via a fold-out action bar.
 
 
 ## Installation
-### Computer preperation
+:one: ### OBS preperation
 > [!Note]
 > Linux and MacOS versions and newer releases should also work, but have not been tested.
 
@@ -52,8 +52,8 @@ All basic functions of the application are controlled via a fold-out action bar.
 > To display video sources correctly in the Quest App, uncheck "Hide source when playback ends" in its properties; it is also a good idea to enable "Restart playback when source becomes active".
 
 
-### Quest Headset preperation
-#### Option 1: Standalone
+:two: ### Headset preperation
+:warning: #### Option 1: Standalone
 
 > [!WARNING]
 > Currently no NDI streams can be found in the standalone app, probably Meta is blocking the [necessary ports](https://docs.ndi.video/docs/white-paper/ndi-related-network-ports) since a new Quest firmware update! Suggestions for solutions are welcome!
