@@ -26,7 +26,7 @@ All basic functions of the application are controlled via a fold-out action bar.
 
 
 ## Installation
-:one: ### OBS preperation
+### Step 1: OBS preperation
 > [!Note]
 > Linux and MacOS versions and newer releases should also work, but have not been tested.
 
@@ -52,8 +52,8 @@ All basic functions of the application are controlled via a fold-out action bar.
 > To display video sources correctly in the Quest App, uncheck "Hide source when playback ends" in its properties; it is also a good idea to enable "Restart playback when source becomes active".
 
 
-:two: ### Headset preperation
-:warning: #### Option 1: Standalone
+### Step 2: Spatial Control Room preperation
+#### Option 1: Standalone
 
 > [!WARNING]
 > Currently no NDI streams can be found in the standalone app, probably Meta is blocking the [necessary ports](https://docs.ndi.video/docs/white-paper/ndi-related-network-ports) since a new Quest firmware update! Suggestions for solutions are welcome!
@@ -77,7 +77,22 @@ All basic functions of the application are controlled via a fold-out action bar.
   <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/298a0165-88d4-4be9-b27c-a5dce26a74c9" width="50%"></img>
 
 #### Option 2: Meta Quest Link + Unity
-  
+
+- Install [Meta Quest Link](https://www.meta.com/quest/setup/) and follow the instructions to connect your headset via USB or AirLink (WiFi)
+- In the Meta Quest Link application go to Settings/Beta-Version and activate `Passthrough via Meta Quest Link`
+- Clone [this](https://github.com/milanwulf/SpatialControlRoom/tree/main) repository using the `main` branch
+- Install Unity version `2022.3.13` via the [Unity Hub](https://unity.com/de/download) (if the version is not avaiable in the hub anymore, you can download it [here](https://unity.com/de/releases/editor/whats-new/2022.3.13))
+- Open the project in the Unity Hub by clicking `Add` on the “Projects” tab and navigating to the location where you downloaded the repository
+- In the Project panel in Unity navigate to `Assets/_SpatialControlRoom/Scenes` and open the scene named `SpatialControlRoom`
+- Enter the Play Mode by pressing the :arrow_forward: icon at the top of the Unity window
+- Put on your headset open the action bar and click the gear icon to enter your WebSocket credentials (local IP) and select the NDI streams as follows:
+
+    `Feed Group 1 = YourComputerName (Feed1_Group)`/
+    `Feed Group 2 = YourComputerName (Feed2_Group)`/
+    `Feed Group 3 = YourComputerName (Feed3_Group)`
+
+    Tab on "Connect". If the connection is successful, a message should appear below the action bar.
+
 
 ## Ideas and planned features
 - Aids for aligning panels (snapping)
