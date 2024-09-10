@@ -55,7 +55,7 @@ All basic functions of the application are controlled via a fold-out action bar.
 ### Step 2: Spatial Control Room preperation
 #### Option 1: Standalone
 
-> [!Hint]
+> [!Tip]
 > If the NDI streams don't show up. One thing you can try is temporarily connecting the headset to a different Wi-Fi network and then back to the original one.
 
 > [!Note]
