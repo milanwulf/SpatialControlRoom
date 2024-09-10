@@ -26,7 +26,7 @@ All basic functions of the application are controlled via a fold-out action bar.
 
 
 ## Installation
-### 1. Computer preperation
+### Computer preperation
 **Note:** Linux and MacOS versions and newer releases should also work, but have not been tested.
 - Download and install OBS Studio (Open Broadcaster Software): https://obsproject.com/download
     
@@ -48,7 +48,10 @@ All basic functions of the application are controlled via a fold-out action bar.
     *To display video sources correctly in the Quest App, uncheck "Hide source when playback ends" in its properties; it is also a good idea to enable "Restart playback when source becomes active".*
 
 
-### 2. Quest Headset preperation
+### Quest Headset preperation
+#### Option 1: Standalone
+*IMPORTANT: Currently no NDI streams can be found in the standalone app, probably Meta is blocking the [necessary ports](https://docs.ndi.video/docs/white-paper/ndi-related-network-ports) since a new Quest firmware update! Suggestions for solutions are welcome!*
+
 **Note:** The application has been developed for the Meta Quest 3, a Meta Quest Pro or newer headsets with Meta Horizon OS should also work, but have not been tested. All previous models may not have enough power to transmit more than one NDI stream.
 - Make sure the headset's developer mode is enabled ([instructions can be found here](https://developer.oculus.com/documentation/native/android/mobile-device-setup/))
 - Install the .APK found on the [Latest Releases](https://github.com/milanwulf/SpatialControlRoom/releases/latest), the easiest way is to use the [Meta Quest Developer Hub](https://developer.oculus.com/meta-quest-developer-hub/)
@@ -64,6 +67,9 @@ All basic functions of the application are controlled via a fold-out action bar.
     Tab on "Connect". If the connection is successful, a message should appear below the action bar.
 
   <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/298a0165-88d4-4be9-b27c-a5dce26a74c9" width="50%"></img>
+
+  #### Option 2: Meta Quest Link + Unity
+  
 
 ## Ideas and planned features
 - Aids for aligning panels (snapping)
