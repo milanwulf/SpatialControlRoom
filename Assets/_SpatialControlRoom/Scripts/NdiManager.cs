@@ -41,7 +41,7 @@ public class NdiManager : MonoBehaviour
 
     void Start()
     {
-        Invoke(nameof(GetAvailableNdiFeeds), 3f);
+        Invoke(nameof(GetAvailableNdiFeeds), 5f);
     }
     public void GetAvailableNdiFeeds() //Important: call with a short delay on Start() to get all NDI sources, otherwise it will return just one source
     {
@@ -112,7 +112,13 @@ public class NdiManager : MonoBehaviour
 
     private void InitializeReceiversFromSavedState()
     {
-        // Stellen Sie sicher, dass Sie die Receiver deaktivieren, wenn "None" ausgewählt ist (value == 0).
+        if (ndiSourceNames == null || ndiSourceNames.Count == 0)
+        {
+            Debug.LogWarning("No NDI sources available to initialize receivers.");
+            return;
+        }
+
+        // Deactivates the Receivers if "None" is selected (value == 0).
         int receiver1Setting = Mathf.Clamp(PlayerPrefs.GetInt("Receiver1Selection", 0), 0, ndiSourceNames.Count);
         int receiver2Setting = Mathf.Clamp(PlayerPrefs.GetInt("Receiver2Selection", 0), 0, ndiSourceNames.Count);
         int receiver3Setting = Mathf.Clamp(PlayerPrefs.GetInt("Receiver3Selection", 0), 0, ndiSourceNames.Count);
@@ -124,7 +130,7 @@ public class NdiManager : MonoBehaviour
 
     public void SetNdiReceiverSource(int receiverId, int value)
     {
-        // Prüfe zuerst, ob "None" ausgewählt ist oder der Index ungültig ist
+        // Check if "None" is selected or the Index is invalid
         bool isEnabled = (value > 0 && value <= ndiSourceNames.Count);
 
         if (!isEnabled)

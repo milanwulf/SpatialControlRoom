@@ -26,12 +26,19 @@ public class UiConnectionSettingsPanel : MonoBehaviour
     private GameObject connectBtnloadingSpinner;
     private GameObject connectBtnIcon;
 
+    [Header("Refresh Button")]
+    [SerializeField] private GameObject refreshBtnObject;
+    private Button refreshBtn;
+    private GameObject refreshBtnloadingSpinner;
+    private GameObject refreshBtnIcon;
+
     [Header("Close Button")]
     [SerializeField] private Button closeBtn;
 
     private void Awake()
     {
         InitializeConnectButton();
+        InitializeRefreshButton();
         gameObject.SetActive(false); //this gameobject need to be set inactive on Startup otherwise the default NDI Source will be the NDIReceiver source set in editor
     }
 
@@ -41,6 +48,14 @@ public class UiConnectionSettingsPanel : MonoBehaviour
         connectBtnIcon = connectBtnObject.transform.Find("Button Front/Icon").gameObject;
         connectBtnloadingSpinner = connectBtnObject.transform.Find("Button Front/LoadingSpinner").gameObject;
         ShowConnectButtonLoadingSpinner(false);
+    }
+
+    private void InitializeRefreshButton()
+    {
+        refreshBtn = refreshBtnObject.GetComponent<Button>();
+        refreshBtnIcon = refreshBtnObject.transform.Find("Button Front/Icon").gameObject;
+        refreshBtnloadingSpinner = refreshBtnObject.transform.Find("Button Front/LoadingSpinner").gameObject;
+        //ShowRefreshButtonLoadingSpinner(false);
     }
 
     private void ShowConnectButtonLoadingSpinner(bool isLoading)
@@ -57,6 +72,20 @@ public class UiConnectionSettingsPanel : MonoBehaviour
         }
     }
 
+    private void ShowRefreshButtonLoadingSpinner(bool isLoading)
+    {
+        if(isLoading)
+        {
+            refreshBtnIcon.SetActive(false);
+            refreshBtnloadingSpinner.SetActive(true);
+        }
+        else
+        {
+            refreshBtnIcon.SetActive(true);
+            refreshBtnloadingSpinner.SetActive(false);
+        }
+    }
+
     private void OnEnable()
     {
         closeBtn.onClick.AddListener(ClosePanel);
@@ -65,6 +94,7 @@ public class UiConnectionSettingsPanel : MonoBehaviour
         wsPasswordInputField.onSelect.AddListener(PasswordFieldSelected);
 
         //Refresh available NDI feeds on panel opening
+        refreshBtn.onClick.AddListener(OnRefreshButtonClicked);
         ndiManager.GetAvailableNdiFeeds();
         UpdateNdiFeedDropdowns();
         AddNdiDropdownListeners();
@@ -88,6 +118,10 @@ public class UiConnectionSettingsPanel : MonoBehaviour
 
         connectBtn.onClick.RemoveListener(ConnectToObs);
         obsWebsocketManager.WsConnected -= WebsocketConnectedEvent;
+        ShowConnectButtonLoadingSpinner(false);
+
+        refreshBtn.onClick.RemoveListener(OnRefreshButtonClicked);
+        ShowRefreshButtonLoadingSpinner(false);
     }
 
     private void ClosePanel()
@@ -181,6 +215,14 @@ public class UiConnectionSettingsPanel : MonoBehaviour
             savedIndex = Mathf.Clamp(savedIndex, 0, sourceNames.Count - 1);
             ndiFeedDropdown[i].value = savedIndex;
         }
+    }
+
+    private void OnRefreshButtonClicked()
+    {
+        ShowRefreshButtonLoadingSpinner(true);
+        ndiManager.GetAvailableNdiFeeds();
+        UpdateNdiFeedDropdowns();
+        ShowRefreshButtonLoadingSpinner(false);
     }
 
     private void AddNdiDropdownListeners()
