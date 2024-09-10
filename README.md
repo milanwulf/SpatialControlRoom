@@ -50,7 +50,9 @@ All basic functions of the application are controlled via a fold-out action bar.
 
 ### Quest Headset preperation
 #### Option 1: Standalone
-*IMPORTANT: Currently no NDI streams can be found in the standalone app, probably Meta is blocking the [necessary ports](https://docs.ndi.video/docs/white-paper/ndi-related-network-ports) since a new Quest firmware update! Suggestions for solutions are welcome!*
+
+[!WARNING]
+Currently no NDI streams can be found in the standalone app, probably Meta is blocking the [necessary ports](https://docs.ndi.video/docs/white-paper/ndi-related-network-ports) since a new Quest firmware update! Suggestions for solutions are welcome!
 
 **Note:** The application has been developed for the Meta Quest 3, a Meta Quest Pro or newer headsets with Meta Horizon OS should also work, but have not been tested. All previous models may not have enough power to transmit more than one NDI stream.
 - Make sure the headset's developer mode is enabled ([instructions can be found here](https://developer.oculus.com/documentation/native/android/mobile-device-setup/))
@@ -68,7 +70,7 @@ All basic functions of the application are controlled via a fold-out action bar.
 
   <img src="https://github.com/milanwulf/SpatialControlRoom/assets/56889501/298a0165-88d4-4be9-b27c-a5dce26a74c9" width="50%"></img>
 
-  #### Option 2: Meta Quest Link + Unity
+#### Option 2: Meta Quest Link + Unity
   
 
 ## Ideas and planned features
