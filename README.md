@@ -27,7 +27,9 @@ All basic functions of the application are controlled via a fold-out action bar.
 
 ## Installation
 ### Computer preperation
-**Note:** Linux and MacOS versions and newer releases should also work, but have not been tested.
+> [!Note]
+> Linux and MacOS versions and newer releases should also work, but have not been tested.
+
 - Download and install OBS Studio (Open Broadcaster Software): https://obsproject.com/download
     
     *Tested with OBS Studio **windows** version [30.0.2](https://github.com/obsproject/obs-studio/releases/tag/30.0.2)*
@@ -43,9 +45,11 @@ All basic functions of the application are controlled via a fold-out action bar.
 - Click on Scene Collection in the top menu bar and import the .json file found on [Latest Releases](https://github.com/milanwulf/SpatialControlRoom/releases/latest)
 - Add any number of sources to Scene 1-10, such as webcams, capture cards, or videos
     
-    *"Spatial Control Room Feeds" must be the lowest in the list and should not be changed!*
+> [!Important]
+> "Spatial Control Room Feeds" must be the lowest in the list and should not be changed!
 
-    *To display video sources correctly in the Quest App, uncheck "Hide source when playback ends" in its properties; it is also a good idea to enable "Restart playback when source becomes active".*
+> [!Tip]
+> To display video sources correctly in the Quest App, uncheck "Hide source when playback ends" in its properties; it is also a good idea to enable "Restart playback when source becomes active".
 
 
 ### Quest Headset preperation
@@ -54,7 +58,9 @@ All basic functions of the application are controlled via a fold-out action bar.
 > [!WARNING]
 > Currently no NDI streams can be found in the standalone app, probably Meta is blocking the [necessary ports](https://docs.ndi.video/docs/white-paper/ndi-related-network-ports) since a new Quest firmware update! Suggestions for solutions are welcome!
 
-**Note:** The application has been developed for the Meta Quest 3, a Meta Quest Pro or newer headsets with Meta Horizon OS should also work, but have not been tested. All previous models may not have enough power to transmit more than one NDI stream.
+> [!Note]
+> The application has been developed for the Meta Quest 3, a Meta Quest Pro or newer headsets with Meta Horizon OS should also work, but have not been tested. All previous models may not have enough power to transmit more than one NDI stream.
+
 - Make sure the headset's developer mode is enabled ([instructions can be found here](https://developer.oculus.com/documentation/native/android/mobile-device-setup/))
 - Install the .APK found on the [Latest Releases](https://github.com/milanwulf/SpatialControlRoom/releases/latest), the easiest way is to use the [Meta Quest Developer Hub](https://developer.oculus.com/meta-quest-developer-hub/)
 - Connect the headset to the same network as the computer running OBS
@@ -112,7 +118,8 @@ Streaming and receiving NDI requires a good network connection and places a heav
 
 If you do not need all 10 scenes, it is a good idea to disable the NDI streams you do not need. To do this, click the gear icon and set feed group 3 and feed group 2 to None. This should give you a significant performance boost by reducing the CPU load.
 
-**Note:** Feed Group 3 contains scenes 7-10, Feed Group 2 contains scenes 3-6, Feed Group 1 contains scenes 1-2 and the Preview and Program feed. 
+> [!Note]
+> Feed Group 3 contains scenes 7-10, Feed Group 2 contains scenes 3-6, Feed Group 1 contains scenes 1-2 and the Preview and Program feed. 
 
 You can also set the CPU level of the Quest to level 5 by sending the following Adb command via the Meta Quest Developer Hub: `adb shell setprop debug.oculus.cpuLevel 5` ([more about ADB](https://developer.oculus.com/documentation/native/android/ts-adb/))
 
